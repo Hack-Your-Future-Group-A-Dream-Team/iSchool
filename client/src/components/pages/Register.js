@@ -73,9 +73,10 @@ const Register = props=>{
                 .then(res => {
                   resetForm();
                   toast.success(res.data.message);
-                  timerID = setTimeout(()=>{
-                    props.history.push('/login');
-                },2000)
+                //   timerID = setTimeout(()=>{
+                //     props.history.push('/login');
+                // },4000)
+                //     toast.success(res.data.message);
                 })
                 .catch(err => {
                   resetForm();
