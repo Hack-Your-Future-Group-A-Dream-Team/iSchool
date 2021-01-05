@@ -10,6 +10,7 @@ const dbconnect = require('./api/utils/db');
 
 const School = require('./models/School');
 const comments_router = require('./api/routes/comments');
+const rating_router = require('./api/routes/rating');
 
 const api = require('./api/server');
 
@@ -76,7 +77,10 @@ app.get('/closestschools', (req, res, next) => {
 })
 
 // add a comment to a certain school by schoolId 
-app.use('/schools/comments', comments_router.new_comment);
+app.use('/schools/comments', comments_router);
+
+// add a score to the school by schoolId 
+app.use('/schools/rating', rating_router);
 
 const port = process.env.PORT || 9000;
 app.listen(port, () => console.log(`listening at http://localhost:${port}`));
