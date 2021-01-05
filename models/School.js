@@ -33,7 +33,8 @@ const SchoolSchema = new Schema({
 
     rating: {
         type: Number,
-        required: false
+        required: false,
+        default: 0
     },
 
     types: {
