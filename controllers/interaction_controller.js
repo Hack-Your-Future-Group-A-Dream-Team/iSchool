@@ -1,7 +1,7 @@
-const SchoolModel = require('../../models/School');
-const UserModel = require('../../models/User');
-const CommentModel = require('../../models/Comment');
-const RatingModel = require('../../models/Rating')
+const SchoolModel = require('../models/School');
+const UserModel = require('../models/User');
+const CommentModel = require('../models/Comment');
+const RatingModel = require('../models/Rating')
 
 const mongoose = require('mongoose');
 

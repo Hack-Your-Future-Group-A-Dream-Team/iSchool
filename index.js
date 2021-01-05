@@ -10,8 +10,8 @@ const User = require('./models/User');
 const School = require('./models/School');
 const dbconnect = require('./utils/db');
 
-const comments_router = require('./api/routes/comments');
-const rating_router = require('./api/routes/rating');
+const comments_router = require('./routes/comments');
+const rating_router = require('./routes/rating');
 
 app.use(cookieParser());
 app.use(express.json());
