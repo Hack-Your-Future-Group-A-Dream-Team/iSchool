@@ -66,7 +66,7 @@ it will contain `package.json`
  * *action*: saves a new document to the COMMENTS collection
  * *returns:* COMMENTS collection's document with a new comment
 
-   **5. Add a rating to the selected school**
+  **5. Add a rating to the selected school**
 
  * *type:* `POST`
  * *path:* `/schools/rating`
@@ -74,7 +74,7 @@ it will contain `package.json`
  * *action*: adds a `score` to the document in School collection according to the `schoolid`
  * *returns:* Object with the average rating of the selected school 
 
-   **6. Save favorite schools in users account**
+  **6. Save favorite schools in user's account**
 
  * *type:* `PUT`
  * *path:* `/user/favorites`
@@ -82,7 +82,7 @@ it will contain `package.json`
  * *action*: overwrites `listOfSchools` in the user account, so all the updated list must be send.
  * *returns:* 
 
-   **7. Get favorite schools in users account**
+  **7. Get favorite schools from user's account**
 
  * *type:* `GET`
  * *path:* `/user/favorites`
