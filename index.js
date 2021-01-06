@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const User = require('./models/User');
 const School = require('./models/School');
 const comments_router = require('./routes/comments');
+const favorites_router = require('./routes/favorites.js');
 const dbconnect = require('./utils/db');
 
 
@@ -63,6 +64,9 @@ app.get('/closestschools', (req, res, next) => {
 
 // add a comment to a certain school by schoolId 
 app.use('/schools/comments', comments_router.new_comment);
+
+// add favorites schools list to the user
+app.use('/user/favorites', favorites_router.favorites);
 
 const port = process.env.PORT || 9000;
 app.listen(port, () => console.log(`listening at http://localhost:${port}`));
