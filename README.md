@@ -1,11 +1,10 @@
 # CONTENTS
 
-> 1. How to update `nodejs` dependencies to launch the project successfully 
-> 2. List of project's web services
+> A. How to update `nodejs` dependencies to launch the project successfully 
+> B. List of project's web services
 
-
-## 1. How to update `nodejs` dependencies to launch the project successfully 
 -----------
+## A. How to update `nodejs` dependencies to launch the project successfully 
 
 ## 1. Go to the `client` folder 
 - Delete node_modules folder
@@ -31,9 +30,10 @@ it will contain `package.json`
 
  And Voilà, the project hopefully should run 😁. Since there is already `.env` file, you will automatically be connected to the database. You can see line`connected to the database` in your `server side` terminal.
 
-
- ## 2. List of project's web services
  -----------
+
+ ## B. List of project's web services
+
 
  **1. get list of schools**
  
