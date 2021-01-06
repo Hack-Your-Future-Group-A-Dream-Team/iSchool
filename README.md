@@ -1,6 +1,7 @@
 # CONTENTS
 
-> A. How to update `nodejs` dependencies to launch the project successfully 
+> A. How to update `nodejs` dependencies to launch the project successfully
+
 > B. List of project's web services
 
 -----------
