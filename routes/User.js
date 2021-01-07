@@ -18,40 +18,7 @@ const signToken = userID =>{
     },process.env.JWT_SECRET,{expiresIn : "7d"});
 }
 
-// userRouter.post('/register',validRegister,(req,res)=>{
-//     const { email,firstName,lastName, address, password,role } = req.body;
-//     const errors = validationResult(req);
-//     if(!errors.isEmpty()){
-//         const firstError = errors.array().map(error=> error.msg)[0]
-//         return res.status(422).json({
-//             error:firstError
-//         })
-//     }else{
-//         User.findOne({email},(err,user)=>{
-//             if(err)
-//                 res.status(500).json({error: "Error has occurred"});
-//             if(user)
-//                 res.status(400).json({error: "Email already exists"});
-//             else{
-//                 const newUser = new User({firstName, lastName,email, password,role, address});
-               
-//                 newUser
-//                     .save()
-//                     . then(user => {
-//                         res.status(201).json({
-//                             success: true,
-//                             user: user,
-//                             message: 'Account successfully created'
-//                         });
-//                     })
-//                     .catch(err =>  
-//                         {console.log(err);
-//                         res.status(500).json({error :`Something went wrong, please try again`})}
-//                         );
-//             }
-//         });
-//     }
-// });
+
 
 //-------------------REGISTER-----------------//
 userRouter.post('/register',validRegister,(req,res)=>{
