@@ -83,7 +83,7 @@ userRouter.post('/register',validRegister,(req,res)=>{
                 
             })
             
-            const CLIENT_URL = 'http://' + req.get('host');
+            const CLIENT_URL = 'https://testforischool.herokuapp.com';
 
             const output = `
                 <h2 style="color: #000051">Hello ${firstName} ${lastName}</h2>
