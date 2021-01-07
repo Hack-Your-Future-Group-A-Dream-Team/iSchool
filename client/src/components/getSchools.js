@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import './getSchools.css';
+import Filters from '../filterSchool';
 
 export default class Schools extends Component {
   constructor() {
@@ -11,13 +12,23 @@ export default class Schools extends Component {
   };
 
   componentDidMount() {
-    axios.get('/schools').then(res => {
-      this.setState({
-        // Here it will be filter function
-        data: res.data
-      });
-      console.log(res.data);
-    });
+    axios.get('/schools')
+        .then(res => {
+          // get all school
+          const allSchools = res.data;
+          console.log(allSchools)
+          
+
+          // filter school and set state
+          const filterSchools = allSchools.filter(school => school.network == 'Catholic Network' && school.areas == 'Vocational');
+          console.log(filterSchools);
+
+          this.setState({       
+              data: filterSchools
+          });
+          console.log(this.state.data);
+        })
+  
   };
 
   render() {
@@ -26,7 +37,7 @@ export default class Schools extends Component {
         {this.state.data.map((data)=>{
           return(
             <Fragment>
-              <div key={data.date} className="schoolListItem">
+              <div key={data.id} className="schoolListItem">
 
                 <div>
                   <p className="schoolName">{data.name}</p>

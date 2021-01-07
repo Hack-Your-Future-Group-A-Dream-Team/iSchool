@@ -14,9 +14,14 @@ legend {
   font-weight: 700;
 }
 
+input[type="radio"] {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}
+
 label {
   font-size: 25px;
-  padding-left: 5px;
 }
 
 .starRating {
@@ -32,5 +37,5 @@ label {
 }
 
 .inputStar:checked ~ label {
-  color: red;
+  color: #000051;
 }
