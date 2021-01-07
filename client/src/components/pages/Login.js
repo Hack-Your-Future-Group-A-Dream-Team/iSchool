@@ -69,13 +69,13 @@ const Login = props=>{
                 
                 <Form.Group as={Row} className="d-flex justify-content-center">
                 <Col sm="12" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 96px", margin:"10px", transition: "0.3s"}} className='hovered-red' type="submit" size="lg">
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", margin:"10px", width:"180px"}} className='hovered-red' type="submit" size="lg">
                     Sign In
                 </Button>{' '}
                 </Col>
                 <Col sm="12" className="d-flex justify-content-center">
                 <Link to="/register">
-                <Button style={{background: '#000051', border: "3px solid #000051", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 84px", margin:"10px", transition: "0.3s"}} className='hovered-blue' size="lg" > New user?
+                <Button style={{background: '#000051', border: "3px solid #000051", borderRadius:"10px", fontSize: "1.1rem" , margin:"10px", width: "180px"}} className='hovered-blue' size="lg"> New user?
                 </Button>
                 </Link>
                 </Col>

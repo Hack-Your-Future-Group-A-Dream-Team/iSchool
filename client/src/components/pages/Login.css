@@ -10,3 +10,14 @@
     background-color:#ffff !important;
     border: 3px solid #B71C1C !important;
   }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+
+    button.hovered-blue.btn.btn-primary{
+      font-size: small;
+    }
+
+    button.hovered-red.btn.btn-primary{
+      font-size: small;
+    }
+  }
