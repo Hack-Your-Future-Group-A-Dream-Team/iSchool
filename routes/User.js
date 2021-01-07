@@ -83,7 +83,7 @@ userRouter.post('/register',validRegister,(req,res)=>{
                 
             })
             
-            const CLIENT_URL = 'https://testforischool.herokuapp.com';
+            const CLIENT_URL = 'https://ischool-hyf-team.herokuapp.com';
 
             const output = `
                 <h2 style="color: #000051">Hello ${firstName} ${lastName}</h2>
@@ -133,7 +133,6 @@ userRouter.post('/activation',(req,res)=>{
                 res.status(500).json({error: "Incorrect or expired link! Please register again."});
                 console.log(err)
 
-                // res.redirect('/user/register');
              }
              else {
                 const { email,firstName,lastName, address, password,role } = decodedToken;
@@ -153,8 +152,6 @@ userRouter.post('/activation',(req,res)=>{
                                     user: user,
                                     message: 'Account successfully created. Please sing in',
                                 });
-                                // res.redirect(`${CLIENT_URL}/login`)
-                                // res.redirect(`${process.env.CLIENT_URL}/login`)
                             })
                             .catch(err =>  
                                 {console.log(err);
@@ -181,10 +178,7 @@ userRouter.post('/login',validLogin, async (req, res, next) => {
         req.login(user, { session : false }, async (error) => {
           if( error ) return next(error)
           const {_id, email, role} = user
-          //Sign the JWT token and populate the payload with the user email and id
           const token = signToken(_id);
-          
-          //Send back the token to the user
           return res.cookie('access_token',token,{httpOnly: true, sameSite:true}), 
           res.status(200).json({isAuthenticated : true,user : {email,role}, message: `${info.message}`});
         });     } catch (error) {

@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { Form, Row, Col, Button , Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import './Login.css' 
 
 
 const Register = props=>{
@@ -20,13 +21,6 @@ const Register = props=>{
         building: "",
         postcode: "",
         role : ""});
-    let timerID = useRef(null);
-
-    useEffect(()=>{
-        return ()=>{
-            clearTimeout(timerID);
-        }
-    },[]);
 
     const onChange = e =>{
         setUser({...user,[e.target.name] : e.target.value});
@@ -73,9 +67,6 @@ const Register = props=>{
                 .then(res => {
                   resetForm();
                   toast.success(res.data.message);
-                //   timerID = setTimeout(()=>{
-                //     props.history.push('/login');
-                // },2000)
                 })
                 .catch(err => {
                   resetForm();
@@ -95,7 +86,6 @@ const Register = props=>{
         <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%'}} className="shadow p-3 mb-5 bg-white rounded">
         
             <ToastContainer />
-            {/* <Container> */}
             <Form style= {{width: '60%', margin: 'auto', minHeight: "80vh"}} onSubmit={onSubmit}>
             <Row className="justify-content-md-center">
                 <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", margin:"20px 0"}}>SIGN UP</h2>
@@ -217,12 +207,12 @@ const Register = props=>{
                 <Form.Group as={Row} className="mt-5">
                 <Col sm="6" className="d-flex justify-content-center">
                     <Link to="login">
-                    <Button href="/login" style={{background: '#000051', border: "none", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 30px"}} size="lg"> Have an account?
+                    <Button  style={{background: '#000051', border: "3px solid #000051", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 30px"}} className="hovered-blue"size="lg"> Have an account?
                     </Button>
                     </Link>
                 </Col>
                 <Col sm="6" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "none", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 30px"}} type="submit" size="lg">
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 30px"}} className="hovered-red"type="submit" size="lg">
                     Create an account
                 </Button>{' '}
                 </Col>

@@ -1,0 +1,12 @@
+/* hover on btn */
+ .hovered-blue.btn.btn-primary:hover{
+    color: #000051;
+    background: white !important;
+    border: 3px solid #000051 !important;
+  }
+  
+  .hovered-red.btn.btn-primary:hover{
+    color: #B71C1C;
+    background-color:#ffff !important;
+    border: 3px solid #B71C1C !important;
+  }
