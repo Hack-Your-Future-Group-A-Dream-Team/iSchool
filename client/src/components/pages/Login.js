@@ -5,16 +5,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Form, Row, Col, Button , Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import './Login.css' 
 
 const Login = props=>{
     const [user,setUser] = useState({email: "", password : ""});
     const authContext = useContext(AuthContext);
+    const [ fade, setFade ] = useState(false);
 
     const onChange = e =>{
         setUser({...user,[e.target.name] : e.target.value});
     }
 
-    console.log(user);
     const onSubmit = e =>{
         e.preventDefault();
         console.log(user);
@@ -37,7 +38,6 @@ const Login = props=>{
             console.log(err);
         });
     }
-
 
 
     return(
@@ -67,18 +67,26 @@ const Login = props=>{
                 </Form.Group>
             </Row>
                 
-                <Form.Group as={Row} className="d-flex justify-content-end">
-                <Col sm="4" className="d-flex justify-content-center">
-                <Link to="/register">
-                <Button href="/register" style={{background: '#000051', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px"}} size="lg"> New user?
-                </Button>
-                </Link>
-                </Col>
-                <Col sm="4" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px"}} type="submit" size="lg">
+                <Form.Group as={Row} className="d-flex justify-content-center">
+                <Col sm="12" className="d-flex justify-content-center">
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", margin:"10px", width:"180px"}} className='hovered-red' type="submit" size="lg">
                     Sign In
                 </Button>{' '}
                 </Col>
+                <Col sm="12" className="d-flex justify-content-center">
+                <Link to="/register">
+                <Button style={{background: '#000051', border: "3px solid #000051", borderRadius:"10px", fontSize: "1.1rem" , margin:"10px", width: "180px"}} className='hovered-blue' size="lg"> New user?
+                </Button>
+                </Link>
+                </Col>
+                {/* <Col sm="12" className="mt-3">
+                <h3 style={{width: "100%", textAlign: "center", borderBottom: "1px solid #000051", lineHeight: "0.1rem", margin:"10px 0 20px 0"}}><span style={{background: '#fff', padding:"0 10px", fontSize:"1.1rem"}}>OR</span></h3>
+                </Col> */}
+                {/* <Col sm="12" className="d-flex justify-content-center">
+                <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 46px", margin:"10px"}} type="submit" size="lg">
+                    Sign In with Google
+                </Button>{' '} */}
+                {/* </Col> */}
                 </Form.Group>
                 </Form>
         </div>
