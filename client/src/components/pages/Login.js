@@ -41,9 +41,9 @@ const Login = props=>{
 
 
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '60%', minHeight: "63vh"}} className="shadow p-3 mb-5 bg-white rounded">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '60%', minHeight: "57vh"}} className="shadow p-3 mb-5 bg-white rounded">
              <ToastContainer />
-             <Form style= {{width: '50%', height: "50vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
+             <Form style= {{width: '50%', height: "57vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">
                 <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px"}}>SIGN IN</h2>
             </Row>
@@ -67,18 +67,27 @@ const Login = props=>{
                 </Form.Group>
             </Row>
                 
-                <Form.Group as={Row} className="d-flex justify-content-end">
-                <Col sm="4" className="d-flex justify-content-center">
-                <Link to="/register">
-                <Button href="/register" style={{background: '#000051', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px"}} size="lg"> New user?
-                </Button>
-                </Link>
-                </Col>
-                <Col sm="4" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px"}} type="submit" size="lg">
+                <Form.Group as={Row} className="d-flex justify-content-center">
+                <Col sm="12" className="d-flex justify-content-center">
+                <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 96px", margin:"10px"}} type="submit" size="lg">
                     Sign In
                 </Button>{' '}
                 </Col>
+                <Col sm="12" className="d-flex justify-content-center">
+                <Link to="/register">
+                <Button href="/register" style={{background: '#000051', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 84px", margin:"10px"}} size="lg"> New user?
+                </Button>
+                </Link>
+                </Col>
+                <Col sm="12" className="mt-3">
+                <h3 style={{width: "100%", textAlign: "center", borderBottom: "1px solid #000051", lineHeight: "0.1rem", margin:"10px 0 20px 0"}}><span style={{background: '#fff', padding:"0 10px", fontSize:"1.1rem"}}>OR</span></h3>
+                </Col>
+                <Col sm="12" className="d-flex justify-content-center">
+                <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 46px", margin:"10px"}} type="submit" size="lg">
+                    Sign In with Google
+                </Button>{' '}
+                </Col>
+                
                 </Form.Group>
                 </Form>
         </div>

@@ -70,6 +70,7 @@ userRouter.post('/register',validRegister,(req,res)=>{
                 res.status(400).json({error: "Email already exists"});
             else{
                 const token = JWT.sign({ email,firstName,lastName, address, password,role}, process.env.JWT_SECRET, { expiresIn: '30m' });
+
                 // Email data sending
 
             let smtpTransport = nodemailer.createTransport({
@@ -81,16 +82,18 @@ userRouter.post('/register',validRegister,(req,res)=>{
 
                 
             })
-
-
-            const CLIENT_URL = 'http://' + req.headers.host;
+            
+            // <p>${process.env.CLIENT_URL}/user/activate/${token}</p>
+            
 
             const output = `
-                <h2>Hello ${firstName} ${lastName}</h2>
-                <h2>Please click on below link to activate your account</h2>
-                <h1 style="color: #000051">Click <a href="${CLIENT_URL}/user/activate/${token}">here</a> to activate your account</h1>'
-                <p><b>NOTE: </b> The activation link expires in 30 minutes.</p>
+                <h2 style="color: #000051">Hello ${firstName} ${lastName}</h2>
+                <h2 style="color: #000051">Please click on below link to activate your account</h2>
+                <h1 style="color: #B71C1C">Click <a href="${process.env.CLIENT_URL}/user/activate/${token}">here</a> to activate your account</h1>
+                <h2 style="color:#000051" ><b style="color:#f9a825">NOTE: </b> The activation link expires in 30 minutes.</h2>
                 `;
+
+            
 
             let mailOptions = {
                 from: '',
@@ -121,15 +124,17 @@ userRouter.post('/register',validRegister,(req,res)=>{
 });
 
 //---------------------ACTIVATE ACCOUNT------------------//
-userRouter.get('/activate/:token',(req,res)=>{
-    const token = req.params.token;
+userRouter.post('/activation',(req,res)=>{
+    
+    const {token }= req.body
      let errors = [];
      if (token) {
          JWT.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
              if (err) {
                 res.status(500).json({error: "Incorrect or expired link! Please register again."});
+                console.log(err)
 
-                res.redirect('/user/register');
+                // res.redirect('/user/register');
              }
              else {
                 const { email,firstName,lastName, address, password,role } = decodedToken;
@@ -144,14 +149,13 @@ userRouter.get('/activate/:token',(req,res)=>{
                         newUser
                             .save()
                             . then(user => {
-                                const CLIENT_URL = 'http://localhost:3000'; 
-                                // res.status(201).json({
-                                //     success: true,
-                                //     user: user,
-                                //     message: 'Account successfully created',
-                                // });
+                                res.status(201).json({
+                                    success: true,
+                                    user: user,
+                                    message: 'Account successfully created. Please sing in',
+                                });
                                 // res.redirect(`${CLIENT_URL}/login`)
-                                res.redirect(`/login`)
+                                // res.redirect(`${process.env.CLIENT_URL}/login`)
                             })
                             .catch(err =>  
                                 {console.log(err);
@@ -162,6 +166,7 @@ userRouter.get('/activate/:token',(req,res)=>{
             }
         })}
      else {
+        res.status(400).json({error: "Account activation error!"});
          console.log("Account activation error!")
      }
  })
