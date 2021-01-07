@@ -53,7 +53,7 @@ const UserSchema = new mongoose.Schema({
         },
 
     },
-    listOfSchools : [{type : mongoose.Schema.Types.ObjectId, ref: 'School'}],
+    listOfSchools : [],
     date: {
         type: Date,
         default: Date.now()
