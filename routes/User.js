@@ -83,8 +83,7 @@ userRouter.post('/register',validRegister,(req,res)=>{
                 
             })
             
-            // <p>${process.env.CLIENT_URL}/user/activate/${token}</p>
-            const CLIENT_URL = 'http://' + req.headers.host;
+            const CLIENT_URL = 'http://' + req.get('host');
 
             const output = `
                 <h2 style="color: #000051">Hello ${firstName} ${lastName}</h2>
