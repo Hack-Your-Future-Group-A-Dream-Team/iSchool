@@ -20,7 +20,9 @@ app.use(bodyParser.json());
 
 const buildPath = path.join(__dirname +'/client' +'/build');
 app.use(express.static(buildPath));
-app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 dbconnect();
 mongoose.Promise = global.Promise;
