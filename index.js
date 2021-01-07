@@ -20,15 +20,14 @@ app.use(bodyParser.json());
 
 const buildPath = path.join(__dirname +'/client' +'/build');
 app.use(express.static(buildPath));
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
+
+const userRouter = require('./routes/User');
+app.use('/user',userRouter);
 
 dbconnect();
 mongoose.Promise = global.Promise;
 
-const userRouter = require('./routes/User');
-app.use('/user',userRouter);
+
 
 // get all schools
 app.get('/schools', (req, res, next) => {
@@ -66,6 +65,10 @@ app.get('/closestschools', (req, res, next) => {
 
 // add a comment to a certain school by schoolId 
 app.use('/schools/comments', comments_router.new_comment);
+
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 const port = process.env.PORT || 9000;
 app.listen(port, () => console.log(`listening at http://localhost:${port}`));
