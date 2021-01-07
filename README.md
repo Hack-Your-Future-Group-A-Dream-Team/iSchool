@@ -4,21 +4,31 @@ A model of how you can set up your project for development, testing & deployment
 
 ### Contents
 
-* [General](#general)
-  * [Configuration](#configuration)
-* [Development](#development)
-  * [Getting started](#getting-started)
-  * [API](#api)
-  * [Client](#client)
-  * [Full App](#full-app)
-* [Deployment](#deployment)
-  * [Mock](#mock)
-  * [Manual](#manual)
-  * [Automated](#automated)
-* [Testing](#testing)
-  * [Frontend](#Frontend)
-  * [Backend](#backend)
-* [Helpful Links](#helpful-links)
+- [Organized for Deployment](#organized-for-deployment)
+    - [Contents](#contents)
+  - [General](#general)
+    - [Configuration](#configuration)
+  - [Development](#development)
+    - [Getting started](#getting-started)
+      - [Prerequisite](#prerequisite)
+      - [Configure Secrets](#configure-secrets)
+      - [Install backend dependencies.](#install-backend-dependencies)
+      - [Install frontend dependencies](#install-frontend-dependencies)
+      - [Database](#database)
+    - [API (Backend)](#api-backend)
+    - [Client (Frontend)](#client-frontend)
+      - [Build](#build)
+      - [Run](#run)
+    - [Full App](#full-app)
+  - [Deployment](#deployment)
+    - [Mock](#mock)
+    - [Getting started](#getting-started-1)
+    - [Manual](#manual)
+  - [Testing](#testing)
+    - [Frontend](#frontend)
+    - [Backend](#backend)
+    - [Continuous integration](#continuous-integration)
+  - [Helpful Links](#helpful-links)
 
 ## General
 
@@ -49,15 +59,40 @@ JWT_SECRET=A_JWT_SECRET_A_RANDOM_STRING_OF_CHARACTERS
 
 ### Getting started
 
+#### Prerequisite
+In order to install the necessary dependencies you'll need:
+* Node (v. XXX?) installed on your machine
+
+Once you've installed Node you need:
+* Yarn
+* Nodemon
+* Jest to launch the tests
+
+To install them launch:
+```
+npm install nodemon -g
+```
+
+```
+npm install jest -g
+```
+
+and
+
+```
+npm install yarn -g
+```
+
+#### Configure Secrets
 Make sure you configure your secrets in line with your development environment. See the [configuration section](#configuration).
 
-Install backend dependencies.
+#### Install backend dependencies.
 
 ```
 npm install
 ```
 
-Install frontend dependencies
+#### Install frontend dependencies
 
 ```
 yarn install
@@ -92,7 +127,14 @@ This will run your api as though it were part of the full live project.  All rou
 
 ### Client (Frontend)
 
-To develop just the frontend separately from the API run:
+#### Build
+To be able to run the frontend app you need to build it first:
+```bash
+npm run-script build
+```
+
+#### Run
+To run just the frontend separately from the API run:
 
 ```bash
 npm run dev-client

@@ -12,11 +12,11 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
-    "start": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts start",
-    "build": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts build",
-    "test": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts test  --collectCoverage=true",
-    "test:watch": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts test --watch  --collectCoverage=true",
-    "eject": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "cross-env react-scripts test  --collectCoverage=true",
+    "test:watch": "cross-env react-scripts test --watch  --collectCoverage=true",
+    "eject": "cross-env react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
