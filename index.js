@@ -8,7 +8,10 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const User = require('./models/User');
 const School = require('./models/School');
+const userRouter = require('./routes/User');
 const comments_router = require('./routes/comments');
+const favorites_router = require('./routes/favorites.js');
+const rating_router = require('./routes/rating');
 const dbconnect = require('./utils/db');
 
 
@@ -18,15 +21,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-const buildPath = path.join(__dirname +'/client' +'/build');
+const buildPath = path.join(__dirname + '/client' + '/build');
 app.use(express.static(buildPath));
 
-const userRouter = require('./routes/User');
+
 app.use('/user',userRouter);
 
 dbconnect();
 mongoose.Promise = global.Promise;
-
 
 
 // get all schools
@@ -64,12 +66,18 @@ app.get('/closestschools', (req, res, next) => {
 })
 
 // add a comment to a certain school by schoolId 
-app.use('/schools/comments', comments_router.new_comment);
+app.use('/schools/comments', comments_router);
+
+// add a score to the school by schoolId 
+app.use('/schools/rating', rating_router);
+
+// add favorites schools list to the user
+app.use('/user/favorites', favorites_router.favorites);
 
 app.get('*', (request, response) => {
 	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
+
 const port = process.env.PORT || 9000;
 app.listen(port, () => console.log(`listening at http://localhost:${port}`));
-

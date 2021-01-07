@@ -154,12 +154,13 @@ userRouter.post('/login',validLogin, async (req, res, next) => {
     })(req, res, next);
   });
 
+//--------------LOGOUT-------------//
 userRouter.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
     res.clearCookie('access_token');
     res.json({user:{username : "", role : ""},success : true});
 });
 
-
+//--------------ADMIN-------------//
 userRouter.get('/admin',passport.authenticate('jwt',{session : false}),(req,res)=>{
     if(req.user.role === 'admin'){
         res.status(200).json({message : {msgBody : 'You are an admin', msgError : false}});
@@ -168,6 +169,7 @@ userRouter.get('/admin',passport.authenticate('jwt',{session : false}),(req,res)
         res.status(403).json({message : {msgBody : "You're not an admin,go away", msgError : true}});
 });
 
+//--------------AUTHENTICATED-------------//
 userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
     const {email,role} = req.user;
     res.status(200).json({isAuthenticated : true, user : {email,role}});
