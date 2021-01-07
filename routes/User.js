@@ -84,12 +84,12 @@ userRouter.post('/register',validRegister,(req,res)=>{
             })
             
             // <p>${process.env.CLIENT_URL}/user/activate/${token}</p>
-            
+            const CLIENT_URL = 'http://' + req.headers.host;
 
             const output = `
                 <h2 style="color: #000051">Hello ${firstName} ${lastName}</h2>
                 <h2 style="color: #000051">Please click on below link to activate your account</h2>
-                <h1 style="color: #B71C1C">Click <a href="${process.env.CLIENT_URL}/user/activate/${token}">here</a> to activate your account</h1>
+                <h1 style="color: #B71C1C">Click <a href="${CLIENT_URL}/user/activate/${token}">here</a> to activate your account</h1>
                 <h2 style="color:#000051" ><b style="color:#f9a825">NOTE: </b> The activation link expires in 30 minutes.</h2>
                 `;
 
