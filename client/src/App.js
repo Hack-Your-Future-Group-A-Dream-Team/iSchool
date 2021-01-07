@@ -8,6 +8,8 @@ import MySchool from './components/pages/MySchools';
 import AddSchool from './components/pages/AddSchool';
 import Register from './components/pages/Register';
 import Admin  from './components/pages/Admin';
+import Activate from "./components/pages/Activate"
+import EditProfile from "./components/pages/EditProfile"
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -19,8 +21,10 @@ function App() {
       <Route exact path="/" component={Home}/>
       <UnPrivateRoute path="/login" component={Login}/>
       <UnPrivateRoute path="/register" component={Register}/>
+      <UnPrivateRoute path="/user/activate/:token" component={Activate}/>
       <Route exact path="/searchschool" component={SearchSchool}/>
       <PrivateRoute path="/myschools" roles={["user","admin","school"]} component={MySchool}/>
+      <PrivateRoute path="/editprofile" roles={["user","admin","school"]} component={EditProfile}/>
       <PrivateRoute path="/addschool" roles={["admin","school"]} component={AddSchool}/>
       <PrivateRoute path="/admin" roles={["admin"]} component={Admin}/>
       <Footer/>

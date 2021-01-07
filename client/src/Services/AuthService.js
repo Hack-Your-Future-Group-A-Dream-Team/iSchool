@@ -32,15 +32,20 @@ export default {
     },
     logout : ()=>{
         return fetch('/user/logout')
-                .then(res => res.json())
-                .then(data => data);
+                .then(res => {
+                    return res.json()
+                })
+                .then(data => {
+                    return data;
+                });
     },
     isAuthenticated : ()=>{
         return fetch('/user/authenticated')
                 .then(res=>{
-                    console.log(res);
                     if(res.status !== 401)
-                        return res.json().then(data => data);
+                        return res.json().then(data => {
+                            return data
+                        });
                     else
                         return { isAuthenticated : false, user : {email : "",role : ""}};
                 });
