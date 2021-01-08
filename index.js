@@ -19,6 +19,8 @@ app.use(bodyParser.json());
 mongoose.connect(process.env.MONGOBD_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true, useFindAndModify: false}, ()=> console.log('connected to database'));
 mongoose.Promise = global.Promise;
 
+MONGOBD_URI = mongodb+srv://Olga:OEKaEKn5hG8haB8M@cluster0.l1fuv.mongodb.net/hyf?retryWrites=true&w=majority
+
 
 app.use((req, res, next) => {
   console.log(req.method + ': ' + req.path);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import Logo from './assets/logo-blue.png';
   
 
 function Navbar() {
@@ -15,10 +16,10 @@ function Navbar() {
         <nav className = "navbar" >
 
               <div className = "navbar-icon" >
-              <div to = "/"className = "navbar-logo" >
+              <div to = "/" className = "navbar-logo" >
               
                <Link to = "/"className = "navbar-logo" onClick={closeMobileMenu} >
-                 <img src="/images/Logo-blue.png" alt="logo"/>
+                 <img src={Logo} alt="logo"/>
                 </Link>  
               
               </div>
