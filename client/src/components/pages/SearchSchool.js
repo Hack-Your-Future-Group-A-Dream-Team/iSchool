@@ -8,31 +8,13 @@ const inputStyle = {
 }
 
 class SearchSchool extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            dataFilters: null
-        }
-        
-        this.setFilter = this.setFilter.bind(this);
-    };
-
-    setFilter = (arrayFilters) => {
-        this.setState({
-            dataFilters: arrayFilters
-        })
-        console.log(this.state.dataFilters)
-
-    };
-    
-
     render() {
         return(
             <Fragment>
                 <div style={inputStyle}>
                     
-                    <Filters setFilter = {this.setFilter}/>
-                    <Schools dataFilters = {this.state.dataFilters}/>
+                    <Filters />
+                    <Schools />
                 </div>
                 
             </Fragment>

@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from 'react';
+import React, { Component, Fragment} from 'react';
 import './filterSchool.css'
 
 
@@ -18,14 +18,15 @@ export default class Filters extends Component {
     this.onValueChange = this.onValueChange.bind(this) 
   }
 
-  onValueChange = (e) => {
+  onValueChange (e) {
+    console.log(e.target.value);
+
     this.setState({
       filterToggle: true,
       [e.target.name]: e.target.value
-    })
-    
-    // {this.props.setFilter(this.state)}
-    console.log(this.state);
+    });
+
+    console.log(this.state)
     
   };
 
@@ -68,20 +69,20 @@ export default class Filters extends Component {
             <div className="filterItem">
               <fieldset>
                 <legend>School Network</legend>
-                <input name="network" type="radio" value="Catholic_Network"
-                checked={this.state.network === "Catholic_Network"} onChange={this.onValueChange}></input>
+                <input name="network" type="radio" value="Catholic Network"
+                checked={this.state.network === "Catholic Network"} onChange={this.onValueChange}></input>
                 <label for="network">Catholic Network</label><br></br>
 
-                <input name="network" type="radio" value="Municipality_Schools"
-                checked={this.state.network === "Municipality_Schools"} onChange={this.onValueChange}></input>
+                <input name="network" type="radio" value="Municipality Schools"
+                checked={this.state.network === "Municipality Schools"} onChange={this.onValueChange}></input>
                 <label for="network">Municipality Schools</label><br></br>
 
-                <input name="network" type="radio" value="Private_schools"
-                checked={this.state.network === "Private_schools"} onChange={this.onValueChange}></input>
+                <input name="network" type="radio" value="Private schools"
+                checked={this.state.network === "Private schools"} onChange={this.onValueChange}></input>
                 <label for="network">Private schools</label><br></br>
 
-                <input name="network" type="radio" value="GO_Network"
-                checked={this.state.network === "GO_Network"} onChange={this.onValueChange}></input>
+                <input name="network" type="radio" value="GO Network"
+                checked={this.state.network === "GO Network"} onChange={this.onValueChange}></input>
                 <label for="network">GO Network</label>
               </fieldset>
             </div>
@@ -101,8 +102,8 @@ export default class Filters extends Component {
                 checked={this.state.areas === "Vocational"} onChange={this.onValueChange}></input>
                 <label for="areas">Vocational</label><br></br>
 
-                <input name="areas" type="radio" value="Art_Secondary_Education"
-                checked={this.state.areas === "Art_Secondary_Education"} onChange={this.onValueChange}></input>
+                <input name="areas" type="radio" value="Art Secondary Education"
+                checked={this.state.areas === "Art Secondary Education"} onChange={this.onValueChange}></input>
                 <label for="areas">Art Secondary Education</label>
               </fieldset>
             </div>

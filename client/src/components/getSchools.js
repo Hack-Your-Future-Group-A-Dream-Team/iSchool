@@ -18,18 +18,13 @@ export default class Schools extends Component {
           // get all school
           const allSchools = res.data;
           console.log(allSchools)
-          
-          // console.log(this.props.dataFilters);
-
 
           // filter school and set state
           const filterSchools = allSchools.filter(school => school.network == 'Catholic Network' && school.areas == 'Vocational');
-          // console.log(filterSchools);
 
           this.setState({       
               data: filterSchools
           });
-          // console.log(this.state.data);
         })
   
   };
@@ -39,7 +34,6 @@ export default class Schools extends Component {
       <div className="searchField">
         <SearchBar />
         <div className="schoolList">
-          { console.log(this.props.dataFilters) }
           {this.state.data.map((data)=>{
             return(
               <Fragment>
