@@ -28,14 +28,23 @@ label {
   display: inline-block;
 }
 
+.starRating * {
+  float: right;
+}
+
 .inputStar {
   display: none;
 }
 
-.inputStar.fa-star {
-  float: right;
+.labelStar {
+  font-size: 25px;
 }
 
-.inputStar:checked ~ label {
+.inputStar:hover ~ .labelStar {
+  font-weight: 400;
+}
+
+.inputStar:checked ~ .labelStar {
   color: #000051;
+  font-weight: 700;
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import Schools from '../getSchools';
 import Filters from '../filterSchool';
 
@@ -7,14 +7,37 @@ const inputStyle = {
     justifyContent: 'center'
 }
 
-const SearchSchool = ()=>(
-    <Fragment>
-        <div style={inputStyle}>
-            <Filters />
-            <Schools />
-        </div>
+class SearchSchool extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            dataFilters: null
+        }
         
-    </Fragment>  
-)
+        this.setFilter = this.setFilter.bind(this);
+    };
+
+    setFilter = (arrayFilters) => {
+        this.setState({
+            dataFilters: arrayFilters
+        })
+        console.log(this.state.dataFilters)
+
+    };
+    
+
+    render() {
+        return(
+            <Fragment>
+                <div style={inputStyle}>
+                    
+                    <Filters setFilter = {this.setFilter}/>
+                    <Schools dataFilters = {this.state.dataFilters}/>
+                </div>
+                
+            </Fragment>
+        )};
+        
+}
 
 export default SearchSchool;

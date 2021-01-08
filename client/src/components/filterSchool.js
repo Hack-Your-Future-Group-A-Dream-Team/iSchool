@@ -1,6 +1,7 @@
 import React, { Component, Fragment, useState } from 'react';
 import './filterSchool.css'
 
+
 export default class Filters extends Component {
 
   constructor(props) {
@@ -14,18 +15,21 @@ export default class Filters extends Component {
       areas: ''
     }
 
-    this.onValueChange = this.onValueChange.bind(this)
+    this.onValueChange = this.onValueChange.bind(this) 
   }
 
-  onValueChange(e) {
+  onValueChange = (e) => {
     this.setState({
       filterToggle: true,
       [e.target.name]: e.target.value
-    }) 
-  }
+    })
+    
+    // {this.props.setFilter(this.state)}
+    console.log(this.state);
+    
+  };
 
   render() {
-    console.log(this.state)
     return (
       <Fragment>
         <div className="filterContainer">
@@ -42,21 +46,21 @@ export default class Filters extends Component {
               <fieldset>
                 <legend>Rating</legend>
                   <div className="starRating">
-                    <input className="inputStar" id="r1" type="radio" name="rating" data-cat="rating" value="1"
-                    checked={this.state.rating === "1"} onChange={this.onValueChange}></input>
-                    <label for="r1"><i className="far fa-star"></i></label>
-                    <input className="inputStar" id="r2" type="radio" name="rating" data-cat="rating" value="2"
-                    checked={this.state.rating === "2"} onChange={this.onValueChange}></input>
-                    <label for="r2"><i className="far fa-star"></i></label>
+                    <input className="inputStar" id="r1" type="radio" name="rating" data-cat="rating" value="5"
+                    checked={this.state.rating === "5"} onChange={this.onValueChange}></input>
+                    <label className="labelStar far fa-star" for="r1"></label>
+                    <input className="inputStar" id="r2" type="radio" name="rating" data-cat="rating" value="4"
+                    checked={this.state.rating === "4"} onChange={this.onValueChange}></input>
+                    <label className="labelStar far fa-star" for="r2"></label>
                     <input className="inputStar" id="r3" type="radio" name="rating" data-cat="rating" value="3"
                     checked={this.state.rating === "3"} onChange={this.onValueChange}></input>
-                    <label for="r3"><i className="far fa-star"></i></label>
-                    <input className="inputStar" id="r4" type="radio" name="rating" data-cat="rating" value="4"
-                    checked={this.state.rating === "4"} onChange={this.onValueChange}></input>
-                    <label for="r4"><i className="far fa-star"></i></label>
-                    <input className="inputStar" id="r5" type="radio" name="rating" data-cat="rating" value="5"
-                    checked={this.state.rating === "5"} onChange={this.onValueChange}></input>
-                    <label for="r5"><i className="far fa-star"></i></label>
+                    <label className="labelStar far fa-star" for="r3"></label>
+                    <input className="inputStar" id="r4" type="radio" name="rating" data-cat="rating" value="2"
+                    checked={this.state.rating === "2"} onChange={this.onValueChange}></input>
+                    <label className="labelStar far fa-star" for="r4"></label>
+                    <input className="inputStar" id="r5" type="radio" name="rating" data-cat="rating" value="1"
+                    checked={this.state.rating === "1"} onChange={this.onValueChange}></input>
+                    <label className="labelStar far fa-star" for="r5"></label>
                   </div>
               </fieldset>
             </div>
