@@ -5,8 +5,6 @@ import Logo from './assets/logo-blue.png';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
 
-  
-
 const Navbar = props => {
 
     const {isAuthenticated,user,setIsAuthenticated,setUser} = useContext(AuthContext);
@@ -24,8 +22,6 @@ const Navbar = props => {
     
     const iconMenu = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-
-  
 
     const unauthenticatedNavBar = ()=>{
         return (

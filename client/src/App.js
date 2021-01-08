@@ -3,8 +3,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer'
 import Login from './components/pages/Login';
 import Home from './components/pages/Home';
-
-import Information from './components/pages/Info';
 import SearchSchool from './components/pages/SearchSchool';
 import MySchool from './components/pages/MySchools';
 import AddSchool from './components/pages/AddSchool';
@@ -15,6 +13,8 @@ import EditProfile from "./components/pages/EditProfile"
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import Information from './components/pages/Info';
+
 
 function App() {
   return (
@@ -32,7 +32,6 @@ function App() {
       <Route exact path="/Info" component={Information}/>
       <Footer/>
     </Router>
-
   );
 }
 

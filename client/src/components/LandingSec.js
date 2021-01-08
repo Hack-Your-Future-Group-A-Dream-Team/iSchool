@@ -4,9 +4,6 @@ import { Button } from './Button';
 import './LandingSec.css';
 import Background from './assets/student.jpg'
 
-
-
-
 function LandingSec() {
     return ( 
         <div className = 'sec-container' >

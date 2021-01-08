@@ -24,8 +24,6 @@ app.use(bodyParser.json());
 const buildPath = path.join(__dirname + '/client' + '/build');
 app.use(express.static(buildPath));
 
-
-
 app.use('/user',userRouter);
 
 dbconnect();
