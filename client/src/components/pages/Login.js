@@ -65,7 +65,10 @@ const Login = props=>{
                     <Form.Control type="password" placeholder="Password" name="password" value={user.password1} onChange={onChange}/>
                     </Col>
                 </Form.Group>
-            </Row>
+                </Row>
+                <Row className="d-flex justify-content-end">
+                    <Link to="user/password/forgot" style={{color: '#000051', fontSize:"1.1rem", textDecoration:'none'}}>Forgot Your Password?</Link>
+                </Row>
                 
                 <Form.Group as={Row} className="d-flex justify-content-center">
                 <Col sm="12" className="d-flex justify-content-center">

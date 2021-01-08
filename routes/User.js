@@ -54,8 +54,7 @@ userRouter.post('/register',validRegister,(req,res)=>{
 
             const output = `
                 <h2 style="color: #000051">Hello ${firstName} ${lastName}</h2>
-                <h2 style="color: #000051">Please click on below link to activate your account</h2>
-                <h1 style="color: #B71C1C">Click <a href="${CLIENT_URL}/user/activate/${token}">here</a> to activate your account</h1>
+                <h1 style="color: #B71C1C">Please click <a href="${CLIENT_URL}/user/activate/${token}">here</a> to activate your account</h1>
                 <h2 style="color:#000051" ><b style="color:#f9a825">NOTE: </b> The activation link expires in 30 minutes.</h2>
                 `;
 
@@ -70,7 +69,7 @@ userRouter.post('/register',validRegister,(req,res)=>{
 
             }
 
-            smtpTransport.sendMail(mailOptions, (error, response)=>{
+            smtpTransport.sendMail(mailOptions, (error, res)=>{
                 if(error){
                     res.status(500).json({error: "Error has occurred"});
                     console.log(error);
@@ -168,6 +167,144 @@ userRouter.get('/admin',passport.authenticate('jwt',{session : false}),(req,res)
     else
         res.status(403).json({message : {msgBody : "You're not an admin,go away", msgError : true}});
 });
+
+//-------------------RESET PASSWORD-----------------//
+userRouter.put('/forgotpassword',forgotPasswordValidator,(req,res)=>{
+
+    console.log(req.body);
+    const {
+        email
+    } = req.body;
+
+    const errors = validationResult(req)
+
+    if(!errors.isEmpty()){
+        const firstError = error.array().map(error=>error.msg)[0]
+        return res.status(422).json({
+            error: firstError
+        })
+    }else{
+        User.findOne({email}, (err, user)=>{
+
+            if(err)
+                res.status(500).json({error: "Error has occurred"});
+                    
+                
+            if(!user)
+                res.status(400).json({error: "There is no user with such an email"});
+
+            const token = JWT.sign({ email}, process.env.JWT_RESET_PASSWORD, { expiresIn: '10m' });
+            
+            let smtpTransport = nodemailer.createTransport({
+                service: 'gmail',
+                auth:{
+                    user: 'hyf.ischool@gmail.com',
+                    pass: process.env.GMAIL_PASSWORD
+                }
+
+                
+            })
+            
+            // const CLIENT_URL = 'https://ischool-hyf-team.herokuapp.com';
+            const CLIENT_URL = 'http://localhost:3000';
+            
+            const output = `
+                <h2 style="color: #000051">Hello ${user.firstName} ${user.lastName}</h2>
+                <h1 style="color: #B71C1C">Please click <a href="${CLIENT_URL}/user/password/reset/${token}">here</a> to reset your password</h1>
+                <h2 style="color:#000051" ><b style="color:#f9a825">NOTE: </b> The activation link expires in 10 minutes.</h2>
+                `;
+
+            
+
+            let mailOptions = {
+                from: '',
+                to: email,
+                subject: `Password Reset link`,
+                generateTextFromHTML: true,
+                html: output,
+
+            }
+
+
+            smtpTransport.sendMail(mailOptions, (error, res)=>{
+                if(error){
+                    res.status(500).json({error: "Error has occurred"});
+                    console.log(error);
+                }else{
+                    res.status(201).json({
+                        success: true,
+                        user: user,
+                        message: `Reset password link has been sent to ${email}`
+                    });
+                }
+            })
+
+            smtpTransport.close();
+            
+            
+
+        })
+    }
+});
+
+//---------------FORGOT PASSWORD------------//
+
+userRouter.put('/resetpassword',resetPasswordValidator,(req,res)=>{
+
+    const { token, newPassword } = req.body;
+    const errors = validationResult(req);
+
+    console.log(errors)
+    if (!errors.isEmpty()) {
+      const firstError = errors.array().map(error => error.msg)[0];
+      return res.status(422).json({
+        errors: firstError
+      });
+    } else {
+      if (token) {
+        JWT.verify(token, process.env.JWT_RESET_PASSWORD, (err, decodedToken) => {
+            if (err) {
+               res.status(500).json({error: "Incorrect or expired link! Please try again."});
+               console.log(err)
+
+            }else{
+                const { email} = decodedToken;
+                User.findOne(
+                    {email},
+                    (err, user) => {
+                        if(err)
+                        res.status(500).json({error: "Error has occurred"});
+                        if(!user)
+                        res.status(400).json({error: "There is no user with such an email"});
+          
+                      const updatedFields = {
+                        password: newPassword
+                      };
+          
+                      user = _.extend(user, updatedFields);
+          
+                      user.save((err, result) => {
+                        if (err) {
+                          return res.status(400).json({
+                            error: 'Error resetting user password'
+                          });
+                        }
+
+                        res.status(201).json({
+                            success: true,
+                            user: user,
+                            message: `Great! Now you can login with your new password`
+                        });
+                      });
+                    }
+                  );
+            }
+  
+         
+        });
+      }
+    }
+})
 
 //--------------AUTHENTICATED-------------//
 userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
