@@ -4,7 +4,6 @@ import './Navbar.css';
 import Logo from './assets/logo-blue.png';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
-  
 
 const Navbar = props => {
 
@@ -28,6 +27,7 @@ const Navbar = props => {
     const unauthenticatedNavBar = ()=>{
         return (
             <>
+
                 <li className = "nav-item" >
                    <Link to = '/Info'
                     className = "nav-links" onClick={closeMobileMenu} > Info 
@@ -53,7 +53,7 @@ const Navbar = props => {
         )
     }
 
-    const authenticatedNavBar = ()=>{
+    const authenticatedNavBar = () =>{
         return(
             <>
                 <li className = "nav-item" >

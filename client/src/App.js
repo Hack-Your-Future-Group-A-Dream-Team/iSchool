@@ -15,6 +15,8 @@ import ForgotPassword from './components/pages/ForgotPassword'
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import Information from './components/pages/Info';
+
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
       <PrivateRoute path="/editprofile" roles={["user","admin","school"]} component={EditProfile}/>
       <PrivateRoute path="/addschool" roles={["admin","school"]} component={AddSchool}/>
       <PrivateRoute path="/admin" roles={["admin"]} component={Admin}/>
+      <Route exact path="/Info" component={Information}/>
       <Footer/>
     </Router>
   );

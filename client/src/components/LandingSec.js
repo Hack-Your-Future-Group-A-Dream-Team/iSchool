@@ -2,8 +2,7 @@ import React from 'react';
 import '../App.css';
 import { Button } from './Button';
 import './LandingSec.css';
-import Background from "./assets/Landingpagebackground.jpg"
-
+import Background from './assets/student.jpg'
 
 function LandingSec() {
     return ( 
@@ -17,7 +16,7 @@ function LandingSec() {
             </Button>
         </div> 
         <div className = "text" >
-             <h3 > If You Are School Manager And You Want To Register Your School, Please Sign Up ! </h3> 
+             <h3> If You Are School Manager And You Want To Register Your School, Please Sign Up ! </h3> 
         </div> 
         <div className="student">
             <img src={Background} alt="student"/>
