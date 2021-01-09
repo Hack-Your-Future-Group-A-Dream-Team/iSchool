@@ -5,31 +5,44 @@ import SearchBar from './searchBar'
 
 
 export default class Schools extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       data: []
     };
   };
-  
+
   componentDidMount() {
     axios.get('/schools')
         .then(res => {
-          // get all school
+          // get all school from database
           const allSchools = res.data;
           console.log(allSchools)
 
           // filter school and set state
-          const filterSchools = allSchools.filter(school => school.network == 'Catholic Network' && school.areas == 'Vocational');
+          // const filterSchools = allSchools.filter(school => school.network == 'Catholic Network' && school.areas == 'Vocational');
 
           this.setState({       
-              data: filterSchools
+              data: allSchools
           });
         })
   
   };
 
   render() {
+    // filter schools by aside filters
+    let filterSchools = this.state.data;
+    console.log(filterSchools, 'before');
+    
+    if(this.props.getFilter) {
+      Object.entries(this.props.getFilter).forEach(([key, value]) => {
+        if(value){
+          filterSchools = filterSchools.filter(school => school[key] === value);
+        };
+      })
+      
+      console.log(filterSchools, 'after');
+    }
     return (
       <div className="searchField">
         <SearchBar />
