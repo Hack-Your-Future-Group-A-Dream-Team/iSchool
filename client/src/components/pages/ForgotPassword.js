@@ -1,11 +1,10 @@
-import React, {useState,useContext, useRef,useEffect} from 'react';
-import AuthService from '../../Services/AuthService';
+import React, {useState} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
-import { Form, Row, Col, Button , Container} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { Form, Row, Col, Button} from 'react-bootstrap';
+import './Login.css'
+
 
 const ForgotPassword = props =>{
     const [formData, setFormData] = useState({
@@ -18,21 +17,6 @@ const ForgotPassword = props =>{
         setFormData({...formData,[e.target.name] : e.target.value});
       }
 
-      let timerID = useRef(null);
-      // useEffect(() => {
-      //   let token = props.match.params.token;
-      //   let {firstName, lastName} = jwt.decode(token);
-    
-      //   if (token) {
-      //     setFormData({ ...formData, firstName, lastName, token });
-      //   }
-
-      //   clearTimeout(timerID)
-    
-      // }, [props.match.params]);
-      
-  
-  
     const onSubmit = e =>{
       if (email) {
            e.preventDefault();
@@ -41,18 +25,13 @@ const ForgotPassword = props =>{
         email: email
       })
       .then(res => {
-          console.log(res.data)
         setFormData({
             ...formData
           });
-        toast.success(res.data.message);
-        // timerID =setTimeout(()=>{
-        //         props.history.push('/login');
-        // },3000)
-        
+        toast.success(res.data.message);  
       })
       .catch(err => {
-        toast.error(err.response.data.errors);
+        toast.error(err.response.data.error);
       });
       }else{
         toast.error('Please provide your email');
@@ -62,24 +41,24 @@ const ForgotPassword = props =>{
 
 
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"50px auto", width: '60%', minHeight: "60vh"}} className="shadow p-3 mb-5 bg-white rounded">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"50px auto", width: '60%', minHeight: "60vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
              <ToastContainer />
-             <Form style= {{width: '50%', height: "30vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
+             <Form style= {{width: '60%', height: "30vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">
-                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px"}}>Forgot Your Password</h2>
+                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px", textAlign:"center"}}>Forgot Your Password</h2>
             </Row>
             <Form.Group as={Row} controlId="email">
                     <Form.Label column sm="2">
                     Email
                     </Form.Label>
-                    <Col sm="10">
+                    <Col sm="8">
                     <Form.Control type="email" placeholder="Please provide your email" name="email" value={email} onChange={onChange} />
                     </Col>
                 </Form.Group>
 
                 <Form.Group as={Row} className="d-flex justify-content-center">
-                <Col sm="4" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px"}} type="submit" size="lg">
+                <Col sm="12" className="d-flex justify-content-center">
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px", width:"180px"}} className='hovered-red' type="submit" size="lg">
                 Submit
                 </Button>
                 </Col>

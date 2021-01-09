@@ -1,30 +1,26 @@
-import React, {useState,useContext, useRef,useEffect} from 'react';
-import AuthService from '../../Services/AuthService';
+import React, {useState, useRef,useEffect} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
-import { Form, Row, Col, Button , Container} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { Form, Row, Col, Button} from 'react-bootstrap';
+import "./Login.css"
+
 
 const ResetPassword= props=>{
     const [formData, setFormData] = useState({
         password1: "",
         password2: "",
-        token:"",
-        firstName:"",
-        lastName:""
+        token:""
       });
     
       let timerID = useRef(null);
-      const { password1, password2, token, lastName, firstName } = formData;
+      const { password1, password2, token } = formData;
 
       useEffect(() => {
         let token = props.match.params.token;
-        let {firstName, lastName} = jwt.decode(token);
-    
+      
         if (token) {
-          setFormData({ ...formData, firstName, lastName, token });
+          setFormData({ ...formData, token });
         }
 
         clearTimeout(timerID)
@@ -46,7 +42,6 @@ const ResetPassword= props=>{
             token: token,
           })
           .then(res => {
-              console.log(res.data)
             setFormData({
                 ...formData
               });
@@ -57,6 +52,7 @@ const ResetPassword= props=>{
             
           })
           .catch(err => {
+            err.response.data.error ? toast.error(err.response.data.error) : 
             toast.error(err.response.data.errors);
           });
 
@@ -67,12 +63,11 @@ const ResetPassword= props=>{
     }
 
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"50px auto", width: '60%', minHeight: "60vh"}} className="shadow p-3 mb-5 bg-white rounded">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"50px auto", width: '60%', minHeight: "60vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
              <ToastContainer />
              <Form style= {{width: '50%', height: "30vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">
-            {/* <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px"}}>Welcome {firstName} {lastName}</h2> */}
-                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", padding:"30px"}}>Reset Your Password</h2>
+                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", padding:"30px", textAlign:"center", width: "100%"}}>Reset Your Password</h2>
             </Row>
             <Form.Group as={Row} controlId="password1">
                     <Col sm="12">
@@ -85,8 +80,8 @@ const ResetPassword= props=>{
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} className="d-flex justify-content-center">
-                <Col sm="4" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px"}} type="submit" size="lg">
+                <Col sm="12" className="d-flex justify-content-center">
+                <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px", width: "180px"}} className='hovered-red' type="submit" size="lg">
                 Submit
                 </Button>
                 </Col>

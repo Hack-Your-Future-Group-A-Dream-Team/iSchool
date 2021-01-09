@@ -4,20 +4,40 @@
     background: white !important;
     border: 3px solid #000051 !important;
   }
-  
+ 
   .hovered-red.btn.btn-primary:hover{
     color: #B71C1C;
     background-color:#ffff !important;
     border: 3px solid #B71C1C !important;
   }
 
-  @media (min-width: 769px) and (max-width: 992px) {
-
-    button.hovered-blue.btn.btn-primary{
-      font-size: small;
+  @media screen and (max-width: 768px) {
+    div.main-container{
+      height: 77vh;
+      min-width: 80%
+    }
+    
+    form{
+      width:80%
+    }
+    .link{
+      width: 100%;
+      justify-content: center;
     }
 
-    button.hovered-red.btn.btn-primary{
-      font-size: small;
-    }
   }
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+
+  div.main-container{
+    height: 80vh;
+    min-width: 80%
+  }
+  .register-container{
+    min-width: 80%;
+  }
+  .register-form{
+    min-width: 80%;
+  }
+
+}
