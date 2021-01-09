@@ -48,8 +48,8 @@ userRouter.post('/register',validRegister,(req,res)=>{
                 
             })
             
-            // const CLIENT_URL = 'https://ischool-hyf-team.herokuapp.com';
-            const CLIENT_URL = 'http://localhost:3000';
+            const CLIENT_URL = 'https://ischool-hyf-team.herokuapp.com';
+            // const CLIENT_URL = 'http://localhost:3000';
 
             const output = `
                 <h2 style="color: #000051">Hello ${firstName} ${lastName}</h2>
@@ -198,8 +198,8 @@ userRouter.put('/forgotpassword',forgotPasswordValidator,(req,res)=>{
                         
                     })
                     
-                    // const CLIENT_URL = 'https://ischool-hyf-team.herokuapp.com';
-                    const CLIENT_URL = 'http://localhost:3000';
+                    const CLIENT_URL = 'https://ischool-hyf-team.herokuapp.com';
+                    // const CLIENT_URL = 'http://localhost:3000';
                     
                     const output = `
                         <h2 style="color: #000051">Hello ${user.firstName} ${user.lastName}</h2>
