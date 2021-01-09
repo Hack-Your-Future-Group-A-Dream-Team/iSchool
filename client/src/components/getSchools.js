@@ -46,7 +46,7 @@ export default class Schools extends Component {
                     <p className="schoolContact">Phone: {data.phone}</p>
                     <div className="btn-container">
                       <button className="schoolList-btn">Save school</button>
-                      <button className="schoolList-btn">Comment</button>
+                      <button className="schoolList-btn">Add comment</button>
                     </div>
                     <div className="review-container">
                       Give a review: 
@@ -59,7 +59,7 @@ export default class Schools extends Component {
                   </div>
                   
                   <div className="schoolListItem-rightSide">
-                    <div className="schoolList-comments">Read Comments</div>
+                    <div className="schoolList-comments"><a href = "#" onClick = {this.getCommentsList}>Comments({data.rating})</a></div>
                     <div className="schoolList-rating">Rating: {data.rating}</div>
                   </div>
                   
@@ -72,6 +72,14 @@ export default class Schools extends Component {
       </div>
     )
   };
+
+  getCommentsList = async ()=>{
+
+  //  MONGOBD_URI = mongodb+srv://Ira:0sZATpGxXHT6EOgs@cluster0.l1fuv.mongodb.net/hyf?retryWrites=true&w=majority
+    const res = await axios.get('/schools/comments');
+    
+    res.map((comment=>console.log(comment)));
+  }
 };
 
 
