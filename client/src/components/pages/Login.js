@@ -36,7 +36,7 @@ const Login = props=>{
 
 
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '60%', minHeight: "63vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '60%', minHeight: "77vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
              <ToastContainer />
              <Form style= {{width: '70%', height: "50vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">

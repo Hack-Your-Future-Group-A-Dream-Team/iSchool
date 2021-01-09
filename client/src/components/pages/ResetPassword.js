@@ -63,7 +63,7 @@ const ResetPassword= props=>{
     }
 
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"50px auto", width: '60%', minHeight: "60vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"100px auto", width: '60%', minHeight: "75vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
              <ToastContainer />
              <Form style= {{width: '50%', height: "30vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">

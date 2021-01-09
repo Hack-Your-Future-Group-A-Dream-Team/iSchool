@@ -11,6 +11,12 @@
     border: 3px solid #B71C1C !important;
   }
 
+  .form-check-label{
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+
   @media screen and (max-width: 768px) {
     div.main-container{
       height: 77vh;
