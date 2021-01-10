@@ -72,7 +72,8 @@ export default class Schools extends Component {
                 {loading ? <div>...loading</div> : null}
                 {suggestions.map(suggestion =>{
                   const style = {
-                      backgroundColor: suggestion.active ? "#ffff" : "#d6d8e1"
+                      backgroundColor: suggestion.active ? "#ffff" : "#000051",
+                      color: suggestion.active ? "#000051" : "#ffff",
                   };
                   return (<div key={suggestion.placeId}{...getSuggestionItemProps(suggestion, {style})}>{suggestion.description}</div>);
                 })}
