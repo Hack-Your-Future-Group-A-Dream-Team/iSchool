@@ -1,7 +1,5 @@
-import React, {useState,useContext,useEffect} from 'react';
-import { AuthContext } from '../../Context/AuthContext';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React  from 'react';
+
 
 const MySchools = props =>{
 

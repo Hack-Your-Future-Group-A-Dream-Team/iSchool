@@ -1,5 +1,5 @@
 .navbar {
-    background: rgb(26, 27, 77);
+    background:#000051;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -34,7 +34,7 @@
 .navbar-logo>img{
     height: 50px;
     width: 88px;
-    background-color: rgb(26, 27, 77);
+    background-color: #000051;
 
 }
 

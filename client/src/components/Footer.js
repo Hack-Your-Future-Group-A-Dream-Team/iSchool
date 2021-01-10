@@ -8,7 +8,6 @@ function Footer() {
             div className = "footer" >
             <
             p ><span>&#169;</span>2021 Dream Team All Right Reserved</p>
-
         </div>
 
     );

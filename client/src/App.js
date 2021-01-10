@@ -9,7 +9,9 @@ import AddSchool from './components/pages/AddSchool';
 import Register from './components/pages/Register';
 import Admin  from './components/pages/Admin';
 import Activate from "./components/pages/Activate"
-import EditProfile from "./components/pages/EditProfile"
+import EditProfile from "./components/pages/EditProfile";
+import ResetPassword from './components/pages/ResetPassword'
+import ForgotPassword from './components/pages/ForgotPassword'
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -24,6 +26,8 @@ function App() {
       <UnPrivateRoute path="/login" component={Login}/>
       <UnPrivateRoute path="/register" component={Register}/>
       <UnPrivateRoute path="/user/activate/:token" component={Activate}/>
+      <UnPrivateRoute path="/user/password/reset/:token" component={ResetPassword}/>
+      <UnPrivateRoute path="/user/password/forgot" component={ForgotPassword}/>
       <Route exact path="/searchschool" component={SearchSchool}/>
       <PrivateRoute path="/myschools" roles={["user","admin","school"]} component={MySchool}/>
       <PrivateRoute path="/editprofile" roles={["user","admin","school"]} component={EditProfile}/>
