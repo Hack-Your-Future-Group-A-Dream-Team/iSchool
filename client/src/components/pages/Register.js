@@ -1,9 +1,8 @@
-import React, {useState,useRef,useEffect} from 'react';
-import AuthService from '../../Services/AuthService';
+import React, {useState} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import { Form, Row, Col, Button , Container} from 'react-bootstrap';
+import { Form, Row, Col, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import './Login.css' 
 
@@ -41,8 +40,6 @@ const Register = props=>{
         role : ""
     });
     }
-
-    console.log(user);
 
     const onSubmit = e =>{
         e.preventDefault();
@@ -83,12 +80,12 @@ const Register = props=>{
     
     return(
         
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%'}} className="shadow p-3 mb-5 bg-white rounded">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%'}} className="shadow p-3 mb-5 bg-white rounded register-container">
         
             <ToastContainer />
-            <Form style= {{width: '60%', margin: 'auto', minHeight: "80vh"}} onSubmit={onSubmit}>
+            <Form style= {{width: '60%', margin: 'auto', minHeight: "80vh"}} onSubmit={onSubmit} className="register-form">
             <Row className="justify-content-md-center">
-                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", margin:"20px 0"}}>SIGN UP</h2>
+                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", margin:"20px 0", textAlign:"center", width: "100%"}}>SIGN UP</h2>
             </Row>
                 <Form.Group as={Row} controlId="firstName">
                     <Form.Label column sm="2">

@@ -2,7 +2,8 @@ import React from 'react';
 import '../App.css';
 import { Button } from './Button';
 import './LandingSec.css';
-import Background from './assets/student.jpg'
+import Background from './assets/cover.jpg'
+import { Link } from 'react-router-dom';
 
 function LandingSec() {
     return ( 
@@ -12,7 +13,7 @@ function LandingSec() {
             <Button className = 'btns'
                     buttonStyle = 'btn--outline'
                     buttonSize = 'btn--large' >
-                    Search For School 
+               Search For School  
             </Button>
         </div> 
         <div className = "text" >
