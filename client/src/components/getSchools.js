@@ -31,23 +31,21 @@ export default class Schools extends Component {
 
   render() {
     // filter schools by aside filters
-    let filterSchools = this.state.data;
-    console.log(filterSchools, 'before');
-    
+    let filteredSchools = this.state.data;
     if(this.props.getFilter) {
       Object.entries(this.props.getFilter).forEach(([key, value]) => {
-        if(value){
-          filterSchools = filterSchools.filter(school => school[key] === value);
-        };
-      })
-      
-      console.log(filterSchools, 'after');
+        if(value) {
+          
+          filteredSchools = filteredSchools.filter(school => school[key] == value);
+          console.log(filteredSchools, "during");
+        }  
+      });
     }
     return (
       <div className="searchField">
         <SearchBar />
         <div className="schoolList">
-          {this.state.data.map((data)=>{
+          {filteredSchools.map((data)=>{
             return(
               <Fragment>
                 <div key={data.id} className="schoolListItem">
