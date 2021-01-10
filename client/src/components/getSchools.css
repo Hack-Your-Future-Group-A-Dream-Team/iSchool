@@ -94,3 +94,30 @@
   align-items: flex-end;
   justify-content: space-between;
 }
+
+.suggestions {
+  z-index: 10;
+  cursor: default;
+  margin: 20px 0px 20px 40px;
+  width: 900px;
+}
+
+.searchBar {
+  margin: 20px 20px 20px 40px;
+  padding: 5px 8px;
+  width: 900px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.searchBarInput {
+  width: 850px;
+  outline: none;
+  border: none;
+  font-size: 20px;
+}
+
+.fa-search {
+  font-size: 30px;
+  color: gray;
+}
