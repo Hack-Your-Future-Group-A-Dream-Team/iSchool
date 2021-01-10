@@ -32,9 +32,17 @@ export default class Schools extends Component {
   render() {
     // filter schools by aside filters
     let filteredSchools = this.state.data;
+
     if(this.props.getFilter) {
       Object.entries(this.props.getFilter).forEach(([key, value]) => {
         if(value) {
+          if(key === "languageClasses") {
+            value = Boolean(value);
+          }
+
+          if(key === "rating") {
+            value = Number(value);
+          }
           
           filteredSchools = filteredSchools.filter(school => school[key] == value);
           console.log(filteredSchools, "during");
