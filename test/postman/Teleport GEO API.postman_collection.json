@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "2c384839-e226-447c-8959-23ed217ac5d4",
+		"name": "Teleport GEO API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cities by Urban Areas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.teleport.org/api/urban_areas/slug%3Abrussels/cities/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"teleport",
+						"org"
+					],
+					"path": [
+						"api",
+						"urban_areas",
+						"slug%3Abrussels",
+						"cities",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.teleport.org/api/cities/geonameid:2792482/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.teleport.org/api/cities/geonameid:2792482/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"teleport",
+						"org"
+					],
+					"path": [
+						"api",
+						"cities",
+						"geonameid:2792482",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cities by Urban Areas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.teleport.org/api/cities/?search=belgium&embed=city%3Asearch-results%2Fcity%3Aitem%2Fcity",
+					"protocol": "https",
+					"host": [
+						"api",
+						"teleport",
+						"org"
+					],
+					"path": [
+						"api",
+						"cities",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "belgium"
+						},
+						{
+							"key": "embed",
+							"value": "city%3Asearch-results%2Fcity%3Aitem%2Fcity"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
