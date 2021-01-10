@@ -1,10 +1,10 @@
-import React, {useState,useRef,useEffect} from 'react';
-import AuthService from '../../Services/AuthService';
+import React, {useState} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import { Form, Row, Col, Button , Container} from 'react-bootstrap';
+import { Form, Row, Col, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import './Login.css' 
 
 
 const Register = props=>{
@@ -20,13 +20,6 @@ const Register = props=>{
         building: "",
         postcode: "",
         role : ""});
-    let timerID = useRef(null);
-
-    useEffect(()=>{
-        return ()=>{
-            clearTimeout(timerID);
-        }
-    },[]);
 
     const onChange = e =>{
         setUser({...user,[e.target.name] : e.target.value});
@@ -47,8 +40,6 @@ const Register = props=>{
         role : ""
     });
     }
-
-    console.log(user);
 
     const onSubmit = e =>{
         e.preventDefault();
@@ -73,9 +64,6 @@ const Register = props=>{
                 .then(res => {
                   resetForm();
                   toast.success(res.data.message);
-                  timerID = setTimeout(()=>{
-                    props.history.push('/login');
-                },2000)
                 })
                 .catch(err => {
                   resetForm();
@@ -92,13 +80,12 @@ const Register = props=>{
     
     return(
         
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%'}} className="shadow p-3 mb-5 bg-white rounded">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%'}} className="shadow p-3 mb-5 bg-white rounded register-container">
         
             <ToastContainer />
-            {/* <Container> */}
-            <Form style= {{width: '60%', margin: 'auto', minHeight: "80vh"}} onSubmit={onSubmit}>
+            <Form style= {{width: '60%', margin: 'auto', minHeight: "80vh"}} onSubmit={onSubmit} className="register-form">
             <Row className="justify-content-md-center">
-                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", margin:"20px 0"}}>SIGN UP</h2>
+                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", margin:"20px 0", textAlign:"center", width: "100%"}}>SIGN UP</h2>
             </Row>
                 <Form.Group as={Row} controlId="firstName">
                     <Form.Label column sm="2">
@@ -217,12 +204,12 @@ const Register = props=>{
                 <Form.Group as={Row} className="mt-5">
                 <Col sm="6" className="d-flex justify-content-center">
                     <Link to="login">
-                    <Button href="/login" style={{background: '#000051', border: "none", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 30px"}} size="lg"> Have an account?
+                    <Button  style={{background: '#000051', border: "3px solid #000051", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", width:'200px'}} className="hovered-blue"size="lg"> Have an account?
                     </Button>
                     </Link>
                 </Col>
                 <Col sm="6" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "none", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 30px"}} type="submit" size="lg">
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", width:"200px"}} className="hovered-red"type="submit" size="lg">
                     Create an account
                 </Button>{' '}
                 </Col>

@@ -3,7 +3,7 @@ const controllers = require('../controllers/interaction_controller');
 
 const router = express.Router();
 
-router.route('/').post(controllers.saveComment)
-    .get(controllers.getComments);
+router.route('/').post(controllers.addScore);
+
 
 module.exports = router;

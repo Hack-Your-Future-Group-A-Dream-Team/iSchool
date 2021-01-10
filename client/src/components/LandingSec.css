@@ -1,52 +1,44 @@
 .sec-container {
-    
-    height: auto;
-    min-height: 77vh;
+    min-height: 70vh;
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    object-fit: contain;
+    padding-top: 80px;
 }
 
 .sec-container>h3 {
     color: black;
     font-size: 50px;
-    margin-top: -50px;
-    margin-left: 20%;
+    margin: 30px 0 50px 0;
 }
 
 .student>img{
-    height: 450px;
+    height: auto;
     width: 1000px;
-    margin-bottom: -250px;
-    margin-left: 10%;
-}
-.text {
-    margin-left: 25%;
+    margin-top: 70px;
 }
 
 .sec-btns {
-    margin-top: 32px;
-    margin-left: 15%;
+    margin-bottom: 60px;
 }
 
 .sec-btns .btn {
-    margin-bottom: 25px;
-    background-color: red;
-    border: 2px solid red;
+    background-color: #B71C1C;
+    border: 2px solid #B71C1C;
     border-radius: 5px;
-    margin-left: 30%;
+    width: 200px;
 }
 
 .sec-btns .btn:hover {
     background-color: white;
-    color: red;
+    color: #B71C1C;
 }
 
 @media screen and (max-width: 768px) {
     .sec-container {
-         height: auto;
+        height: auto;
         min-height: 85vh;
     }
     .sec-container>h3 {

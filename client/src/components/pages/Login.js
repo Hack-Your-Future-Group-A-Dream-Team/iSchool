@@ -3,8 +3,9 @@ import AuthService from '../../Services/AuthService';
 import {AuthContext} from '../../Context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Form, Row, Col, Button , Container} from 'react-bootstrap';
+import { Form, Row, Col, Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import './Login.css' 
 
 const Login = props=>{
     const [user,setUser] = useState({email: "", password : ""});
@@ -14,12 +15,9 @@ const Login = props=>{
         setUser({...user,[e.target.name] : e.target.value});
     }
 
-    console.log(user);
     const onSubmit = e =>{
         e.preventDefault();
-        console.log(user);
         AuthService.login(user).then(data=>{
-            console.log(data);
             const { isAuthenticated,user} = data;
             if(isAuthenticated){
                 console.log(user);
@@ -27,8 +25,6 @@ const Login = props=>{
                 authContext.setUser(user);
                 authContext.setIsAuthenticated(isAuthenticated);
                 props.history.push('/myschools');
-                
-                
             }else{
                 toast.error(data.error);
             }
@@ -39,13 +35,12 @@ const Login = props=>{
     }
 
 
-
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '60%', minHeight: "63vh"}} className="shadow p-3 mb-5 bg-white rounded">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '60%', minHeight: "77vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
              <ToastContainer />
-             <Form style= {{width: '50%', height: "50vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
+             <Form style= {{width: '70%', height: "50vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">
-                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px"}}>SIGN IN</h2>
+                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px", textAlign:"center", width:"100%"}}>SIGN IN</h2>
             </Row>
             <Row className="d-flex flex-column justify-content-center">
             <Form.Group as={Row} controlId="email">
@@ -65,17 +60,20 @@ const Login = props=>{
                     <Form.Control type="password" placeholder="Password" name="password" value={user.password1} onChange={onChange}/>
                     </Col>
                 </Form.Group>
-            </Row>
-                
-                <Form.Group as={Row} className="d-flex justify-content-end">
-                <Col sm="4" className="d-flex justify-content-center">
-                <Link to="/register">
-                <Button href="/register" style={{background: '#000051', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px"}} size="lg"> New user?
+                </Row>
+               
+                <Row className="d-flex justify-content-end link">
+                <Link to="user/password/forgot" style={{color: '#000051', fontSize:"1.1rem", textDecoration:'none'}}>Forgot Your Password?</Link>
+                </Row>
+                <Form.Group as={Row} className="d-flex justify-content-center">
+                <Col sm="5" className="d-flex justify-content-center">
+                <Link to="/register" style={{textDecoration:"none"}} className="hovered-blue"> 
+                <Button style={{background: '#000051', border: "3px solid #000051", borderRadius:"10px", fontSize: "1.1rem" , margin:"10px", width: "180px"}} className='hovered-blue' size="lg">New user?
                 </Button>
                 </Link>
                 </Col>
-                <Col sm="4" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px"}} type="submit" size="lg">
+                <Col sm="5" className="d-flex justify-content-center">
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", margin:"10px", width:"180px"}} className='hovered-red' type="submit" size="lg">
                     Sign In
                 </Button>{' '}
                 </Col>

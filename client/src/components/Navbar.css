@@ -1,5 +1,5 @@
 .navbar {
-    background: rgb(26, 27, 77);
+    background:#000051;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -34,13 +34,13 @@
 .navbar-logo>img{
     height: 50px;
     width: 88px;
-    background-color: rgb(26, 27, 77);
+    background-color: #000051;
 
 }
 
 .nav-menu {
     display: grid;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: repeat(7, auto);
     grid-gap: 10px;
     list-style: none;
     text-align: center;

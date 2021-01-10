@@ -1,10 +1,9 @@
 import React, { useState, useContext } from 'react'
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import './Navbar.css';
 import Logo from './assets/logo-blue.png';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
-  
 
 const Navbar = props => {
 
@@ -19,6 +18,7 @@ const Navbar = props => {
         });
     }
 
+
     const [click, setClick] = useState(false);
     
     const iconMenu = () => setClick(!click);
@@ -27,6 +27,7 @@ const Navbar = props => {
     const unauthenticatedNavBar = ()=>{
         return (
             <>
+
                 <li className = "nav-item" >
                    <Link to = '/Info'
                     className = "nav-links" onClick={closeMobileMenu} > Info 
@@ -52,7 +53,7 @@ const Navbar = props => {
         )
     }
 
-    const authenticatedNavBar = ()=>{
+    const authenticatedNavBar = () =>{
         return(
             <>
                 <li className = "nav-item" >
@@ -69,6 +70,11 @@ const Navbar = props => {
                    <Link to="/myschools"
                      className = "nav-links"
                      onClick={closeMobileMenu} > MySchools </Link>
+                </li>
+               <li className="nav-item" >
+                   <Link to="/editprofile"
+                     className = "nav-links"
+                     onClick={closeMobileMenu} > Edit Profile </Link>
                 </li>
                 <li className = "nav-item" >
                 {

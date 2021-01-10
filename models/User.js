@@ -53,7 +53,7 @@ const UserSchema = new mongoose.Schema({
         },
 
     },
-    listOfSchools : [{type : mongoose.Schema.Types.ObjectId, ref: 'School'}],
+    listOfSchools : [],
     date: {
         type: Date,
         default: Date.now()
@@ -71,17 +71,17 @@ UserSchema.pre('save',function(next){
     });
 });
 
-UserSchema.methods.comparePassword = function(password,cb){
-    bcrypt.compare(password,this.password,(err,isMatch)=>{
-        if(err)
-            return cb(err);
-        else{
-            if(!isMatch)
-                return cb(null,isMatch, { message: 'Password incorrect! Please try again.' });
-            return cb(null,this);
-        }
-    });
-}
+// UserSchema.methods.comparePassword = function(password,cb){
+//     bcrypt.compare(password,this.password,(err,isMatch)=>{
+//         if(err)
+//             return cb(err);
+//         else{
+//             if(!isMatch)
+//                 return cb(null,isMatch, { message: 'Password incorrect! Please try again.' });
+//             return cb(null,this);
+//         }
+//     });
+// }
 
 UserSchema.methods.isValidPassword= async function(password){
         const compare = await bcrypt.compare(password, this.password);
