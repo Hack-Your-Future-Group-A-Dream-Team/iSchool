@@ -5,8 +5,8 @@ import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-auto
 import {AuthContext} from '../Context/AuthContext';
 
 export default class Schools extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       data: [],
       address: ""
@@ -15,19 +15,18 @@ export default class Schools extends Component {
 
   static contextType = AuthContext;
 
-  
   componentDidMount() {
     axios.get('/schools')
         .then(res => {
-          // get all school
+          // get all school from database
           const allSchools = res.data;
           console.log(allSchools)
 
           // filter school and set state
-          const filterSchools = allSchools.filter(school => school.network == 'Catholic Network' && school.areas == 'Vocational');
+          // const filterSchools = allSchools.filter(school => school.network == 'Catholic Network' && school.areas == 'Vocational');
 
           this.setState({       
-              data: filterSchools
+              data: allSchools
           });
         })
   
@@ -62,10 +61,31 @@ export default class Schools extends Component {
 //
 
   render() {
-
+    
     const user = this.context
     console.log(user);
     console.log(user.user._id);
+
+    // filter schools by aside filters
+    let filteredSchools = this.state.data;
+
+    if(this.props.getFilter) {
+      Object.entries(this.props.getFilter).forEach(([key, value]) => {
+        if(value) {
+          if(key === "languageClasses") {
+            value = Boolean(value);
+          }
+
+          if(key === "rating") {
+            value = Number(value);
+          }
+          
+          filteredSchools = filteredSchools.filter(school => school[key] == value);
+          console.log(filteredSchools, "during");
+        }  
+      });
+    }
+
 
     return (
       <div className="searchField">
@@ -91,8 +111,9 @@ export default class Schools extends Component {
             </div>)}
           </PlacesAutocomplete>
      </div>
+
         <div className="schoolList">
-          {this.state.data.map((data)=>{
+          {filteredSchools.map((data)=>{
             return(
               <Fragment>
                 <div key={data.id} className="schoolListItem">
