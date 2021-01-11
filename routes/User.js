@@ -141,7 +141,7 @@ userRouter.post('/login',validLogin, async (req, res, next) => {
           const {_id, email, role} = user
           const token = signToken(_id);
           return res.cookie('access_token',token,{httpOnly: true, sameSite:true}), 
-          res.status(200).json({isAuthenticated : true,user : {email,role}, message: `${info.message}`});
+          res.status(200).json({isAuthenticated : true,user : {email,role,_id}, message: `${info.message}`});
         });     } catch (error) {
         return next(error);
       }
@@ -286,8 +286,8 @@ userRouter.put('/resetpassword',resetPasswordValidator,(req,res)=>{
 
 //--------------AUTHENTICATED-------------//
 userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
-    const {email,role} = req.user;
-    res.status(200).json({isAuthenticated : true, user : {email,role}});
+    const {email,role, _id} = req.user;
+    res.status(200).json({isAuthenticated : true, user : {email,role, _id}});
 });
 
 
