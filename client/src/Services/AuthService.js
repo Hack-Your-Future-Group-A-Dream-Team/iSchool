@@ -13,7 +13,7 @@ export default {
                 return res.json().then(data => data);
             else {
                 console.log(res);
-                return { isAuthenticated : false, user : {email : "",role : ""}}
+                return { isAuthenticated : false, user : {email : "",role : "", _id:''}}
             }
                 
         })
@@ -36,7 +36,7 @@ export default {
                             return data
                         });
                     else
-                        return { isAuthenticated : false, user : {email : "",role : ""}};
+                        return { isAuthenticated : false, user : {email : "",role : "", _id: ""}};
                 });
     }
 
