@@ -284,6 +284,8 @@ userRouter.put('/resetpassword',resetPasswordValidator,(req,res)=>{
     }
 })
 
+
+
 //--------------AUTHENTICATED-------------//
 userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
     const {email,role, _id} = req.user;

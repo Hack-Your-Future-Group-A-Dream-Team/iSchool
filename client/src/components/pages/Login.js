@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
+import axios from 'axios';
 import './Login.css' 
 
 const Login = props=>{
@@ -14,6 +16,43 @@ const Login = props=>{
     const onChange = e =>{
         setUser({...user,[e.target.name] : e.target.value});
     }
+
+    //   send google token
+const sendGoogleToken = tokenId => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/googlelogin`, {
+        idToken: tokenId
+      })
+      .then(res => {
+        console.log(res.data);
+        const { isAuthenticated,user} = res.data;
+        // informParent(res);
+        authContext.setUser(user);
+        authContext.setIsAuthenticated(isAuthenticated);
+        user.role === 'admin'
+        ? props.history.push('/admin')
+        : props.history.push('/myschools');
+      })
+      .catch(error => {
+          console.log(error);
+        console.log('GOOGLE SIGN IN ERROR', error.response);
+      });
+  };
+
+  //   If success we need to authenticate user and redirect
+// const informParent = response => {
+//     authenticate(response, () => {
+//         user.isAuthenticated && user.role === 'admin'
+//         ? props.history.push('/admin')
+//         : props.history.push('/private');
+//     });
+//   };
+
+//   Get response from google
+const responseGoogle = response => {
+    console.log(response);
+    sendGoogleToken(response.tokenId);
+  };
 
     const onSubmit = e =>{
         e.preventDefault();
@@ -77,6 +116,26 @@ const Login = props=>{
                     Sign In
                 </Button>{' '}
                 </Col>
+                </Form.Group>
+                <Form.Group>
+                <GoogleLogin
+                  clientId={`${process.env.REACT_APP_GOOGLE_CLIENT}`}
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={'single_host_origin'}
+                  render={renderProps => (
+                    <button
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                      className='w-full max-w-xs font-bold shadow-sm m-5 rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline'
+                    >
+                      <div className=' p-2 rounded-full '>
+                        <i className='fab fa-google ' />
+                      </div>
+                      <span className='ml-4'>Sign In with Google</span>
+                    </button>
+                  )}
+                ></GoogleLogin>
                 </Form.Group>
                 </Form>
         </div>
