@@ -2,6 +2,8 @@ import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import './getSchools.css';
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
+import {AuthContext} from '../Context/AuthContext';
+
 export default class Schools extends Component {
   constructor() {
     super();
@@ -10,6 +12,9 @@ export default class Schools extends Component {
       address: ""
     };
   };
+
+  static contextType = AuthContext;
+
   
   componentDidMount() {
     axios.get('/schools')
@@ -57,6 +62,11 @@ export default class Schools extends Component {
 //
 
   render() {
+
+    const user = this.context
+    console.log(user);
+    console.log(user.user._id);
+
     return (
       <div className="searchField">
         {console.log(this.state.data)}
