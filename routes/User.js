@@ -7,6 +7,7 @@ const nodemailer = require('nodemailer');
 const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const School = require('../models/School');
+const { OAuth2Client } = require('google-auth-library')
 const { validRegister, validLogin, forgotPasswordValidator, resetPasswordValidator} = require('../helpers/valid')
 const { validationResult} = require('express-validator');
 
@@ -284,7 +285,52 @@ userRouter.put('/resetpassword',resetPasswordValidator,(req,res)=>{
     }
 })
 
+// ------------------GOOGLE LOGIN ----------------//
+userRouter.post('/googlelogin',(req,res)=>{
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT)
+const {idToken} = req.body;
+// verify token
+client.verifyIdToken({idToken, audience: process.env.GOOGLE_CLIENT})
+.then(response =>{
+    const {email_verified, given_name, family_name, email} = response.payload;
+    // check if email verified
+    if(email_verified){
+        User.findOne( {email},(err, user) =>{
+            // if user exist
+            if(user){
+                const {_id, email, role} = user
+                const token = signToken(_id);
+                return res.cookie('access_token',token,{httpOnly: true, sameSite:true}), 
+                res.status(200).json({isAuthenticated : true,user : {email,role,_id}});
+            }else{
+                // if user not exist - save to database 
+                let password = email + process.env.JWT_SECRET;
+                let role = "user";
+                const newUser = new User({firstName:given_name, lastName:family_name,email, password,role});
+                        newUser
+                            .save()
+                            . then(user => {
+                                const {_id, email, role} = user
+                                const token = signToken(_id);
+                                return res.cookie('access_token',token,{httpOnly: true, sameSite:true}), 
+                                res.status(200).json({isAuthenticated : true,user : {email,role,_id}});
+                            })
+                            .catch(err =>  
+                                {console.log(err);
+                                res.status(500).json({error :`Something went wrong, please try again`})}
+                                );
+            }
+        })
+    }else{
+        return res.status(400).json({
+            error: "Google login failed, try again"
+        })
+    }
 
+})
+
+
+})
 
 //--------------AUTHENTICATED-------------//
 userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
