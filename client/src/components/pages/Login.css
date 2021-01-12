@@ -17,6 +17,7 @@
     border: 3px solid #4285f4 !important;
   }
 
+
   .form-check-label{
     font-size: 1.1rem;
     margin-bottom: 10px;
@@ -28,9 +29,13 @@
       height: 77vh;
       min-width: 80%
     }
+
+    .register-form{
+      min-width: 80%;
+    }
     
-    form{
-      width:80%
+    .main-form{
+      min-width:80%
     }
     .link{
       width: 100%;
@@ -50,6 +55,10 @@
   }
   .register-form{
     min-width: 80%;
+  }
+
+  .main-form{
+    min-width:80%
   }
 
 }

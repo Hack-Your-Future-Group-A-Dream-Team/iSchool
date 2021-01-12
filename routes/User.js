@@ -23,7 +23,7 @@ const signToken = userID =>{
 
 //-------------------REGISTER-----------------//
 userRouter.post('/register',validRegister,(req,res)=>{
-    const { email,firstName,lastName, address, password,role } = req.body;
+    const { email,firstName,lastName, password,role } = req.body;
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         const firstError = errors.array().map(error=> error.msg)[0]
@@ -37,7 +37,7 @@ userRouter.post('/register',validRegister,(req,res)=>{
             if(user)
                 res.status(400).json({error: "Email already exists"});
             else{
-                const token = JWT.sign({ email,firstName,lastName, address, password,role}, process.env.JWT_SECRET, { expiresIn: '30m' });
+                const token = JWT.sign({ email,firstName,lastName, password,role}, process.env.JWT_SECRET, { expiresIn: '30m' });
 
                 let smtpTransport = nodemailer.createTransport({
                 service: 'gmail',
@@ -98,14 +98,14 @@ userRouter.post('/activation',(req,res)=>{
 
              }
              else {
-                const { email,firstName,lastName, address, password,role } = decodedToken;
+                const { email,firstName,lastName, password,role } = decodedToken;
                 User.findOne({email},(err,user)=>{
                     if(err)
                         res.status(500).json({error: "Error has occurred"});
                     if(user)
                         res.status(400).json({error: "Email already exists"});
                     else{
-                        const newUser = new User({firstName, lastName,email, password,role, address});
+                        const newUser = new User({firstName, lastName,email, password,role});
                         
                         newUser
                             .save()
@@ -113,7 +113,7 @@ userRouter.post('/activation',(req,res)=>{
                                 res.status(201).json({
                                     success: true,
                                     user: user,
-                                    message: 'Account successfully created. Please sing in',
+                                    message: 'Account successfully created. Please sign in',
                                 });
                             })
                             .catch(err =>  
@@ -152,7 +152,7 @@ userRouter.post('/login',validLogin, async (req, res, next) => {
 //--------------LOGOUT-------------//
 userRouter.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
     res.clearCookie('access_token');
-    res.json({user:{username : "", role : "", _id:''},success : true});
+    res.json({user:{username : "", role : "", _id:""},success : true});
 });
 
 //--------------ADMIN-------------//

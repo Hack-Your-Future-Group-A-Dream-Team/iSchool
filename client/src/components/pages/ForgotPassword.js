@@ -41,11 +41,11 @@ const ForgotPassword = props =>{
 
 
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"100px auto", width: '60%', minHeight: "77vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%', minHeight: "77vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
              <ToastContainer />
-             <Form style= {{width: '60%', height: "30vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
+             <Form style= {{width: '50%', height: "30vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around main-form" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">
-                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px", textAlign:"center"}}>Forgot Your Password</h2>
+                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", padding:"30px", textAlign:"center"}}>Forgot Your Password</h2>
             </Row>
             <Form.Group as={Row} controlId="email">
                     <Form.Label column sm="2">

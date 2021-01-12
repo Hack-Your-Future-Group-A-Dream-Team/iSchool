@@ -63,11 +63,11 @@ const responseGoogle = response => {
 
 
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '60%', minHeight: "77vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%', minHeight: "77vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
              <ToastContainer />
-             <Form style= {{width: '70%', height: "60vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
+             <Form style= {{width: '50%', height: "50vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around main-form" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">
-                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px", textAlign:"center", width:"100%"}}>SIGN IN</h2>
+                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px", textAlign:"center", width:"100%", color:"#B71C1C"}}>SIGN IN</h2>
             </Row>
             <Row className="d-flex flex-column justify-content-center">
             <Form.Group as={Row} controlId="email">
@@ -99,8 +99,8 @@ const responseGoogle = response => {
                 </Button>
                 </Link>
                 </Col>
-                <Col sm="5" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", margin:"10px", width:"180px", fontWeight:"bold"}} className='hovered-red' type="submit" size="lg">
+                <Col sm="5" className="d-flex justify-content-center" style={{width:"300px"}}>
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", margin:"10px", width:"180px", boxSizing:"border-box"}} className='hovered-red' type="submit" size="lg">
                     Sign In
                 </Button>{' '}
                 </Col>
