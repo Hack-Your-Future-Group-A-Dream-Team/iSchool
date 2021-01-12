@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 function LandingSec() {
     return ( 
         <div className = 'sec-container' >
-        <h3 > Find The Best School For Your Child </h3> 
+        <p > Find The Best School For Your Child </p> 
         <div className = 'sec-btns' >
             <Button className = 'btns'
                     buttonStyle = 'btn--outline'
@@ -17,7 +17,7 @@ function LandingSec() {
             </Button>
         </div> 
         <div className = "text" >
-             <h3> If You Are School Manager And You Want To Register Your School, Please Sign Up ! </h3> 
+             <p> If You Are School Manager And You Want To Register Your School, Please Sign Up ! </p> 
         </div> 
         <div className="student">
             <img src={Background} alt="student"/>
