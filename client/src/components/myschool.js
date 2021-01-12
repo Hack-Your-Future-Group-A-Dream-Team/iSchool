@@ -26,6 +26,20 @@ class MySchools extends Component {
       
       };
 
+      deleteFavorite(data){
+        axios({method:'post', 
+                  url:'/user/favorites', 
+                  data:{
+                          userid:this.context.user._id,
+                          schoolId:data
+                  }
+              }
+        )
+        .then(data=>console.log(data))
+        .catch(err=>console.log(err))
+        console.log(this.context.user)
+      }
+
       render() {
     
         const user = this.context
@@ -48,7 +62,7 @@ class MySchools extends Component {
                         <p className="schoolContact">Email: {data.email}</p>
                         <p className="schoolContact">Phone: {data.phone}</p>
                         <div className="btn-container">
-                          <button className="schoolList-btn">Remove from list</button>
+                          <button className="schoolList-btn" onClick={() => this.deleteFavorite(data._id)}>Remove from list</button>
                           <button className="schoolList-btn">Comment</button>
                         </div>
                         <div className="review-container">

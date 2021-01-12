@@ -47,4 +47,37 @@ const getFavorites = async(req, res) => {
     }
 }
 
-module.exports = { saveFavorite: saveFavorite, getFavorites: getFavorites };
+const deleteFavorite = async(req, res) => {
+
+    try {
+        const userid = req.body.userid;
+        const user = await UserModel.findById(userid);
+
+        if (user === null) {
+            return res.status(500).json({ res: `User with id ${userid} is not found over the database` });
+        }
+
+        const schoolToRemove =  req.body.schoolId;
+
+        //const result = await UserModel.update({ _id: req.query.userid}, { $pull: { listOfSchools : { _id: 23 } } });
+
+        const results = await UserModel.findByIdAndUpdate(userid,
+{$pull: {listOfSchools: {_id:schoolToRemove}}},
+{safe: true, upsert: true});
+    
+        
+        // await user.listOfSchools.filter(function(school){return school._id!==schoolToRemove})
+               
+        // await user.save()
+
+        return res.status(200).json({ removed: results });
+
+    } catch (e) {
+        return res.status(500).json({
+            res: 'Error when removing a favorite school'
+        })
+    }
+
+}
+
+module.exports = { saveFavorite: saveFavorite, getFavorites: getFavorites, deleteFavorite:deleteFavorite };
