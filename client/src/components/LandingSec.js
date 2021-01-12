@@ -16,8 +16,8 @@ function LandingSec() {
                Search For School  
             </Button>
         </div> 
-        <div className = "text" >
-             <h3> If You Are School Manager And You Want To Register Your School, Please Sign Up ! </h3> 
+        <div>
+             <h3 className="text"> If You Are School Manager And You Want To Register Your School, Please <Link to='/register' style={{color: '#B71C1C', fontWeight: 'bold', textDecoration: "none"}}>SIGN UP</Link>! </h3> 
         </div> 
         <div className="student">
             <img src={Background} alt="student"/>
