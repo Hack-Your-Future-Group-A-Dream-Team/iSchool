@@ -9,7 +9,7 @@
     top: 0;
     z-index: 999;
     width: 100%;
-    border-bottom: solid 2px red;
+    border-bottom: solid 2px rgb(218, 52, 80);
 }
 
 .navbar-icon {
@@ -34,7 +34,7 @@
 .navbar-logo>img{
     height: 50px;
     width: 88px;
-    background-color: #000051;
+    
 
 }
 
@@ -64,6 +64,7 @@
 
 .nav-links:hover {
     border-bottom: 4px solid #fff;
+    color: white;
     transition: all 0.2s ease-out;
     transform: scale(1.5);
 }
