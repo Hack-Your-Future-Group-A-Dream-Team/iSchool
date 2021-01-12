@@ -138,7 +138,7 @@ const Register = props=>{
                 <Form.Group as={Row} className="mt-5" className="d-flex justify-content-center">
                 <Col sm="6" className="d-flex justify-content-center" >
                     <Link to="login">
-                    <Button  style={{background: '#000051', border: "3px solid #000051", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", width:'200px'}} className="hovered-blue"size="lg"> Have an account?
+                    <Button  style={{background: '#000051', border: "3px solid #000051", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", width:'200px', fontWeight:"bold"}} className="hovered-blue"size="lg"> Have an account?
                     </Button>
                     </Link>
                 </Col>
