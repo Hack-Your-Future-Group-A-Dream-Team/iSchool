@@ -13,39 +13,40 @@ class MySchools extends Component {
       static contextType = AuthContext;
 
     componentDidMount() {
-     //   axios.get('/schools',{userid:this.context.user._id})
-        axios.get(`/user/favorites?userid=${this.context.user._id}`) 
-            .then(res => {
-               const favSchools = res.data;
-               console.log(favSchools)
-    
-              this.setState({       
-                favoriteSchools:favSchools.favorites 
-              });
-            })
+  
+        this.fetchFavorites()
       
       };
 
-      deleteFavorite(data){
-        axios({method:'post', 
-                  url:'/user/favorites', 
-                  data:{
-                          userid:this.context.user._id,
-                          schoolId:data
+    fetchFavorites(){        
+      axios.get(`/user/favorites?userid=${this.context.user._id}`) 
+      .then(res => {
+         const favSchools = res.data;
+         console.log(favSchools)
+
+        this.setState({       
+          favoriteSchools:favSchools.favorites 
+        });
+      })}
+
+    deleteFavorite(data){
+      axios({method:'post', 
+                url:'/user/favorites', 
+                data:{
+                        userid:this.context.user._id,
+                        schoolId:data
                   }
               }
         )
-        .then(data=>console.log(data))
+        .then(data=>{
+                console.log(data); 
+                this.fetchFavorites()
+              })
         .catch(err=>console.log(err))
-        console.log(this.context.user)
+        console.log(this.state)
       }
 
-      render() {
-    
-        const user = this.context
-        console.log(user);
-        console.log(user.user._id);
-        console.log(this.state.favoriteSchools);
+    render() {
            
         return (
           <div className="searchField">

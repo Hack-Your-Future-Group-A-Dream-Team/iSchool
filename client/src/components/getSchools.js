@@ -58,7 +58,8 @@ export default class Schools extends Component {
       address: value
   })
 }
-//
+
+//Save button
 
 saveFavorite(data){
   console.log(this.context.user.listOfSchools)

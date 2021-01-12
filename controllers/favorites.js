@@ -59,18 +59,11 @@ const deleteFavorite = async(req, res) => {
 
         const schoolToRemove =  req.body.schoolId;
 
-        //const result = await UserModel.update({ _id: req.query.userid}, { $pull: { listOfSchools : { _id: 23 } } });
-
-        const results = await UserModel.findByIdAndUpdate(userid,
-{$pull: {listOfSchools: {_id:schoolToRemove}}},
-{safe: true, upsert: true});
+        const results = await UserModel.findByIdAndUpdate(userid, {
+                                                            $pull: {listOfSchools: {_id:schoolToRemove}}
+                                                        }, {safe: true, upsert: true});
     
-        
-        // await user.listOfSchools.filter(function(school){return school._id!==schoolToRemove})
-               
-        // await user.save()
-
-        return res.status(200).json({ removed: results });
+    return res.status(200).json({ removed: results });
 
     } catch (e) {
         return res.status(500).json({
