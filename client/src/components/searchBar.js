@@ -12,7 +12,7 @@ export default class SearchBar extends Component {
             placeholder="Enter address of the school"
             className="searchBarInput"
           ></input>
-          <i class="fas fa-search"></i>
+          <i className="fas fa-search"></i>
         </div>
 
       </Fragment>
