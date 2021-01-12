@@ -65,6 +65,7 @@ export default class Schools extends Component {
     const dataForm = new FormData(formEvent);
     const dataFormResult = Object.fromEntries(dataForm.entries());
     console.log(dataFormResult);
+
     axios.post('/schools/rating', {
        score: dataFormResult.score,
        schoolid: dataFormResult.schoolid,
