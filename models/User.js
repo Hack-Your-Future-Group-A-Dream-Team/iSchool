@@ -53,7 +53,10 @@ const UserSchema = new mongoose.Schema({
         },
 
     },
-    listOfSchools : [],
+    listOfSchools : {
+        type: [],
+        required:false
+        },
     date: {
         type: Date,
         default: Date.now()

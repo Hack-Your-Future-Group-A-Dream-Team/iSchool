@@ -1,15 +1,22 @@
-import React  from 'react';
+import React, {Fragment, Component} from 'react';
+import MySchools from '../myschool';
 
 
-const MySchools = props =>{
+class  FavSchools extends Component {
 
-    return(
-        <div>
-            
-             <h1>My school</h1>
-        </div>
-    );
-
+    render() {
+       
+        return(
+            <Fragment>
+                
+                <div >
+                    
+                    
+                    <MySchools />
+                </div>
+                
+            </Fragment>
+        )       
 }
-
-export default MySchools;
+}
+export default FavSchools;

@@ -60,11 +60,28 @@ export default class Schools extends Component {
 }
 //
 
+saveFavorite(data){
+  console.log(this.context.user.listOfSchools)
+  //const newFav=this.context.user.listOfSchools.push(data)
+  console.log(data)
+  axios({method:'put', 
+            url:'/user/favorites', 
+            data:{
+                    userid:this.context.user._id,
+             listOfSchools:data
+            }
+        }
+  )
+  .then(data=>console.log(data))
+  .catch(err=>console.log(err))
+  console.log(this.context.user)
+}
+
   render() {
     
     const user = this.context
-    console.log(user);
-    console.log(user.user._id);
+    // console.log(user);
+   {   console.log(user.user._id)};
 
     // filter schools by aside filters
     let filteredSchools = this.state.data;
@@ -124,7 +141,7 @@ export default class Schools extends Component {
                     <p className="schoolContact">Email: {data.email}</p>
                     <p className="schoolContact">Phone: {data.phone}</p>
                     <div className="btn-container">
-                      <button className="schoolList-btn">Save school</button>
+                      <button className="schoolList-btn" onClick={() => this.saveFavorite(data)}>Save school</button>
                       <button className="schoolList-btn">Comment</button>
                     </div>
                     <div className="review-container">

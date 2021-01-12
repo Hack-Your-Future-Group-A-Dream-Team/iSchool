@@ -9,7 +9,9 @@ const saveFavorite = async(req, res) => {
             return res.status(500).json({ res: `User with id ${userid} is not found over the database` });
         }
         const newFavorites =  req.body.listOfSchools;
-        const results = await UserModel.updateOne({_id:userid}, {$set:{listOfSchools: newFavorites}, });
+        const results = await UserModel.findByIdAndUpdate(userid,
+            {$push: {listOfSchools: newFavorites}},
+            {safe: true, upsert: true});
         
         return res.status(200).json({ res: results });
 
