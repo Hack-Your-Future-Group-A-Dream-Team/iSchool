@@ -30,29 +30,6 @@ const UserSchema = new mongoose.Schema({
         enum : ['user','admin', 'school'],
         required: true
     },
-    address: {
-        postcode: {
-            type: Number,
-            required: [true, 'Post code is required']
-        },
-        country: {
-            type: String,
-            required: [true, 'Country is required']
-        },
-        city: {
-            type: String,
-            required: [true, 'City is required']
-        },
-        street: {
-            type: String,
-            required: [true, 'Street is required']
-        },
-        building: {
-            type: Number,
-            required: [true, 'Building No is required']
-        },
-
-    },
     listOfSchools : [],
     date: {
         type: Date,
@@ -71,17 +48,6 @@ UserSchema.pre('save',function(next){
     });
 });
 
-// UserSchema.methods.comparePassword = function(password,cb){
-//     bcrypt.compare(password,this.password,(err,isMatch)=>{
-//         if(err)
-//             return cb(err);
-//         else{
-//             if(!isMatch)
-//                 return cb(null,isMatch, { message: 'Password incorrect! Please try again.' });
-//             return cb(null,this);
-//         }
-//     });
-// }
 
 UserSchema.methods.isValidPassword= async function(password){
         const compare = await bcrypt.compare(password, this.password);

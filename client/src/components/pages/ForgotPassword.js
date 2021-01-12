@@ -58,7 +58,7 @@ const ForgotPassword = props =>{
 
                 <Form.Group as={Row} className="d-flex justify-content-center">
                 <Col sm="12" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px", width:"180px"}} className='hovered-red' type="submit" size="lg">
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 35px", margin:"10px", width:"180px", fontWeight:"bold"}} className='hovered-red' type="submit" size="lg">
                 Submit
                 </Button>
                 </Col>

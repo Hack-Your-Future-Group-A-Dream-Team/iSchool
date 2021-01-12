@@ -11,6 +11,12 @@
     border: 3px solid #B71C1C !important;
   }
 
+  .hovered-google.btn.btn-primary:hover{
+    color: #4285f4;
+    background-color:#ffff !important;
+    border: 3px solid #4285f4 !important;
+  }
+
   .form-check-label{
     font-size: 1.1rem;
     margin-bottom: 10px;
