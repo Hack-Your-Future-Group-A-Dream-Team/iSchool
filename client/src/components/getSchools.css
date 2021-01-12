@@ -118,6 +118,12 @@
     padding: 0.4em 0;
 }
 
+.school-comments-qty span {
+    color: rgb(183, 28, 28, 0.8);
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
 .school-details {
     width: 68%;
     display: flex;
