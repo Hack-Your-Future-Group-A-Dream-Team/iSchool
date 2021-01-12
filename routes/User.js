@@ -139,10 +139,10 @@ userRouter.post('/login',validLogin, async (req, res, next) => {
         }
         req.login(user, { session : false }, async (error) => {
           if( error ) return next(error)
-          const {_id, email, role} = user
+          const {_id, email, role, firstName, lastName, listOfSchools} = user
           const token = signToken(_id);
           return res.cookie('access_token',token,{httpOnly: true, sameSite:true}), 
-          res.status(200).json({isAuthenticated : true,user : {email,role,_id}, message: `${info.message}`});
+          res.status(200).json({isAuthenticated : true,user : {email,role,_id, firstName, lastName, listOfSchools}, message: `${info.message}`});
         });     } catch (error) {
         return next(error);
       }
@@ -152,7 +152,9 @@ userRouter.post('/login',validLogin, async (req, res, next) => {
 //--------------LOGOUT-------------//
 userRouter.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
     res.clearCookie('access_token');
-    res.json({user:{username : "", role : "", _id:""},success : true});
+
+    res.json({user:{email : "", role : "", _id:'', firstName: "", lastName:"", listOfSchools:""},success : true});
+
 });
 
 //--------------ADMIN-------------//
@@ -161,7 +163,7 @@ userRouter.get('/admin',passport.authenticate('jwt',{session : false}),(req,res)
         res.status(200).json({message : {msgBody : 'You are an admin', msgError : false}});
     }
     else
-        res.status(403).json({message : {msgBody : "You're not an admin,go away", msgError : true}});
+        res.status(403).json({message : {msgBody : "You're not an admin", msgError : true}});
 });
 
 //-------------------RESET PASSWORD-----------------//
@@ -334,8 +336,8 @@ client.verifyIdToken({idToken, audience: process.env.GOOGLE_CLIENT})
 
 //--------------AUTHENTICATED-------------//
 userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
-    const {email,role, _id} = req.user;
-    res.status(200).json({isAuthenticated : true, user : {email,role, _id}});
+    const {email,role, _id, listOfSchools, firstName, lastName} = req.user;
+    res.status(200).json({isAuthenticated : true, user : {email,role, _id, listOfSchools, firstName, lastName}});
 });
 
 
