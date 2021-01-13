@@ -15,6 +15,7 @@ export class SchoolBlock extends Component {
 
   render() {
     const details = this.props.details;
+    const userid = this.props.userid;
 
     return (
       <div className="schollListItem_container">
@@ -60,6 +61,7 @@ export class SchoolBlock extends Component {
             </div>
           </div>
           <CommentInput
+            data={{ userid: userid, schoolid: details._id }}
             show={this.state.modalShow}
             onHide={() => this.setState({ modalShow: false })}
           ></CommentInput>
@@ -98,7 +100,6 @@ export class SchoolBlock extends Component {
   addComment = (e) => {
     console.log(e);
     this.setState({ modalShow: !this.state.modalShow });
-    return <CommentInput></CommentInput>;
   };
 }
 

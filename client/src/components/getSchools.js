@@ -143,7 +143,10 @@ export default class Schools extends Component {
           {this.state.data.map((data) => {
             return (
               <Fragment key={data._id}>
-                <SchoolBlock details={data}></SchoolBlock>
+                <SchoolBlock
+                  details={data}
+                  user={this.context.user._id}
+                ></SchoolBlock>
               </Fragment>
             );
           })}
