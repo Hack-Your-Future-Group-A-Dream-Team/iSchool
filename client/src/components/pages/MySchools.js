@@ -10,8 +10,6 @@ class  FavSchools extends Component {
             <Fragment>
                 
                 <div >
-                    
-                    
                     <MySchools />
                 </div>
                 
