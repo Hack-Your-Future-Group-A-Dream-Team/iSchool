@@ -3,6 +3,8 @@ import axios from 'axios';
 import './getSchools.css';
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
 import {AuthContext} from '../Context/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class Schools extends Component {
   constructor(props) {
@@ -57,6 +59,26 @@ export default class Schools extends Component {
       address: value
   })
 }
+
+//Save button
+
+saveFavorite(data){
+  console.log(this.context.user.listOfSchools)
+  //const newFav=this.context.user.listOfSchools.push(data)
+  console.log(data)
+  axios({method:'put', 
+            url:'/user/favorites', 
+            data:{
+                    userid:this.context.user._id,
+             listOfSchools:data
+            }
+        }
+  )
+  .then(data=>{console.log(data); toast.success("Successfully saved")})
+  .catch(err=>console.log(err))
+  console.log(this.context.user)
+}
+
 // send rating
   sendRating (e) {
     e.preventDefault();
@@ -75,11 +97,12 @@ export default class Schools extends Component {
     .catch(err => {console.log(err)});
   }
 
+
   render() {
     
     const user = this.context
-    console.log(user);
-    console.log(user.user._id);
+    // console.log(user);
+   {   console.log(user.user._id)};
 
     // filter schools by aside filters
     let filteredSchools = this.state.data;
@@ -104,7 +127,7 @@ export default class Schools extends Component {
 
     return (
       <div className="searchField">
-        {console.log(this.state.data)}
+         <ToastContainer />
         <div>
           <PlacesAutocomplete  value={this.state.address} onChange={this.handleChange} onSelect={this.handleSelect}>{({getInputProps, suggestions, getSuggestionItemProps, loading})=>(
             <div>
@@ -139,7 +162,7 @@ export default class Schools extends Component {
                     <p className="schoolContact">Email: {data.email}</p>
                     <p className="schoolContact">Phone: {data.phone}</p>
                     <div className="btn-container">
-                      <button className="schoolList-btn">Save school</button>
+                      <button className="schoolList-btn" onClick={() => this.saveFavorite(data)}>Save school</button>
                       <button className="schoolList-btn">Comment</button>
                     </div>
                     <div className="review-container">
