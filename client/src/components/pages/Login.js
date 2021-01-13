@@ -117,8 +117,9 @@ const responseGoogle = response => {
                       disabled={renderProps.disabled}><i className='fab fa-google ' /><span style={{marginLeft:"10px"}}>Sign In with Google</span>
                     </Button>{' '}
                     </Col>
-                  )}
-                ></GoogleLogin>
+                  )}>
+                    
+                  </GoogleLogin>
                 </Form.Group>
                 </Form>
         </div>

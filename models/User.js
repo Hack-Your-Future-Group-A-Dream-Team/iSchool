@@ -30,7 +30,12 @@ const UserSchema = new mongoose.Schema({
         enum : ['user','admin', 'school'],
         required: true
     },
-    listOfSchools : [],
+  
+    listOfSchools : {
+        type: [],
+        required:false
+        },
+
     date: {
         type: Date,
         default: Date.now()

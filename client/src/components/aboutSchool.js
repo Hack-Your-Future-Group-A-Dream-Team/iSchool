@@ -56,6 +56,9 @@ const AboutSchoolInfo = (props) => {
             <ListGroupItem><span style={{marginRight:"10px"}}>RATING:</span>{items.map((item,index)=>{
              return <i className="fas fa-star" key={index} style={{color:'#B71C1C'}}></i>
      })}</ListGroupItem>
+            <ListGroupItem><span style={{marginRight:"10px"}}>COMMENTS:</span>{school.comments.map(item=>{
+                return <div>{item}</div>
+            })}</ListGroupItem>
             </ListGroup>
             </Card>
             </Container>
