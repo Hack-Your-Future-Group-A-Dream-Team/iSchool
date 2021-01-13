@@ -108,19 +108,22 @@ class CommentInput extends Component {
       `userid: ${this.props.data.userid}  schoolid: ${this.props.data.schoolid}`
     );
 
-    axios
-      .post("/schools/comments", {
-        schoolid: this.props.data.schoolid,
-        userid: this.props.data.userid,
-        body: this.state.comment_txt,
-      })
-      .then((res) => console.log(res))
-      .catch((e) => console.log(e));
+    this.saveCommentToDb(userid, schoolid, this.state.comment_txt);
   };
 
   hideAll = () => {
     this.setState({ modalShow: false });
     this.setState({ userinput_error: false });
+  };
+
+  saveCommentToDb = async () => {
+    const res = await axios.post("/schools/comments", {
+      schoolid: this.props.data.schoolid,
+      userid: this.props.data.userid,
+      body: this.state.comment_txt,
+    });
+
+    const data = res.data;
   };
 }
 
