@@ -1,0 +1,11 @@
+
+ @media screen and (max-width: 768px) {
+    
+
+    .list-group-flush.list-group{
+        width:100%!important;
+    }
+    .list-group-item{
+        width: 100%!important;
+    }
+  } 

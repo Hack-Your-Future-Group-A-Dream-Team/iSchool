@@ -3,7 +3,7 @@ import axios from 'axios';
 import './getSchools.css';
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
 import {AuthContext} from '../Context/AuthContext';
-
+import {Link} from 'react-router-dom';
 export default class Schools extends Component {
   constructor(props) {
     super(props);
@@ -134,7 +134,7 @@ export default class Schools extends Component {
                 <div key={data.id} className="schoolListItem">
 
                   <div>
-                    <p className="schoolName">{data.name}</p>
+                    <Link to={`/school/${data._id}`}><p className="schoolName">{data.name}</p></Link>
                     <p className="schoolContact">{data.adress_str}</p>
                     <p className="schoolContact">Email: {data.email}</p>
                     <p className="schoolContact">Phone: {data.phone}</p>

@@ -14,6 +14,7 @@ import ResetPassword from './components/pages/ResetPassword'
 import ForgotPassword from './components/pages/ForgotPassword'
 import PrivateRoute from './hocs/PrivateRoute';
 import UnPrivateRoute from './hocs/UnPrivateRoute';
+import SchoolProfile from './components/pages/SchoolProfile'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Information from './components/pages/Info';
 
@@ -32,6 +33,7 @@ function App() {
       <PrivateRoute path="/myschools" roles={["user","admin","school"]} component={MySchool}/>
       <PrivateRoute path="/editprofile" roles={["user","admin","school"]} component={EditProfile}/>
       <PrivateRoute path="/addschool" roles={["admin","school"]} component={AddSchool}/>
+      <PrivateRoute path="/school/:id" roles={["user","admin","school"]} component={SchoolProfile}/>
       <PrivateRoute path="/admin" roles={["admin"]} component={Admin}/>
       <Route exact path="/Info" component={Information}/>
       <Footer/>
