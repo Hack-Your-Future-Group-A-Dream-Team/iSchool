@@ -5,8 +5,8 @@ import Login from './components/pages/Login';
 import Home from './components/pages/Home';
 import SearchSchool from './components/pages/SearchSchool';
 import MySchool from './components/pages/MySchools';
-import AddSchool from './components/pages/AddSchool';
 import Register from './components/pages/Register';
+import RegisterSchool from './components/pages/RegisterSchool';
 import Admin  from './components/pages/Admin';
 import Activate from "./components/pages/Activate"
 import EditProfile from "./components/pages/EditProfile"
@@ -25,7 +25,7 @@ function App() {
       <Route exact path="/searchschool" component={SearchSchool}/>
       <PrivateRoute path="/myschools" roles={["user","admin","school"]} component={MySchool}/>
       <PrivateRoute path="/editprofile" roles={["user","admin","school"]} component={EditProfile}/>
-      <PrivateRoute path="/addschool" roles={["admin","school"]} component={AddSchool}/>
+      <PrivateRoute path="/addschool" roles={["admin","school"]} component={RegisterSchool}/>
       <PrivateRoute path="/admin" roles={["admin"]} component={Admin}/>
       <Footer/>
     </Router>
