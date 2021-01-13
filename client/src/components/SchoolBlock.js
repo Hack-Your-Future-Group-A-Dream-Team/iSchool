@@ -36,8 +36,6 @@ export class SchoolBlock extends Component {
 
             <div className="schoolListItem-rightSide">
               <div className="review-container">
-                <div className="review-header">Rate: </div>
-
                 <form onSubmit={this.sendRating}>
                   <fieldset className="ratingForm">
                     <div className="addRatingStarContainer">
@@ -46,78 +44,79 @@ export class SchoolBlock extends Component {
                         type="radio"
                         name="score"
                         value="5"
-                        id={data._id + "1"}
+                        id={details._id + "1"}
                       ></input>
                       <label
                         className="addRatingLabel far fa-star"
-                        for={data._id + "1"}
+                        for={details._id + "1"}
                       ></label>
                       <input
                         className="addRatingStar"
                         type="radio"
                         name="score"
                         value="4"
-                        id={data._id + "2"}
+                        id={details._id + "2"}
                       ></input>
                       <label
                         className="addRatingLabel far fa-star"
-                        for={data._id + "2"}
+                        for={details._id + "2"}
                       ></label>
                       <input
                         className="addRatingStar"
                         type="radio"
                         name="score"
                         value="3"
-                        id={data._id + "3"}
+                        id={details._id + "3"}
                       ></input>
                       <label
                         className="addRatingLabel far fa-star"
-                        for={data._id + "3"}
+                        for={details._id + "3"}
                       ></label>
                       <input
                         className="addRatingStar"
                         type="radio"
                         name="score"
                         value="2"
-                        id={data._id + "4"}
+                        id={details._id + "4"}
                       ></input>
                       <label
                         className="addRatingLabel far fa-star"
-                        for={data._id + "4"}
+                        for={details._id + "4"}
                       ></label>
                       <input
                         className="addRatingStar"
                         type="radio"
                         name="score"
                         value="1"
-                        id={data._id + "5"}
+                        id={details._id + "5"}
                       ></input>
                       <label
                         className="addRatingLabel far fa-star"
-                        for={data._id + "5"}
+                        for={details._id + "5"}
                       ></label>
                     </div>
-                    <div>
+                    <div className="submit_rate_container">
                       <input
                         type="hidden"
                         name="schoolid"
-                        value={data._id}
+                        value={details._id}
                       ></input>
-                      <input
-                        type="hidden"
-                        name="userid"
-                        value={user.user._id}
-                      ></input>
+                      <input type="hidden" name="userid" value={userid}></input>
                       <input
                         className="sendRating"
                         type="submit"
-                        value="Send"
+                        value="Add score"
                       ></input>
                     </div>
                   </fieldset>
                 </form>
 
-                <div className="review-average">({details.rating})</div>
+                <div className="review-average">
+                  <p>
+                    {" "}
+                    <span>({details.rating})</span>
+                  </p>
+                </div>
               </div>
               <div className="school-comments-qty">
                 <p data-key={details._id} onClick={this.getCommentsList}>
@@ -177,84 +176,3 @@ export class SchoolBlock extends Component {
 }
 
 export default SchoolBlock;
-
-///////////////////////////////////////
-
-<div key={data.id} className="schoolListItem">
-  <div>
-    <p className="schoolName">{data.name}</p>
-    <p className="schoolContact">{data.adress_str}</p>
-    <p className="schoolContact">Email: {data.email}</p>
-    <p className="schoolContact">Phone: {data.phone}</p>
-    <div className="btn-container">
-      <button className="schoolList-btn">Save school</button>
-      <button className="schoolList-btn">Comment</button>
-    </div>
-    <div className="review-container">
-      <p>Give a review:</p>
-    </div>
-  </div>
-
-  <div className="schoolListItem-rightSide">
-    <div className="schoolList-comments">Read Comments</div>
-    <div className="schoolList-rating">Rating: {data.rating}</div>
-  </div>
-</div>;
-
-///////////////////////////////////////
-
-{
-  /* <div key={data.id} className="schoolListItem">
-
-                  <div>
-                    <p className="schoolName">{data.name}</p>
-                    <p className="schoolContact">{data.adress_str}</p>
-                    <p className="schoolContact">Email: {data.email}</p>
-                    <p className="schoolContact">Phone: {data.phone}</p>
-                    <div className="btn-container">
-                      <button className="schoolList-btn">Save school</button>
-                      <button className="schoolList-btn">Comment</button>
-                    </div>
-                    <div className="review-container">
-                      <p>Give a review:</p> 
-                        <form onSubmit={this.sendRating}>
-                          <fieldset className="ratingForm">
-                            <div className="addRatingStarContainer">
-                              <input className="addRatingStar" type="radio" name="score" value="5"
-                              id={data._id + '1'}
-                              ></input>
-                              <label className="addRatingLabel far fa-star" for={data._id + '1'}></label>
-                              <input className="addRatingStar" type="radio" name="score" value="4"
-                              id={data._id + '2'}
-                              ></input>
-                              <label className="addRatingLabel far fa-star" for={data._id + '2'}></label>
-                              <input className="addRatingStar"  type="radio" name="score" value="3"
-                              id={data._id + '3'}
-                              ></input>
-                              <label className="addRatingLabel far fa-star" for={data._id + '3'}></label>
-                              <input className="addRatingStar" type="radio" name="score" value="2"
-                              id={data._id + '4'}
-                              ></input>
-                              <label className="addRatingLabel far fa-star" for={data._id + '4'}></label>
-                              <input className="addRatingStar" type="radio" name="score" value="1"
-                              id={data._id + '5'}
-                              ></input>
-                              <label className="addRatingLabel far fa-star" for={data._id + '5'}></label>
-                          </div>
-                          <div>
-                            <input type="hidden" name="schoolid" value={data._id}></input>
-                            <input type="hidden" name="userid" value={user.user._id}></input>
-                            <input className="sendRating" type="submit" value="Send"></input>
-                          </div>
-                        </fieldset>
-                      </form>
-                    </div>
-                  </div>
-                  
-                  <div className="schoolListItem-rightSide">
-                    <div className="schoolList-comments">Read Comments</div>
-                    <div className="schoolList-rating">Rating: {data.rating}</div>
-                  </div>
-                  
-                </div> */
-}

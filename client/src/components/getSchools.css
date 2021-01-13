@@ -85,8 +85,7 @@
 .review-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
+    justify-content: right;
     font-size: 1em;
 }
 
@@ -111,21 +110,27 @@
     font-weight: 700;
 }
 
-.school-comments-qty p {
+.school-comments-qty p,
+.review-average p {
     display: block;
     float: right;
     cursor: pointer;
     padding: 0.4em 0;
 }
 
-.school-comments-qty span {
+.school-comments-qty p {
+    margin-bottom: 0;
+}
+
+.school-comments-qty>p>span,
+.review-average p>span {
     color: rgb(183, 28, 28, 0.8);
-    font-size: 0.8em;
+    font-size: 0.8rem;
     font-weight: bold;
 }
 
 .school-details {
-    width: 68%;
+    width: 62%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -133,12 +138,12 @@
 }
 
 .schoolListItem-rightSide {
-    width: 30%;
+    width: 36%;
     min-width: 140px;
     font-size: 18px;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-end;
     justify-content: space-between;
 }
 
@@ -183,7 +188,9 @@
 
 .ratingForm {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .addRatingStar {
@@ -203,7 +210,13 @@
     font-weight: 700;
 }
 
-.sendRating {
+.submit_rate_container {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* .sendRating {
     border: none;
     outline: none;
     color: #000051;
@@ -211,6 +224,18 @@
     text-decoration: underline;
     cursor: pointer;
     margin-left: 1em;
+} */
+
+.sendRating {
+    font-size: 0.8em;
+    color: #fff;
+    background: #000051;
+    border-radius: 0.8em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: .2em 0.4em;
+    margin: 0 .4em;
 }
 
 .comments_list_container {
