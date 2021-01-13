@@ -69,7 +69,7 @@ const responseGoogle = response => {
             <Row className="justify-content-md-center">
                 <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px", textAlign:"center", width:"100%", color:"#B71C1C"}}>SIGN IN</h2>
             </Row>
-            <Row className="d-flex flex-column justify-content-center">
+            {/* <Row className="d-flex flex-column justify-content-center"> */}
             <Form.Group as={Row} controlId="email">
                     <Form.Label column sm="2">
                     Email
@@ -87,7 +87,7 @@ const responseGoogle = response => {
                     <Form.Control type="password" placeholder="Password" name="password" value={user.password1} onChange={onChange}/>
                     </Col>
                 </Form.Group>
-                </Row>
+                {/* </Row> */}
                
                 <Row className="d-flex justify-content-end link">
                 <Link to="user/password/forgot" style={{color: '#000051', fontSize:"1.1rem", textDecoration:'none'}}>Forgot Your Password?</Link>

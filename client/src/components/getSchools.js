@@ -3,8 +3,9 @@ import axios from 'axios';
 import './getSchools.css';
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
 import {AuthContext} from '../Context/AuthContext';
+import { withRouter } from 'react-router-dom';
 
-export default class Schools extends Component {
+class Schools extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +17,7 @@ export default class Schools extends Component {
   };
 
   static contextType = AuthContext;
+  
 
   componentDidMount() {
     axios.get('/schools')
@@ -60,27 +62,30 @@ export default class Schools extends Component {
 // send rating
   sendRating (e) {
     e.preventDefault();
-    const formEvent = e.target;
-   
-    const dataForm = new FormData(formEvent);
-    const dataFormResult = Object.fromEntries(dataForm.entries());
-    console.log(dataFormResult);
+    const {isAuthenticated} = this.context;
+    const {history} = this.props;
+    if(isAuthenticated) {
+      const formEvent = e.target;
+      const dataForm = new FormData(formEvent);
+      const dataFormResult = Object.fromEntries(dataForm.entries());
+      console.log(dataFormResult);
 
-    axios.post('/schools/rating', {
-       score: dataFormResult.score,
-       schoolid: dataFormResult.schoolid,
-       userid: dataFormResult.userid
-    })
-    .then(res => {console.log(res)})
-    .catch(err => {console.log(err)});
+      axios.post('/schools/rating', {
+        score: dataFormResult.score,
+        schoolid: dataFormResult.schoolid,
+        userid: dataFormResult.userid
+      })
+      .then(res => {console.log(res)})
+      .catch(err => {console.log(err)});
+      }else{
+        history.push('/login');
+      }
+    
   }
 
   render() {
+    const {user} = this.context
     
-    const user = this.context
-    console.log(user);
-    console.log(user.user._id);
-
     // filter schools by aside filters
     let filteredSchools = this.state.data;
 
@@ -170,7 +175,7 @@ export default class Schools extends Component {
                           </div>
                           <div>
                             <input type="hidden" name="schoolid" value={data._id}></input>
-                            <input type="hidden" name="userid" value={user.user._id}></input>
+                            <input type="hidden" name="userid" value={user? user._id : ""}></input>
                             <input className="sendRating" type="submit" value="Send"></input>
                           </div>
                         </fieldset>
@@ -194,5 +199,5 @@ export default class Schools extends Component {
   };
 };
 
-
+export default withRouter(Schools);
 
