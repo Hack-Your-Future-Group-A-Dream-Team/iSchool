@@ -74,7 +74,7 @@
 .review-container {
   text-align: left;
   font-size: 18px;
-  margin-top: 30px;
+  display: flex;
 }
 
 .fa-star {
@@ -120,4 +120,47 @@
 .fa-search {
   font-size: 30px;
   color: gray;
+}
+
+/* Star Rating */
+
+.addRatingStarContainer {
+  display: inline-block;
+  padding-top: 5px;
+}
+
+.addRatingStarContainer * {
+  float: right;
+}
+
+.ratingForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.addRatingStar {
+  display: none;
+}
+
+.addRatingLabel {
+  font-size: 20px;
+}
+
+.addRatingStar:hover ~ .addRatingLabel {
+  font-weight: 400;
+}
+
+.addRatingStar:checked ~ .addRatingLabel {
+  color: #000051;
+  font-weight: 700;
+}
+
+.sendRating {
+  border: none;
+  outline: none;
+  color: #000051;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 1em;
 }

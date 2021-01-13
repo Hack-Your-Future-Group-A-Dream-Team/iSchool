@@ -11,6 +11,13 @@
     border: 3px solid #B71C1C !important;
   }
 
+  .hovered-google.btn.btn-primary:hover{
+    color: #4285f4;
+    background-color:#ffff !important;
+    border: 3px solid #4285f4 !important;
+  }
+
+
   .form-check-label{
     font-size: 1.1rem;
     margin-bottom: 10px;
@@ -22,9 +29,13 @@
       height: 77vh;
       min-width: 80%
     }
+
+    .register-form{
+      min-width: 80%;
+    }
     
-    form{
-      width:80%
+    .main-form{
+      min-width:80%
     }
     .link{
       width: 100%;
@@ -44,6 +55,10 @@
   }
   .register-form{
     min-width: 80%;
+  }
+
+  .main-form{
+    min-width:80%
   }
 
 }

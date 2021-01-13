@@ -7,6 +7,7 @@ const nodemailer = require('nodemailer');
 const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const School = require('../models/School');
+const { OAuth2Client } = require('google-auth-library')
 const { validRegister, validLogin, forgotPasswordValidator, resetPasswordValidator} = require('../helpers/valid')
 const { validationResult} = require('express-validator');
 
@@ -22,7 +23,7 @@ const signToken = userID =>{
 
 //-------------------REGISTER-----------------//
 userRouter.post('/register',validRegister,(req,res)=>{
-    const { email,firstName,lastName, address, password,role } = req.body;
+    const { email,firstName,lastName, password,role } = req.body;
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         const firstError = errors.array().map(error=> error.msg)[0]
@@ -36,7 +37,7 @@ userRouter.post('/register',validRegister,(req,res)=>{
             if(user)
                 res.status(400).json({error: "Email already exists"});
             else{
-                const token = JWT.sign({ email,firstName,lastName, address, password,role}, process.env.JWT_SECRET, { expiresIn: '30m' });
+                const token = JWT.sign({ email,firstName,lastName, password,role}, process.env.JWT_SECRET, { expiresIn: '30m' });
 
                 let smtpTransport = nodemailer.createTransport({
                 service: 'gmail',
@@ -97,14 +98,14 @@ userRouter.post('/activation',(req,res)=>{
 
              }
              else {
-                const { email,firstName,lastName, address, password,role } = decodedToken;
+                const { email,firstName,lastName, password,role } = decodedToken;
                 User.findOne({email},(err,user)=>{
                     if(err)
                         res.status(500).json({error: "Error has occurred"});
                     if(user)
                         res.status(400).json({error: "Email already exists"});
                     else{
-                        const newUser = new User({firstName, lastName,email, password,role, address});
+                        const newUser = new User({firstName, lastName,email, password,role});
                         
                         newUser
                             .save()
@@ -112,7 +113,7 @@ userRouter.post('/activation',(req,res)=>{
                                 res.status(201).json({
                                     success: true,
                                     user: user,
-                                    message: 'Account successfully created. Please sing in',
+                                    message: 'Account successfully created. Please sign in',
                                 });
                             })
                             .catch(err =>  
@@ -151,7 +152,9 @@ userRouter.post('/login',validLogin, async (req, res, next) => {
 //--------------LOGOUT-------------//
 userRouter.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
     res.clearCookie('access_token');
+
     res.json({user:{email : "", role : "", _id:'', firstName: "", lastName:"", listOfSchools:""},success : true});
+
 });
 
 //--------------ADMIN-------------//
@@ -282,6 +285,53 @@ userRouter.put('/resetpassword',resetPasswordValidator,(req,res)=>{
         });
       }
     }
+})
+
+// ------------------GOOGLE LOGIN ----------------//
+userRouter.post('/googlelogin',(req,res)=>{
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT)
+const {idToken} = req.body;
+// verify token
+client.verifyIdToken({idToken, audience: process.env.GOOGLE_CLIENT})
+.then(response =>{
+    const {email_verified, given_name, family_name, email} = response.payload;
+    // check if email verified
+    if(email_verified){
+        User.findOne( {email},(err, user) =>{
+            // if user exist
+            if(user){
+                const {_id, email, role} = user
+                const token = signToken(_id);
+                return res.cookie('access_token',token,{httpOnly: true, sameSite:true}), 
+                res.status(200).json({isAuthenticated : true,user : {email,role,_id}});
+            }else{
+                // if user not exist - save to database 
+                let password = email + process.env.JWT_SECRET;
+                let role = "user";
+                const newUser = new User({firstName:given_name, lastName:family_name,email, password,role});
+                        newUser
+                            .save()
+                            . then(user => {
+                                const {_id, email, role} = user
+                                const token = signToken(_id);
+                                return res.cookie('access_token',token,{httpOnly: true, sameSite:true}), 
+                                res.status(200).json({isAuthenticated : true,user : {email,role,_id}});
+                            })
+                            .catch(err =>  
+                                {console.log(err);
+                                res.status(500).json({error :`Something went wrong, please try again`})}
+                                );
+            }
+        })
+    }else{
+        return res.status(400).json({
+            error: "Google login failed, try again"
+        })
+    }
+
+})
+
+
 })
 
 //--------------AUTHENTICATED-------------//

@@ -52,7 +52,7 @@ const Activate = props=>{
 
 
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"50px auto", width: '60%', minHeight: "77vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"50px auto", width: '70%', minHeight: "77vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
              <ToastContainer />
              <Form style= {{width: '70%', height: "30vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">
@@ -60,7 +60,7 @@ const Activate = props=>{
             </Row>
                 <Form.Group as={Row} className="d-flex justify-content-center">
                 <Col sm="12" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 20px", margin:"10px", width: "220px"}} className='hovered-red' type="submit" size="lg">
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 20px", margin:"10px", width: "220px", fontWeight:"bold"}} className='hovered-red' type="submit" size="lg">
                 Activate your Account
                 </Button>
                 </Col>

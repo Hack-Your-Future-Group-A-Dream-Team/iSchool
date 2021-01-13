@@ -13,6 +13,8 @@ export default class Schools extends Component {
       data: [],
       address: ""
     };
+
+    this.sendRating = this.sendRating.bind(this)
   };
 
   static contextType = AuthContext;
@@ -23,9 +25,6 @@ export default class Schools extends Component {
           // get all school from database
           const allSchools = res.data;
           console.log(allSchools)
-
-          // filter school and set state
-          // const filterSchools = allSchools.filter(school => school.network == 'Catholic Network' && school.areas == 'Vocational');
 
           this.setState({       
               data: allSchools
@@ -79,6 +78,25 @@ saveFavorite(data){
   .catch(err=>console.log(err))
   console.log(this.context.user)
 }
+
+// send rating
+  sendRating (e) {
+    e.preventDefault();
+    const formEvent = e.target;
+   
+    const dataForm = new FormData(formEvent);
+    const dataFormResult = Object.fromEntries(dataForm.entries());
+    console.log(dataFormResult);
+
+    axios.post('/schools/rating', {
+       score: dataFormResult.score,
+       schoolid: dataFormResult.schoolid,
+       userid: dataFormResult.userid
+    })
+    .then(res => {console.log(res)})
+    .catch(err => {console.log(err)});
+  }
+
 
   render() {
     
@@ -148,12 +166,38 @@ saveFavorite(data){
                       <button className="schoolList-btn">Comment</button>
                     </div>
                     <div className="review-container">
-                      Give a review: 
-                      <i className="far fa-star"></i>
-                      <i className="far fa-star"></i>
-                      <i className="far fa-star"></i>
-                      <i className="far fa-star"></i>
-                      <i className="far fa-star"></i>
+                      <p>Give a review:</p> 
+                        <form onSubmit={this.sendRating}>
+                          <fieldset className="ratingForm">
+                            <div className="addRatingStarContainer">
+                              <input className="addRatingStar" type="radio" name="score" value="5"
+                              id={data._id + '1'}
+                              ></input>
+                              <label className="addRatingLabel far fa-star" for={data._id + '1'}></label>
+                              <input className="addRatingStar" type="radio" name="score" value="4"
+                              id={data._id + '2'}
+                              ></input>
+                              <label className="addRatingLabel far fa-star" for={data._id + '2'}></label>
+                              <input className="addRatingStar"  type="radio" name="score" value="3"
+                              id={data._id + '3'}
+                              ></input>
+                              <label className="addRatingLabel far fa-star" for={data._id + '3'}></label>
+                              <input className="addRatingStar" type="radio" name="score" value="2"
+                              id={data._id + '4'}
+                              ></input>
+                              <label className="addRatingLabel far fa-star" for={data._id + '4'}></label>
+                              <input className="addRatingStar" type="radio" name="score" value="1"
+                              id={data._id + '5'}
+                              ></input>
+                              <label className="addRatingLabel far fa-star" for={data._id + '5'}></label>
+                          </div>
+                          <div>
+                            <input type="hidden" name="schoolid" value={data._id}></input>
+                            <input type="hidden" name="userid" value={user.user._id}></input>
+                            <input className="sendRating" type="submit" value="Send"></input>
+                          </div>
+                        </fieldset>
+                      </form>
                     </div>
                   </div>
                   

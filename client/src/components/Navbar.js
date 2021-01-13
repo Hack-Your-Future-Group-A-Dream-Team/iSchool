@@ -27,7 +27,11 @@ const Navbar = props => {
     const unauthenticatedNavBar = ()=>{
         return (
             <>
-
+                <li className = "nav-item" >
+                   <Link to = '/'
+                    className = "nav-links" onClick={closeMobileMenu} > Home 
+                   </Link> 
+               </li>
                 <li className = "nav-item" >
                    <Link to = '/Info'
                     className = "nav-links" onClick={closeMobileMenu} > Info 
@@ -56,6 +60,11 @@ const Navbar = props => {
     const authenticatedNavBar = () =>{
         return(
             <>
+                <li className = "nav-item" >
+                   <Link to = '/'
+                    className = "nav-links" onClick={closeMobileMenu} > Home 
+                   </Link> 
+               </li>
                 <li className = "nav-item" >
                    <Link to = '/Info'
                     className = "nav-links" onClick={closeMobileMenu} > Info 
