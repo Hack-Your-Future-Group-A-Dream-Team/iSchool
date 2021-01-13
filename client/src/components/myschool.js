@@ -2,6 +2,8 @@ import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import './getSchools.css';
 import {AuthContext} from '../Context/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class MySchools extends Component {
     constructor(props) {
@@ -41,6 +43,7 @@ class MySchools extends Component {
         .then(data=>{
                 console.log(data); 
                 this.fetchFavorites()
+                toast.success("Successfully removed from list!")
               })
         .catch(err=>console.log(err))
         console.log(this.state)
@@ -50,7 +53,7 @@ class MySchools extends Component {
            
         return (
           <div className="searchField">
-                
+            <ToastContainer />    
             <div className="schoolList">
               {this.state.favoriteSchools.map((data)=>{
                 return(

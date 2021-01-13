@@ -3,6 +3,8 @@ import axios from 'axios';
 import './getSchools.css';
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
 import {AuthContext} from '../Context/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class Schools extends Component {
   constructor(props) {
@@ -73,7 +75,7 @@ saveFavorite(data){
             }
         }
   )
-  .then(data=>console.log(data))
+  .then(data=>{console.log(data); toast.success("Successfully saved")})
   .catch(err=>console.log(err))
   console.log(this.context.user)
 }
@@ -107,7 +109,7 @@ saveFavorite(data){
 
     return (
       <div className="searchField">
-        {console.log(this.state.data)}
+         <ToastContainer />
         <div>
           <PlacesAutocomplete  value={this.state.address} onChange={this.handleChange} onSelect={this.handleSelect}>{({getInputProps, suggestions, getSuggestionItemProps, loading})=>(
             <div>
