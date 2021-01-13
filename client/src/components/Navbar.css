@@ -63,7 +63,8 @@
 }
 
 .nav-links:hover {
-    border-bottom: 4px solid #fff;
+    color: white;
+    text-decoration: none;
     transition: all 0.2s ease-out;
     transform: scale(1.5);
 }
