@@ -15,7 +15,7 @@ const CommentsList = (props) => {
             className="fas fa-chevron-circle-up"
             onClick={props.collapseAll}
           ></i>{" "}
-          <p classsName="add_comment">Add comment</p>
+          <p className="add_comment">Add comment</p>
         </div>
       </div>
     );

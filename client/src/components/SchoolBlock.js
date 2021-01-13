@@ -36,7 +36,7 @@ export class SchoolBlock extends Component {
 
             <div className="schoolListItem-rightSide">
               <div className="review-container">
-                <form onSubmit={this.sendRating}>
+                <form onSubmit={this.props.sendRating}>
                   <fieldset className="ratingForm">
                     <div className="addRatingStarContainer">
                       <input
@@ -132,11 +132,13 @@ export class SchoolBlock extends Component {
               </div>
             </div>
           </div>
-          <CommentInput
-            data={{ userid: userid, schoolid: details._id }}
-            show={this.state.modalShow}
-            onHide={() => this.setState({ modalShow: false })}
-          ></CommentInput>
+          {this.state.modalShow ? (
+            <CommentInput
+              data={{ userid: userid, schoolid: details._id }}
+              show={true}
+            ></CommentInput>
+          ) : null}
+
           {this.state.showComments ? (
             <CommentsList
               commentsList={this.state.commentsList}
@@ -170,7 +172,6 @@ export class SchoolBlock extends Component {
   };
 
   addComment = (e) => {
-    console.log(e);
     this.setState({ modalShow: !this.state.modalShow });
   };
 }

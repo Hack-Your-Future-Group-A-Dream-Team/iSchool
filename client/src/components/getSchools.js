@@ -165,7 +165,8 @@ export default class Schools extends Component {
               <Fragment key={data._id}>
                 <SchoolBlock
                   details={data}
-                  user={this.context.user._id}
+                  userid={this.context.user._id}
+                  sendRating={this.sendRating}
                 ></SchoolBlock>
               </Fragment>
             );

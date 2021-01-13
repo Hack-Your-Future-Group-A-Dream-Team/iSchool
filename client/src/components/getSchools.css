@@ -247,3 +247,10 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.error_container {
+    display: inline-block;
+    width: 90%;
+    margin: 1em auto;
+    padding: 0.4em;
+}
