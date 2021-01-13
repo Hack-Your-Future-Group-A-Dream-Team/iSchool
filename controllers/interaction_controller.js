@@ -97,7 +97,7 @@ const addScore = async(req, res) => {
         ]);
 
 
-        school.rating += Math.round(rating[0].average);
+        school.rating = Math.round(rating[0].average);
 
         await school.save();
 
