@@ -10,6 +10,7 @@ const AboutSchoolInfo = (props) => {
     
     const [school, setSchool] = useState({});
     const [loading, setLoading] = useState(false);
+    const [isOpen, setIsOpen] = useState(false); 
     
     // get user
     const getSchool = async() => {
@@ -56,9 +57,12 @@ const AboutSchoolInfo = (props) => {
             <ListGroupItem><span style={{marginRight:"10px"}}>RATING:</span>{items.map((item,index)=>{
              return <i className="fas fa-star" key={index} style={{color:'#B71C1C'}}></i>
      })}</ListGroupItem>
-            <ListGroupItem><span style={{marginRight:"10px"}}>COMMENTS:</span>{school.comments.map(item=>{
-                return <div>{item}</div>
-            })}</ListGroupItem>
+            <ListGroupItem><details open={isOpen}>
+                <summary>
+                <span style={{marginRight:"10px"}}>COMMENTS:</span><span style={{color:'#B71C1C'}}>({school.comments})</span>
+                </summary>
+                <p>testing</p>
+            </details></ListGroupItem>
             </ListGroup>
             </Card>
             </Container>

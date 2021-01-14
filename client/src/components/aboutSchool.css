@@ -1,3 +1,28 @@
+summary{
+    outline: none
+}
+
+summary::-webkit-details-marker {
+    display: none
+  }
+  summary:after {
+    color: #B71C1C;
+    border-radius: 5px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f078";
+    float: left;
+    padding: 0;
+    text-align: center;
+    width: 20px;
+  }
+  details[open] summary:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f077";
+  }
+  
+
 
  @media screen and (max-width: 768px) {
     
@@ -8,4 +33,13 @@
     .list-group-item{
         width: 100%!important;
     }
-  } 
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .list-group-flush.list-group{
+        width:100%!important;
+    }
+    .list-group-item{
+        width: 100%!important;
+    }
+  }
