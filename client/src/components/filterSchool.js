@@ -60,12 +60,13 @@ export default class Filters extends Component {
                 checked={(this.state.languageClasses == true)}
                 onChange={this.addFilter}
                 ></input>
-                <label for="languageClasses">Language classes</label>
+                <label for="languageClasses" className="language">Language classes</label>
               </div>
+
               {/* RATING */}
               <div className="filterItem">
                 <fieldset>
-                  <legend>Rating</legend>
+                  <legend className="legend">Rating</legend>
                     <div className="starRating">
                       <input className="inputStar" id="r1" type="radio" name="rating" value="5"
                       checked={(this.state.rating == 5)}

@@ -51,6 +51,8 @@
 
 .nav-item {
     height: 80px;
+    text-decoration: none;
+    list-style: none;
 }
 
 .nav-links {
@@ -60,15 +62,30 @@
     text-decoration: none;
     padding: 0.5rem 1rem;
     height: 100%;
+    font-size: 15px;
 }
+
+/*
+.fa-info-circle,.fa-home,.fa-user-circle,.fa-search-plus,.fa-plus, .fa-synagogue,.fa-plus-circle,.fa-sign-out-alt,.fa-sign-in-alt{
+   font-size: 30px;
+    color: white;
+    padding-top: 15px;
+}
+*/
+.icons{
+    font-size: 30px;
+    color: white;
+    padding-top: 15px;
+}
+
+.icon{
+    font-size: 12px;
+   }
 
 .nav-links:hover {
-    border-bottom: 4px solid #fff;
-    color: white;
-    transition: all 0.2s ease-out;
-    transform: scale(1.5);
+    transform: scale(1.2);
+    color: transparent;
 }
-
 .btn-link {
     color: white;
     font-size: 1.2rem;
@@ -87,8 +104,11 @@
 }
 
 @media screen and (max-width: 768px) {
-
-    .navbar-logo>img{
+    .fa-info-circle,.fa-home,.fa-user-circle,.fa-search-plus,.fa-plus, .fa-synagogue,.fa-folder-plus, .fa-sign-out-alt{
+        font-size: 20px;
+        color: black;
+    }
+.navbar-logo>img{
         height: 50px;
         width: 70px;
         }
@@ -130,7 +150,7 @@
     }
     .nav-links:hover {
         background-color: black;
-        color: #fff;
+        color: white;
         border-radius: 0;
         transition: all 0.2s ease-out;
         transform: scale(1.1);

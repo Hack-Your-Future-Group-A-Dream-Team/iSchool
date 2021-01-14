@@ -1,15 +1,18 @@
+
 .searchField {
-  height: 850px;
+  height: 900px;
   margin-top: 50px;
+  width: 80%;
+  margin-right: -20%;
 }
 
 .schoolList {
   font-family: "Ubuntu", sans-serif;
-  width: 1050px;
+  width: 1000px;
   height: 750px;
   overflow-y: scroll;
 }
-
+/*
 .schoolList::-webkit-scrollbar {
   width: 30px;
   border: 1px solid #000;
@@ -21,6 +24,7 @@
   background-color: #000051;
   border: 1px solid #000;
 }
+*/
 
 .schoolListItem {
   width: 955px;
@@ -103,18 +107,22 @@
 }
 
 .searchBar {
-  margin: 20px 20px 20px 40px;
+  
+  margin: 20px 20px 20px 15%;
   padding: 5px 8px;
-  width: 900px;
+  width: 750px;
   border-radius: 10px;
-  border: 1px solid black;
+  border: none;
+  border: 1px solid white;
+  background-color: rgba(211, 211, 211, 0.945);
 }
 
 .searchBarInput {
-  width: 850px;
+  width: 700px;
   outline: none;
   border: none;
   font-size: 20px;
+  background-color: rgba(211, 211, 211, 0.705);;
 }
 
 .fa-search {

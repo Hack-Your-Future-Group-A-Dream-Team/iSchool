@@ -1,35 +1,51 @@
 .filterContainer {
   font-family: "Ubuntu", sans-serif;
-  width: 600px;
-  height: 700px;
-  margin: 70px;
+  width:18%;
+  height: 1000px;
+  margin-left: -22%;
+  margin-top: 0%;
+  background-color: #000051;
+  padding: 20px;
+  padding-left: 30px;
+  color: white;
+}
+
+.filterContainer>h1{
+  padding-top: 30%;
+  font-size: 18px;
 }
 
 .filterItem {
   margin-top: 20px;
 }
+.filterItem>.language{
+font-size: 18px;
+}
+
 
 legend {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 700;
 }
 
 input[type="radio"] {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   margin-right: 5px;
+
 }
 
 label {
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .starRating {
   display: inline-block;
+  width: 300px;
 }
 
 .starRating * {
-  float: right;
+  size: 10px;
 }
 
 .inputStar {
@@ -37,7 +53,10 @@ label {
 }
 
 .labelStar {
-  font-size: 25px;
+  font-size: 18px;
+}
+.labelStar:hover{
+  color: white;
 }
 
 .inputStar:hover ~ .labelStar {
@@ -45,6 +64,6 @@ label {
 }
 
 .inputStar:checked ~ .labelStar {
-  color: #000051;
+  color: white;
   font-weight: 700;
 }

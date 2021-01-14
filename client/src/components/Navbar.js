@@ -29,28 +29,29 @@ const Navbar = props => {
             <>
                 <li className = "nav-item" >
                    <Link to = '/'
-                    className = "nav-links" onClick={closeMobileMenu} > Home 
+                    className = "nav-links" onClick={closeMobileMenu} > <i class="fas fa-home icons"><p className="icon">Home</p></i>
                    </Link> 
                </li>
                 <li className = "nav-item" >
                    <Link to = '/Info'
-                    className = "nav-links" onClick={closeMobileMenu} > Info 
+                    className = "nav-links" onClick={closeMobileMenu} > <i class="fas fa-info-circle icons"><p className="icon">Information</p></i>
                    </Link> 
                </li>
                 <li className = "nav-item" >
                    <Link to = '/searchschool'
-                    className = "nav-links" onClick={closeMobileMenu} > Search School 
+                    className = "nav-links" onClick={closeMobileMenu} > <i class="fas fa-search-plus icons"><p className="icon">Search School</p></i>
                    </Link> 
                </li>
                <li className="nav-item" >
                    <Link to = '/login'
                      className = "nav-links"
-                     onClick={closeMobileMenu} > Sign In </Link>
+                     onClick={closeMobileMenu} > <i class="fas fa-sign-in-alt icons"><p className="icon">Sign In</p></i> 
+                  </Link>
                 </li>
                 <li className = "nav-item" >
                     <Link to='/register'
                       className = "nav-links"
-                      onClick={closeMobileMenu} > Sign Up
+                      onClick={closeMobileMenu} > <i class="fas fa-sign-in-alt icons"><p className="icon">Sign Up</p></i>
                       </Link>
                 </li>
             </>
@@ -62,35 +63,38 @@ const Navbar = props => {
             <>
                 <li className = "nav-item" >
                    <Link to = '/'
-                    className = "nav-links" onClick={closeMobileMenu} > Home 
+                    className = "nav-links" onClick={closeMobileMenu} > <i class="fas fa-home icons" ><p className="icon">Home</p></i>
                    </Link> 
                </li>
                 <li className = "nav-item" >
                    <Link to = '/Info'
-                    className = "nav-links" onClick={closeMobileMenu} > Info 
+                    className = "nav-links" onClick={closeMobileMenu} > <i class="fas fa-info-circle icons"><p className="icon">Information</p></i>
                    </Link> 
                </li>
                <li className = "nav-item" >
                    <Link to = '/searchschool'
-                    className = "nav-links" onClick={closeMobileMenu} > Search School 
+                    className = "nav-links" onClick={closeMobileMenu} > <i class="fas fa-search-plus icons"><p className="icon">Search School</p></i>
                    </Link> 
                </li>
                <li className="nav-item" >
                    <Link to="/myschools"
                      className = "nav-links"
-                     onClick={closeMobileMenu} > MySchools </Link>
+                     onClick={closeMobileMenu} ><i class="fas fa-synagogue icons"><p className="icon">My School</p></i>
+                   </Link>
                 </li>
                <li className="nav-item" >
                    <Link to="/editprofile"
                      className = "nav-links"
-                     onClick={closeMobileMenu} > Edit Profile </Link>
+                     onClick={closeMobileMenu} > <i class="fas fa-user-circle icons" ><p className="icon">Profile</p></i> 
+                  </Link>
                 </li>
                 <li className = "nav-item" >
                 {
                     user.role === "admin" ? 
                     <Link to="/admin"
                     className = "nav-links"
-                     onClick={closeMobileMenu}> Admin </Link>
+                     onClick={closeMobileMenu}> Admin 
+                    </Link>
                    : null
                 } 
                 </li>
@@ -99,7 +103,8 @@ const Navbar = props => {
                     user.role === "school" ? 
                     <Link to="/addschool"
                     className = "nav-links"
-                     onClick={closeMobileMenu}> Add School </Link>
+                     onClick={closeMobileMenu}> <i class="fas fa-plus-circle icons"><p className="icon">Add School</p></i>
+                   </Link>
                    : null
                 } 
                 {
@@ -110,10 +115,18 @@ const Navbar = props => {
                    : null
                 } 
                 </li>
+                
+                  
+                    <button type="button" 
+                            className="btn btn-link nav-item nav-link" 
+                            onClick={onClickLogoutHandler}>
+                            <i class="fas fa-sign-out-alt icons"><p className="icon">Logout</p></i>
+                    </button>
+                    
+                    
+                
 
-                <button type="button" 
-                        className="btn btn-link nav-item nav-link" 
-                        onClick={onClickLogoutHandler}>Logout</button>
+                
             </>
         )
     }
