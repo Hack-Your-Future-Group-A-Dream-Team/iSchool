@@ -21,17 +21,38 @@ summary::-webkit-details-marker {
     font-weight: 900;
     content: "\f077";
   }
+
+  ul{
+   list-style: none; 
+  }
   
+  details[open] summary ~ * {
+    animation: sweep .5s ease-in-out;
+  }
+
+  @keyframes sweep {
+    0%    {opacity: 0; margin-left: -10px}
+    100%  {opacity: 1; margin-left: 0px}
+  }
 
 
  @media screen and (max-width: 768px) {
-    
 
+  .shadow.p-3.mb-5.bg-white.rounded.container{
+      width:90%!important;
+  }
+    
     .list-group-flush.list-group{
         width:100%!important;
+        
     }
     .list-group-item{
         width: 100%!important;
+        padding: 0.7rem!important;
+    }
+
+    .fa-arrow-circle-left{
+      font-size: 1rem;
     }
   }
   
