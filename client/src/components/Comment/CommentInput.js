@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { Component } from "react";
 import { Modal, Form, Button, Container } from "react-bootstrap";
 import CommentInputError from "./CommentInputError";
 import "./CommentRecord.css";
+import { saveCommentToDb } from "./utils/pushCommentToDB";
 
 class CommentInput extends Component {
   constructor(props) {
@@ -84,19 +84,9 @@ class CommentInput extends Component {
 
     const schoolid = this.props.data.schoolid;
 
-    await this.saveCommentToDb(userid, schoolid, this.state.comment_txt);
+    console.log(saveCommentToDb(userid, schoolid, this.state.comment_txt));
 
     this.hideAll();
-  };
-
-  saveCommentToDb = async () => {
-    const res = await axios.post("/schools/comments", {
-      schoolid: this.props.data.schoolid,
-      userid: this.props.data.userid,
-      body: this.state.comment_txt,
-    });
-
-    console.log(res.data);
   };
 
   hideAll = (e) => {

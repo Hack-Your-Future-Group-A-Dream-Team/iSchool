@@ -145,6 +145,7 @@ export class SchoolBlock extends Component {
           {this.state.showComments ? (
             <CommentsList
               commentsList={this.state.commentsList}
+              data={{ userid: userid, schoolid: details._id }}
               collapseAll={this.collapseAll}
             />
           ) : null}
