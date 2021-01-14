@@ -4,7 +4,6 @@ import Footer from './components/Footer'
 import Login from './components/pages/Login';
 import Home from './components/pages/Home';
 import SearchSchool from './components/pages/SearchSchool';
-import MySchool from './components/pages/MySchools';
 import AddSchool from './components/pages/AddSchool';
 import Register from './components/pages/Register';
 import Admin  from './components/pages/Admin';
@@ -18,6 +17,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Information from './components/pages/Info';
 
 
+
 function App() {
   return (
     <Router>
@@ -29,7 +29,7 @@ function App() {
       <UnPrivateRoute path="/user/password/reset/:token" component={ResetPassword}/>
       <UnPrivateRoute path="/user/password/forgot" component={ForgotPassword}/>
       <Route exact path="/searchschool" component={SearchSchool}/>
-      <PrivateRoute path="/myschools" roles={["user","admin","school"]} component={MySchool}/>
+      
       <PrivateRoute path="/editprofile" roles={["user","admin","school"]} component={EditProfile}/>
       <PrivateRoute path="/addschool" roles={["admin","school"]} component={AddSchool}/>
       <PrivateRoute path="/admin" roles={["admin"]} component={Admin}/>
