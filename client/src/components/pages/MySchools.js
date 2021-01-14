@@ -1,17 +1,20 @@
-import React, {useState,useContext,useEffect} from 'react';
-import { AuthContext } from '../../Context/AuthContext';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, {Fragment, Component} from 'react';
+import MySchools from '../myschool';
 
-const MySchools = props =>{
 
-    return(
-        <div>
-            
-             <h1>My school</h1>
-        </div>
-    );
+class  FavSchools extends Component {
 
+    render() {
+       
+        return(
+            <Fragment>
+                
+                <div >
+                    <MySchools />
+                </div>
+                
+            </Fragment>
+        )       
 }
-
-export default MySchools;
+}
+export default FavSchools;

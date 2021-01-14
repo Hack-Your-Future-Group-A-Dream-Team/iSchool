@@ -73,20 +73,22 @@ const Login = props=>{
                     Sign In
                 </Button>{' '}
                 </Col>
-                <Col sm="12" className="d-flex justify-content-center">
-                <Link to="/register">
-                <Button style={{background: '#000051', border: "3px solid #000051", borderRadius:"10px", fontSize: "1.1rem" , margin:"10px", width: "180px"}} className='hovered-blue' size="lg"> New user?
-                </Button>
-                </Link>
-                </Col>
-                {/* <Col sm="12" className="mt-3">
-                <h3 style={{width: "100%", textAlign: "center", borderBottom: "1px solid #000051", lineHeight: "0.1rem", margin:"10px 0 20px 0"}}><span style={{background: '#fff', padding:"0 10px", fontSize:"1.1rem"}}>OR</span></h3>
-                </Col> */}
-                {/* <Col sm="12" className="d-flex justify-content-center">
-                <Button style={{background: '#B71C1C', border: "none", borderRadius:"10px", fontSize: "1.1rem", padding: "8px 46px", margin:"10px"}} type="submit" size="lg">
-                    Sign In with Google
-                </Button>{' '} */}
-                {/* </Col> */}
+                </Form.Group>
+                <Form.Group>
+                <GoogleLogin
+                  clientId={`${process.env.REACT_APP_GOOGLE_CLIENT}`}
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={'single_host_origin'}
+                  render={renderProps => (
+                    <Col sm="12" className="d-flex justify-content-center">
+                    <Button style={{background: '#4285f4', border: "3px solid #4285f4", borderRadius:"10px", fontSize: "1.1rem", margin:"10px", width:"250px", fontWeight:"bold"}} className='hovered-google' type="submit" size="lg" onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}><i className='fab fa-google ' /><span style={{marginLeft:"10px"}}>Sign In with Google</span>
+                    </Button>{' '}
+                    </Col>
+                  )}>
+                    
+                  </GoogleLogin>
                 </Form.Group>
                 </Form>
         </div>
