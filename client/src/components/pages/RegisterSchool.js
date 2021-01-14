@@ -227,16 +227,16 @@ const RegisterSchool = () => {
                     </Col>
                 </Form.Group>{" "}
                 <Form.Group as={Row} className="d-flex justify-content-center" controlId="building">
-                    <Col sm="4">
+                    <Col xs="3" sm="4">
                         <Label label="Number" />
                     </Col>
-                    <Col sm="3">
+                    <Col xs="2" sm="3">
                         <Input type="text" name="building" value={school.address.building} onChange={onAddressChange} />
                     </Col>
-                    <Col sm="2">
-                        <Label label="postcode" />
+                    <Col xs="4" sm="2">
+                        <Label label="Postcode" />
                     </Col>
-                    <Col sm="3">
+                    <Col xs="3" sm="3">
                         <Input type="text" name="postcode" value={school.address.postcode} onChange={onAddressChange} />
                     </Col>
                 </Form.Group>{" "}
@@ -297,16 +297,16 @@ const RegisterSchool = () => {
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} className="d-flex justify-content-center" controlId="languageClasses">
-                    <Col sm="4">
+                    <Col  xs="4">
                         <Label label="Language Classes" />
                     </Col>
-                    <Col sm="2">
+                    <Col xs="2">
                         <Form.Check className="i-register-check" name="languageClasses" onChange={onLangChange} />
                     </Col>
-                    <Col sm="4">
+                    <Col xs="4">
                         <Label label="Private School" />
                     </Col>
-                    <Col sm="2">
+                    <Col xs="2">
                         <Form.Check className="i-register-check" name="isPrivate" onChange={onIsPrivateChange} />
                     </Col>
                 </Form.Group>
