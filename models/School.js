@@ -13,11 +13,11 @@ const SchoolSchema = new Schema({
         type: {
             type: String,
             enum: ['Point'],
-            required: true
+            required: false
         },
         coordinates: {
             type: [Number],
-            required: true
+            required: false
         }
     },
 
@@ -66,7 +66,7 @@ const SchoolSchema = new Schema({
 
     photo: {
         type: String,
-        required: [true, 'Photo is required']
+        required: false, 
     },
 
     website: {
