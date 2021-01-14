@@ -78,7 +78,9 @@
     width: 6em;
 }
 
-.close-btn:hover {
+.close-btn:hover,
+.close-btn:focus,
+.close-btn:active {
     background-color: rgb(183, 28, 28, 1);
 }
 
@@ -87,11 +89,31 @@
     margin-right: 2em;
 }
 
-.send-btn:hover {
+.send-btn:hover,
+.send-btn:focus,
+.send-btn:active {
     background-color: rgb(0, 0, 81, 1);
 }
 
 .form_header {
     color: rgb(0, 0, 81, 1);
     font-size: 1em;
+}
+
+.modal_container,
+.error_container {
+    font-family: "Ubuntu", sans-serif;
+}
+
+.error_container {
+    display: inline-block;
+    width: 90%;
+    margin: 1em auto;
+    padding: 0.4em;
+}
+
+.error_msg {
+    font-size: ".8em";
+    margin: "0";
+    text-align: "center",
 }

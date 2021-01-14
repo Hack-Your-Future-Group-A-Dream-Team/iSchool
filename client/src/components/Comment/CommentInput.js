@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Modal, Form, Alert, Button, Container } from "react-bootstrap";
+import { Modal, Form, Button, Container } from "react-bootstrap";
+import CommentInputError from "./CommentInputError";
+import "./CommentRecord.css";
 
 class CommentInput extends Component {
   constructor(props) {
@@ -9,18 +11,18 @@ class CommentInput extends Component {
       comment_txt: "",
       usrinput_error: false,
       schoolinput_error: false,
-      modalShow: false,
     };
   }
 
-  componentDidMount() {
-    this.setState({ modalShow: !this.state.modalShow });
-  }
-
   render() {
+    if (!this.props.show) {
+      return null;
+    }
+
     return (
       <Modal
-        show={this.state.modalShow}
+        className="modal_container"
+        show={this.props.show}
         onHide={this.hideAll}
         size="md"
         aria-labelledby="contained-modal-title-vcenter"
@@ -49,38 +51,20 @@ class CommentInput extends Component {
                 <Button className="send-btn" size="md" type="submit">
                   Submit
                 </Button>
-                <Button className="close-btn" size="md" onClick={this.hideAll}>
+                <Button
+                  className="close-btn"
+                  size="md"
+                  onClick={(e) => {
+                    this.hideAll();
+                  }}
+                >
                   Close
                 </Button>
               </div>
             </Form.Group>
           </Form>
         </Modal.Body>
-        {this.state.usrinput_error ? (
-          <Alert variant="danger" className="error_container">
-            <p
-              style={{
-                fontSize: ".8em",
-                margin: "0",
-                textAlign: "center",
-              }}
-            >
-              Only authorized users can leave comments
-            </p>
-          </Alert>
-        ) : null}
-        ;
-        {this.state.schoolinput_error ? (
-          <Alert
-            variant="danger"
-            onClose={() => {
-              this.setState({ show: false });
-            }}
-            dismissible
-          >
-            <p>Error happens: School id not defined...</p>
-          </Alert>
-        ) : null}
+        <CommentInputError show={this.state.usrinput_error}></CommentInputError>
       </Modal>
     );
   }
@@ -89,31 +73,20 @@ class CommentInput extends Component {
     this.setState({ comment_txt: e.target.value });
   };
 
-  submitComment = (e) => {
+  submitComment = async (e) => {
     e.preventDefault();
     const userid = this.props.data.userid;
 
-    if (userid === undefined || userid === null) {
+    if (userid === undefined || userid === "") {
       this.setState({ usrinput_error: true });
       return;
     }
 
     const schoolid = this.props.data.schoolid;
-    if (schoolid === undefined || userid === null) {
-      this.setState({ schoolinput_error: true });
-      return;
-    }
 
-    console.log(
-      `userid: ${this.props.data.userid}  schoolid: ${this.props.data.schoolid}`
-    );
+    await this.saveCommentToDb(userid, schoolid, this.state.comment_txt);
 
-    this.saveCommentToDb(userid, schoolid, this.state.comment_txt);
-  };
-
-  hideAll = () => {
-    this.setState({ modalShow: false });
-    this.setState({ userinput_error: false });
+    this.hideAll();
   };
 
   saveCommentToDb = async () => {
@@ -123,7 +96,12 @@ class CommentInput extends Component {
       body: this.state.comment_txt,
     });
 
-    const data = res.data;
+    console.log(res.data);
+  };
+
+  hideAll = (e) => {
+    this.props.onClose && this.props.onClose(e);
+    this.setState({ usrinput_error: false });
   };
 }
 

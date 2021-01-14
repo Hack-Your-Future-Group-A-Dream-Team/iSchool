@@ -31,7 +31,7 @@ const saveComment = async (req, res) => {
     school.comments++;
     await school.save();
 
-    return res.status(200).json({ res: { new_comment: newComment } });
+    return res.status(200).json({ new_comment: newComment });
   } catch (e) {
     console.log(e);
 
@@ -49,7 +49,7 @@ const getCommentList = async (req, res) => {
 
     const comments = await CommentModel.find({
       schoolid: req.query.schoolid,
-    }).populate("userid", ["firstname", "lastname"]);
+    }).populate("userid", ["firstName", "lastName"]);
 
     console.log(comments);
 

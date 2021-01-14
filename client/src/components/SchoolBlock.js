@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import CommentsList from "./CommentsList";
-import CommentInput from "./CommentInput";
+import CommentsList from "./Comment/CommentsList";
+import CommentInput from "./Comment/CommentInput";
 
 export class SchoolBlock extends Component {
   constructor() {
@@ -9,7 +9,7 @@ export class SchoolBlock extends Component {
     this.state = {
       showComments: false,
       commentsList: [],
-      modalShow: false,
+      showModal: false,
     };
   }
 
@@ -28,7 +28,10 @@ export class SchoolBlock extends Component {
               <p className="schoolContact">Phone: {details.phone}</p>
               <div className="btn-container">
                 <button className="schoolList-btn">Save school</button>
-                <button className="schoolList-btn" onClick={this.addComment}>
+                <button
+                  className="schoolList-btn"
+                  onClick={(e) => this.openInputCommentModal()}
+                >
                   Add comment
                 </button>
               </div>
@@ -132,12 +135,12 @@ export class SchoolBlock extends Component {
               </div>
             </div>
           </div>
-          {this.state.modalShow ? (
-            <CommentInput
-              data={{ userid: userid, schoolid: details._id }}
-              show={true}
-            ></CommentInput>
-          ) : null}
+
+          <CommentInput
+            data={{ userid: userid, schoolid: details._id }}
+            show={this.state.showModal}
+            onClose={this.openInputCommentModal}
+          ></CommentInput>
 
           {this.state.showComments ? (
             <CommentsList
@@ -171,8 +174,8 @@ export class SchoolBlock extends Component {
     this.setState({ commentsList: [] });
   };
 
-  addComment = (e) => {
-    this.setState({ modalShow: !this.state.modalShow });
+  openInputCommentModal = (e) => {
+    this.setState({ showModal: !this.state.showModal });
   };
 }
 
