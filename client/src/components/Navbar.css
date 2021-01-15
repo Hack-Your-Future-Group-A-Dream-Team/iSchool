@@ -105,6 +105,7 @@
         font-size: 20px;
         color: black;
     }
+   
 .navbar-logo>img{
         height: 50px;
         width: 70px;
@@ -129,7 +130,7 @@
         position: absolute;
         top: 80px;
         left: -110%;
-        opacity: 1;
+        opacity: 5;
         transition: all 0.5s ease;
     }
     .nav-menu.active {
@@ -139,18 +140,17 @@
         transition: all 0.5s ease;
         z-index: 1;
     }
-    .nav-links {
+    .nav-links{
         text-align: center;
-        padding: 2rem;
+        padding: 0;
         width: 100%;
         display: table;
+        margin-top: 5px;
     }
-    .nav-links:hover {
-        background-color: black;
+    .nav-links:hover, .Logoutbtn:hover {
+        background-color:lightgray;
         color: white;
         border-radius: 0;
-        transition: all 0.2s ease-out;
-        transform: scale(1.1);
     }
     .navbar-logo {
         position: absolute;
@@ -158,7 +158,7 @@
         left: 0;
         transform: translate(25%, 50%);
     }
-    .menu-icon {
+    .menu-icon{
         display: block;
         position: absolute;
         top: 0;
@@ -182,10 +182,12 @@
         border: 1px solid #fff;
         transition: all 0.3s ease-out;
     }
-    .nav-links-mobile:hover {
-        background: #fff;
-        color: #242424;
-        transition: 250ms;
-    }
-   
+  
+.add-school{
+    margin-top: -17%;
+}
+.Logoutbtn{
+    margin-top: 0%;
+    margin-left: 19%;
+      }
 }

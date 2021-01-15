@@ -82,12 +82,6 @@ const Navbar = props => {
                      onClick={closeMobileMenu} ><i class="fas fa-synagogue icons"><p className="icon">My School</p></i>
                    </Link>
                 </li>
-               <li className="nav-item" >
-                   <Link to="/editprofile"
-                     className = "nav-links"
-                     onClick={closeMobileMenu} > <i class="fas fa-user-circle icons" ><p className="icon">Profile</p></i> 
-                  </Link>
-                </li>
                 <li className = "nav-item" >
                 {
                     user.role === "admin" ? 
@@ -98,7 +92,7 @@ const Navbar = props => {
                    : null
                 } 
                 </li>
-                <li className = "nav-item" >
+                <li className = "nav-item add-school" >
                 {
                     user.role === "school" ? 
                     <Link to="/addschool"
@@ -116,12 +110,16 @@ const Navbar = props => {
                 } 
                 </li>
                 
-                  
-                    <button type="button" 
+                <li className = "nav-item">
+                <button type="button" 
                             className="btn btn-link nav-item nav-link Logoutbtn" 
                             onClick={onClickLogoutHandler}>
                             <i class="fas fa-sign-out-alt icons"><p className="icon">Logout</p></i>
                     </button>
+                    
+
+                </li>
+                    
                     
                     
                 
