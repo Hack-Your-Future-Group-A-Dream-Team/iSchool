@@ -1,166 +1,249 @@
 .searchField {
-  height: 850px;
-  margin-top: 50px;
+    height: 850px;
+    margin-top: 50px;
 }
 
 .schoolList {
-  font-family: "Ubuntu", sans-serif;
-  width: 1050px;
-  height: 750px;
-  overflow-y: scroll;
+    font-family: "Ubuntu", sans-serif;
+    width: 1050px;
+    height: 750px;
+    overflow-y: scroll;
 }
 
 .schoolList::-webkit-scrollbar {
-  width: 30px;
-  border: 1px solid #000;
-  border-radius: 5px;
+    width: 30px;
+    border: 1px solid #000;
+    border-radius: 5px;
 }
 
 .schoolList::-webkit-scrollbar-thumb {
-  border-radius: 7px;
-  background-color: #000051;
-  border: 1px solid #000;
+    border-radius: 7px;
+    background-color: #000051;
+    border: 1px solid #000;
 }
 
 .schoolListItem {
-  width: 955px;
-  height: 300px;
-  margin: 2em;
-  padding: 1.5em;
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: space-between;
+    width: 955px;
+    min-height: 300px;
+    margin: 2em;
+    padding: 1.5em;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+.school_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .schoolName {
-  text-align: left;
-  font-size: 25px;
-  font-weight: 700;
-  color: #000051;
-  margin-bottom: 5px;
+    text-align: left;
+    font-size: 25px;
+    font-weight: 700;
+    color: #000051;
+    margin-bottom: 5px;
 }
 
 .schoolContact {
-  text-align: left;
-  margin-bottom: 5px;
-  font-size: 18px;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 18px;
 }
 
 .btn-container {
-  margin: 1em 0 1em 0;
-  text-align: left;
+    /* margin: 1em 0 1em 0; */
+    text-align: left;
 }
 
 .schoolList-btn {
-  color: #ffffff;
-  font-size: 18px;
-  background-color: #000051;
-  border-radius: 20px;
-  border: 1px solid #000051;
-  padding: 0.4em 0.7em;
-  margin-right: 40px;
+    color: #ffffff;
+    font-size: 18px;
+    background-color: #000051;
+    border-radius: 20px;
+    border: 1px solid #000051;
+    padding: 0.4em 0.7em;
+    margin-right: 40px;
+}
+
+.schoolList-rating {
+    color: #000051;
+    font-size: .8em;
 }
 
 .schoolList-btn:hover {
-  background-color: #ffffff;
-  color: #000051;
+    background-color: #ffffff;
+    color: #000051;
 }
 
 .schoolList-btn:focus {
-  outline-width: 0px;
+    outline-width: 0px;
 }
 
 .review-container {
-  text-align: left;
-  font-size: 18px;
-  display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    font-size: 1em;
+}
+
+.review-average {
+    color: #000051;
+    font-size: 0.8em;
+    font-weight: bold;
 }
 
 .fa-star {
-  padding: 0 0.3em 0 0.3em;
+    padding: 0 0.3em 0 0.3em;
 }
 
 .fa-star:hover {
-  color: #000051;
-  font-weight: 700;
+    color: #000051;
+    font-weight: 700;
+}
+
+.fa-chevron-down,
+.fa-chevron-up {
+    color: rgb(183, 28, 28, 0.8);
+    font-weight: 700;
+}
+
+.school-comments-qty p,
+.review-average p {
+    display: block;
+    float: right;
+    cursor: pointer;
+    padding: 0.4em 0;
+}
+
+.school-comments-qty p {
+    margin-bottom: 0;
+}
+
+.school-comments-qty>p>span,
+.review-average p>span {
+    color: rgb(183, 28, 28, 0.8);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.school-details {
+    width: 62%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
 }
 
 .schoolListItem-rightSide {
-  min-width: 140px;
-  font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
+    width: 36%;
+    min-width: 140px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
 .suggestions {
-  z-index: 10;
-  cursor: default;
-  margin: 20px 0px 20px 40px;
-  width: 900px;
+    z-index: 10;
+    cursor: default;
+    margin: 20px 0px 20px 40px;
+    width: 900px;
 }
 
 .searchBar {
-  margin: 20px 20px 20px 40px;
-  padding: 5px 8px;
-  width: 900px;
-  border-radius: 10px;
-  border: 1px solid black;
+    margin: 20px 20px 20px 40px;
+    padding: 5px 8px;
+    width: 900px;
+    border-radius: 10px;
+    border: 1px solid black;
 }
 
 .searchBarInput {
-  width: 850px;
-  outline: none;
-  border: none;
-  font-size: 20px;
+    width: 850px;
+    outline: none;
+    border: none;
+    font-size: 20px;
 }
 
 .fa-search {
-  font-size: 30px;
-  color: gray;
+    font-size: 30px;
+    color: gray;
 }
+
 
 /* Star Rating */
 
 .addRatingStarContainer {
-  display: inline-block;
-  padding-top: 5px;
+    display: inline-block;
+    padding-top: 5px;
 }
 
 .addRatingStarContainer * {
-  float: right;
+    float: right;
 }
 
 .ratingForm {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .addRatingStar {
-  display: none;
+    display: none;
 }
 
 .addRatingLabel {
-  font-size: 20px;
+    font-size: 20px;
 }
 
-.addRatingStar:hover ~ .addRatingLabel {
-  font-weight: 400;
+.addRatingStar:hover~.addRatingLabel {
+    font-weight: 400;
 }
 
-.addRatingStar:checked ~ .addRatingLabel {
-  color: #000051;
-  font-weight: 700;
+.addRatingStar:checked~.addRatingLabel {
+    color: #000051;
+    font-weight: 700;
 }
+
+.submit_rate_container {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* .sendRating {
+    border: none;
+    outline: none;
+    color: #000051;
+    background: none;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 1em;
+} */
 
 .sendRating {
-  border: none;
-  outline: none;
-  color: #000051;
-  background: none;
-  text-decoration: underline;
-  cursor: pointer;
-  margin-left: 1em;
+    font-size: 0.8em;
+    color: #fff;
+    background: #000051;
+    border-radius: 0.8em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: .2em 0.4em;
+    margin: 0 .4em;
+}
+
+.comments_list_container {
+    margin-top: 2em;
+    background: #fefefe;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
