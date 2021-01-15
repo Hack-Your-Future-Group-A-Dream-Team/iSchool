@@ -132,9 +132,10 @@ saveFavorite(data){
           <PlacesAutocomplete  value={this.state.address} onChange={this.handleChange} onSelect={this.handleSelect}>{({getInputProps, suggestions, getSuggestionItemProps, loading})=>(
             <div>
               <div className="searchBar">
+              <i  className="fas fa-search"></i>
                 <input {...getInputProps({ placeholder: "Enter address of the school"})} 
                                          className="searchBarInput"/>
-                <i  className="fas fa-search"></i>
+                
               </div>
             <div className="suggestions">
                 {loading ? <div>...loading</div> : null}
