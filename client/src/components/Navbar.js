@@ -51,7 +51,7 @@ const Navbar = props => {
                 <li className = "nav-item" >
                     <Link to='/register'
                       className = "nav-links"
-                      onClick={closeMobileMenu} > <i class="fas fa-sign-in-alt icons"><p className="icon">Sign Up</p></i>
+                      onClick={closeMobileMenu} > <i class="fas fa-user-plus icons"><p className="icon">Sign Up</p></i>
                       </Link>
                 </li>
             </>
