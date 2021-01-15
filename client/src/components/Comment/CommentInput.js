@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Modal, Form, Button, Container } from "react-bootstrap";
+import CommentSendSuccess from "./CommentSendSuccess";
 import CommentInputError from "./CommentInputError";
 import "./CommentRecord.css";
-import { saveCommentToDb } from "./utils/pushCommentToDB";
+import pushCommentToDB from "./utils/pushCommentToDB";
 
 class CommentInput extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class CommentInput extends Component {
       comment_txt: "",
       usrinput_error: false,
       schoolinput_error: false,
+      success: false,
     };
   }
 
@@ -65,6 +67,7 @@ class CommentInput extends Component {
           </Form>
         </Modal.Body>
         <CommentInputError show={this.state.usrinput_error}></CommentInputError>
+        <CommentSendSuccess show={this.state.success}></CommentSendSuccess>
       </Modal>
     );
   }
@@ -73,10 +76,9 @@ class CommentInput extends Component {
     this.setState({ comment_txt: e.target.value });
   };
 
-  submitComment = async (e) => {
+  submitComment = (e) => {
     e.preventDefault();
     const userid = this.props.data.userid;
-
     if (userid === undefined || userid === "") {
       this.setState({ usrinput_error: true });
       return;
@@ -84,14 +86,29 @@ class CommentInput extends Component {
 
     const schoolid = this.props.data.schoolid;
 
-    console.log(saveCommentToDb(userid, schoolid, this.state.comment_txt));
+    const savingResult = pushCommentToDB(
+      userid,
+      schoolid,
+      this.state.comment_txt
+    );
 
-    this.hideAll();
+    console.log(savingResult);
+
+    if (savingResult !== null) {
+      this.setState({ success: true });
+    }
+
+    window.setTimeout(() => {
+      this.hideAll();
+    }, 2000);
+
+    // this.hideAll();
   };
 
   hideAll = (e) => {
     this.props.onClose && this.props.onClose(e);
     this.setState({ usrinput_error: false });
+    this.setState({ success: false });
   };
 }
 

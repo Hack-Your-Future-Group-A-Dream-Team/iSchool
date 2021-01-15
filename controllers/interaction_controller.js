@@ -17,7 +17,7 @@ const saveComment = async (req, res) => {
       });
     }
 
-    const userExists = await UserModel.exists({ _id: req.body.userid });
+    const userExists = UserModel.exists({ _id: req.body.userid });
 
     if (!userExists) {
       return res.status(500).json({

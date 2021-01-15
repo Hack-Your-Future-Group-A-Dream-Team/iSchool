@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import CommentRecord from "./CommentRecord";
 import CommentInput from "./CommentInput";
 
-let showModal = false;
-
 const CommentsList = (props) => {
+  const [show, setShow] = useState(false);
+
   if (props.commentsList.length) {
     return (
       <div className="comments_list_container">
@@ -18,32 +18,21 @@ const CommentsList = (props) => {
             className="fas fa-chevron-circle-up"
             onClick={props.collapseAll}
           ></i>{" "}
-          <p
-            className="add_comment"
-            onClick={(e) => {
-              openModal();
-            }}
-          >
+          <p className="add_comment" onClick={() => setShow(true)}>
             Add comment
           </p>
         </div>
 
         <CommentInput
           data={{ userid: props.userid, schoolid: props.schoolid }}
-          show={showModal}
-          // onClose={this.openInputCommentModal}
+          show={show}
+          onClose={() => setShow(false)}
         ></CommentInput>
       </div>
     );
   }
 
   return null;
-};
-
-const openModal = (e) => {
-  console.log(showModal);
-  showModal = true;
-  console.log(showModal);
 };
 
 export default CommentsList;

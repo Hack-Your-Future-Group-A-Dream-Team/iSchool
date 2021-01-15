@@ -105,14 +105,16 @@
     font-family: "Ubuntu", sans-serif;
 }
 
-.error_container {
+.error_container,
+.success_container {
     display: inline-block;
     width: 90%;
     margin: 1em auto;
     padding: 0.4em;
 }
 
-.error_msg {
+.error_msg,
+.success_msg {
     font-size: ".8em";
     margin: "0";
     text-align: "center",
