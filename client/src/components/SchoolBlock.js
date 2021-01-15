@@ -146,7 +146,7 @@ export class SchoolBlock extends Component {
             data={{ userid: userid, schoolid: details._id }}
             show={this.state.showModal}
             onClose={this.openInputCommentModal}
-            increaseQty={this.increaseQty}
+            incrementQty={this.incrementQty}
           ></CommentInput>
 
           {this.state.showComments ? (
@@ -154,6 +154,7 @@ export class SchoolBlock extends Component {
               commentsList={this.state.commentsList}
               data={{ userid: userid, schoolid: details._id }}
               collapseAll={this.collapseAll}
+              incrementQty={this.incrementQty}
             />
           ) : null}
         </div>
@@ -176,7 +177,7 @@ export class SchoolBlock extends Component {
     }
   };
 
-  increaseQty = () => {
+  incrementQty = () => {
     this.setState({ qty: this.state.qty + 1 });
   };
 

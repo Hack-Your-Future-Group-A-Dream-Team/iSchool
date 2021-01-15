@@ -97,7 +97,7 @@ class CommentInput extends Component {
     if (savingResult.body !== null) {
       this.setState({ success: true });
 
-      this.props.increaseQty();
+      this.props.incrementQty();
     }
 
     window.setTimeout(() => {

@@ -27,6 +27,7 @@ const CommentsList = (props) => {
           data={{ userid: props.data.userid, schoolid: props.data.schoolid }}
           show={show}
           onClose={() => setShow(false)}
+          incrementQty={props.incrementQty}
         ></CommentInput>
       </div>
     );
