@@ -49,7 +49,9 @@ const getCommentList = async (req, res) => {
 
     const comments = await CommentModel.find({
       schoolid: req.query.schoolid,
-    }).populate("userid", ["firstName", "lastName"]);
+    })
+      .sort("-created")
+      .populate("userid", ["firstName", "lastName"]);
 
     console.log(comments);
 

@@ -76,7 +76,7 @@ class CommentInput extends Component {
     this.setState({ comment_txt: e.target.value });
   };
 
-  submitComment = (e) => {
+  submitComment = async (e) => {
     e.preventDefault();
     const userid = this.props.data.userid;
     if (userid === undefined || userid === "") {
@@ -86,23 +86,23 @@ class CommentInput extends Component {
 
     const schoolid = this.props.data.schoolid;
 
-    const savingResult = pushCommentToDB(
+    const savingResult = await pushCommentToDB(
       userid,
       schoolid,
       this.state.comment_txt
     );
 
-    console.log(savingResult);
+    const r = await savingResult.new_comment;
 
-    if (savingResult !== null) {
+    if (savingResult.body !== null) {
       this.setState({ success: true });
+
+      this.props.increaseQty();
     }
 
     window.setTimeout(() => {
       this.hideAll();
     }, 2000);
-
-    // this.hideAll();
   };
 
   hideAll = (e) => {

@@ -4,17 +4,23 @@ import CommentsList from "./Comment/CommentsList";
 import CommentInput from "./Comment/CommentInput";
 
 export class SchoolBlock extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       showComments: false,
       commentsList: [],
       showModal: false,
+      qty: 0,
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return { qty: props.details.comments };
   }
 
   render() {
     const details = this.props.details;
+
     const userid = this.props.userid;
 
     return (
@@ -130,7 +136,7 @@ export class SchoolBlock extends Component {
                         : "fas fa-chevron-down"
                     }
                   ></i>{" "}
-                  Comments <span>({details.comments})</span>
+                  Comments <span>({this.state.qty})</span>
                 </p>
               </div>
             </div>
@@ -140,6 +146,7 @@ export class SchoolBlock extends Component {
             data={{ userid: userid, schoolid: details._id }}
             show={this.state.showModal}
             onClose={this.openInputCommentModal}
+            increaseQty={this.increaseQty}
           ></CommentInput>
 
           {this.state.showComments ? (
@@ -167,6 +174,10 @@ export class SchoolBlock extends Component {
 
       this.setState({ commentsList: res });
     }
+  };
+
+  increaseQty = () => {
+    this.setState({ qty: this.state.qty + 1 });
   };
 
   collapseAll = () => {

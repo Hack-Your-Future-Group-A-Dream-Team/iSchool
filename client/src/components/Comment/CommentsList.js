@@ -24,7 +24,7 @@ const CommentsList = (props) => {
         </div>
 
         <CommentInput
-          data={{ userid: props.userid, schoolid: props.schoolid }}
+          data={{ userid: props.data.userid, schoolid: props.data.schoolid }}
           show={show}
           onClose={() => setShow(false)}
         ></CommentInput>
