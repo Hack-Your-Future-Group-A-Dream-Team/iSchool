@@ -91,9 +91,9 @@ label {
 
   .filterContainer {
     font-family: "Ubuntu", sans-serif;
-    width: 85%;
+    width: 80%;
     height: 750px;
-    margin-left: 7%;
+    margin-left: 10%;
     margin-top: 10%;
     background-color: #000051;
     padding: 5px;
@@ -107,8 +107,19 @@ label {
     padding-top: 10%;
     font-size: 18px;
   }
-  .filterItem>button{
-    margin: 30%;
-    width: 50px;
+  .Searchbtn{
+   font-size: 15px;
+   padding: 8px 2px;
+  
+  }
+  .search{
+    width: 100px;
+    margin-top: 50px;
+    margin-left: -50px;
+    
+  }
+  .reset{
+    width: 120px;
+
   }
 }
