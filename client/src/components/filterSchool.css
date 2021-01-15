@@ -8,6 +8,8 @@
   padding: 20px;
   padding-left: 30px;
   color: white;
+  border-bottom-right-radius:  10px;
+  border-top-right-radius:  10px;
 }
 
 .filterContainer>h1{
@@ -66,4 +68,36 @@ label {
 .inputStar:checked ~ .labelStar {
   color: white;
   font-weight: 700;
+}
+.btn>.Searchbtn:hover{
+  color: blue;
+}
+
+@media screen and (max-width: 768px) {
+  .wholeContainer{
+    flex-direction: column;
+  }
+
+  .filterContainer {
+    font-family: "Ubuntu", sans-serif;
+    width: 85%;
+    height: 750px;
+    margin-left: 7%;
+    margin-top: 10%;
+    background-color: #000051;
+    padding: 5px;
+    color: white;
+    border-radius:  10px;
+    padding-left: 20%;
+    
+
+  }
+  .filterContainer>h1{
+    padding-top: 10%;
+    font-size: 18px;
+  }
+  .filterItem>button{
+    margin: 30%;
+    width: 50px;
+  }
 }

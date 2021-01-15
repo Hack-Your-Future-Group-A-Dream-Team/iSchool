@@ -104,7 +104,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .fa-info-circle,.fa-home,.fa-user-circle,.fa-search-plus,.fa-plus, .fa-synagogue,.fa-folder-plus, .fa-sign-out-alt{
+    .icons{
         font-size: 20px;
         color: black;
     }
@@ -131,7 +131,7 @@
         height: 90vh;
         position: absolute;
         top: 80px;
-        left: -100%;
+        left: -110%;
         opacity: 1;
         transition: all 0.5s ease;
     }

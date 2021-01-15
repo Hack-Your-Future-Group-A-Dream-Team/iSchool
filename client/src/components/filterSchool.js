@@ -141,8 +141,8 @@ export default class Filters extends Component {
                   <label for="areas">Art Secondary Education</label>
                 </fieldset>
 
-                <button style={btnStyle} onClick={() => { this.props.updateFilter(this.state) }}>Search</button>
-                <button style={btnStyle} onClick={ this.removeFilters }>Reset filters</button>
+                <button  style={btnStyle} onClick={() => { this.props.updateFilter(this.state) }} className="Searchbtn">Search</button>
+                <button  style={btnStyle} onClick={ this.removeFilters }>Reset filters</button>
               </div>
 
         </div>
