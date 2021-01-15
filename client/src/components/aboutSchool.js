@@ -36,22 +36,25 @@ const AboutSchoolInfo = (props) => {
         getSchool();
     }, [])
 
-    const getComments = ()=>{
-         axios.get(
-            `/schools/comments?schoolid=${props.props.match.params.id}`)
-            .then(res=> {
-                setComments(res.data.comments);
-                setIsOpen(true)
-                }
-                )
-            .catch(error => {
-                console.log(error.response);
-            });
+    const getComments = async ()=>{
+
+        try{
+            await axios.get(
+                `/schools/comments?schoolid=${props.props.match.params.id}`)
+                .then(res=> {
+                    setComments(res.data.comments);
+                    setIsOpen(true)
+                    }
+                    )
+                .catch(error => {
+                    console.log(error.response);
+                });
+        }catch (error) {
+            console.error(error);
+        }
+         
     }
 
-    const openDetails = () =>{
-        
-    }
 
     console.log(isOpen)
     return (
@@ -95,10 +98,13 @@ const AboutSchoolInfo = (props) => {
                     </Card>
                 }
                 )) : ""}
-                <div style={{width:"100%", display:"flex", alignItems:"center", justifyContent:"center"}} onClick={() => setIsOpen(false)}><i className="fas fa-chevron-circle-up" style={{color:"#B71C1C"}}></i></div>
-                </div>
                 
-            </details></ListGroupItem>
+                </div>
+                <div style={{width:"100%", display:"flex", alignItems:"center", justifyContent:"center"}} onClick={() => setIsOpen(false)}><i className="fas fa-chevron-circle-up" style={{color:"#B71C1C"}}></i></div>
+                
+            </details>
+            
+            </ListGroupItem>
             </ListGroup>
             </Card>
             </Container>
