@@ -1,17 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import './filterSchool.css'
 
-const btnStyle = {
-  width: '150px',
-  background: '#B71C1C',
-  border: "none",
-  borderRadius:"10px",
-  fontSize: "1.1rem",
-  padding: "8px 25px",
-  margin:"10px",
-  color: "#fff"
-}
-
 
 export default class Filters extends Component {
 
@@ -141,8 +130,8 @@ export default class Filters extends Component {
                   <label for="areas">Art Secondary Education</label>
                 </fieldset>
 
-                <button  style={btnStyle} onClick={() => { this.props.updateFilter(this.state) }} className="Searchbtn">Search</button>
-                <button  style={btnStyle} onClick={ this.removeFilters }>Reset filters</button>
+                  <button  type="button" className="Searchbtn"  onClick={() => { this.props.updateFilter(this.state) }} >Search</button>
+                  <button  type="button" className="Searchbtn"  onClick={ this.removeFilters }>Reset filters</button>
               </div>
 
         </div>

@@ -69,8 +69,19 @@ label {
   color: white;
   font-weight: 700;
 }
-.btn>.Searchbtn:hover{
-  color: blue;
+.Searchbtn{
+  width :150px;
+  background: #B71C1C;
+  border: none;
+  border-Radius:10px;
+  font-size: 1.1rem;
+  padding: 8px 25px;
+  margin:10px;
+  color: #fff;
+}
+.Searchbtn:hover{
+  color: #B71C1C;
+  background-color: white;
 }
 
 @media screen and (max-width: 768px) {

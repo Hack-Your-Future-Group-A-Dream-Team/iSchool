@@ -118,7 +118,7 @@ const Navbar = props => {
                 
                   
                     <button type="button" 
-                            className="btn btn-link nav-item nav-link" 
+                            className="btn btn-link nav-item nav-link Logoutbtn" 
                             onClick={onClickLogoutHandler}>
                             <i class="fas fa-sign-out-alt icons"><p className="icon">Logout</p></i>
                     </button>
