@@ -18,7 +18,6 @@ const SchoolSchema = new Schema({
       type: [Number],
       required: true,
     },
-<<<<<<< HEAD
   },
 
   phone: {
@@ -73,7 +72,8 @@ const SchoolSchema = new Schema({
 
   photo: {
     type: String,
-    required: [true, "Photo is required"],
+    required: false,
+    //required: [true, "Photo is required"],
   },
 
   website: {
@@ -86,12 +86,6 @@ const SchoolSchema = new Schema({
     postcode: {
       type: Number,
       required: [true, "Post code is required"],
-=======
-
-    photo: {
-        type: String,
-        required: false, 
->>>>>>> pr89
     },
 
     city: { type: String, default: "Gent" },
