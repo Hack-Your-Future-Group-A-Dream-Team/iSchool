@@ -5,13 +5,20 @@ const saveFavorite = async(req, res) => {
     try {
         const userid = req.body.userid;
         const user = await UserModel.findById(userid);
+
         if (user === null) {
             return res.status(500).json({ res: `User with id ${userid} is not found over the database` });
         }
-        const newFavorites =  req.body.listOfSchools;
-        const results = await UserModel.updateOne({_id:userid}, {$set:{listOfSchools: newFavorites}, });
+
+        const newFavorite =  req.body.listOfSchools;
         
-        return res.status(200).json({ res: results });
+        user.listOfSchools.push(newFavorite)
+        //remove dublicates
+        user.listOfSchools = [...new Map(user.listOfSchools.map(item => [item._id, item])).values()]
+       
+        await user.save()
+
+        return res.status(200).json({ newFav: newFavorite });
 
     } catch (e) {
         return res.status(500).json({
@@ -40,4 +47,30 @@ const getFavorites = async(req, res) => {
     }
 }
 
-module.exports = { saveFavorite: saveFavorite, getFavorites: getFavorites };
+const deleteFavorite = async(req, res) => {
+
+    try {
+        const userid = req.body.userid;
+        const user = await UserModel.findById(userid);
+
+        if (user === null) {
+            return res.status(500).json({ res: `User with id ${userid} is not found over the database` });
+        }
+
+        const schoolToRemove =  req.body.schoolId;
+
+        const results = await UserModel.findByIdAndUpdate(userid, {
+                                                            $pull: {listOfSchools: {_id:schoolToRemove}}
+                                                        }, {safe: true, upsert: true});
+    
+    return res.status(200).json({ removed: results });
+
+    } catch (e) {
+        return res.status(500).json({
+            res: 'Error when removing a favorite school'
+        })
+    }
+
+}
+
+module.exports = { saveFavorite: saveFavorite, getFavorites: getFavorites, deleteFavorite:deleteFavorite };
