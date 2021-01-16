@@ -45,9 +45,10 @@ label {
     width: 300px;
 }
 
-.starRating * {
+
+/* .starRating * {
     float: right;
-}
+} */
 
 .starRating * {
     size: 10px;

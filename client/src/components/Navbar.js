@@ -76,14 +76,14 @@ const Navbar = (props) => {
         <li className="nav-item">
           <Link to="/" className="nav-links" onClick={closeMobileMenu}>
             {" "}
-            <i class="fas fa-home icons"></i>
+            <i className="fas fa-home icons"></i>
             <p className="icon">Home</p>
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/Info" className="nav-links" onClick={closeMobileMenu}>
             {" "}
-            <i class="fas fa-info-circle icons"></i>
+            <i className="fas fa-info-circle icons"></i>
             <p className="icon">Information</p>
           </Link>
         </li>
@@ -100,7 +100,7 @@ const Navbar = (props) => {
         </li>
         <li className="nav-item">
           <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
-            <i class="fas fa-synagogue icons"></i>
+            <i className="fas fa-synagogue icons"></i>
             <p className="icon">My Schools</p>
           </Link>
         </li>
@@ -112,7 +112,7 @@ const Navbar = (props) => {
             </Link>
           ) : null}
         </li>
-        <li className="nav-item add-school">
+        <li className="nav-item">
           {user.role === "school" ? (
             <Link
               to="/addschool"
@@ -120,7 +120,7 @@ const Navbar = (props) => {
               onClick={closeMobileMenu}
             >
               {" "}
-              <i class="fas fa-plus-circle icons"></i>
+              <i className="fas fa-plus-circle icons"></i>
               <p className="icon">Add School</p>
             </Link>
           ) : null}
@@ -142,7 +142,7 @@ const Navbar = (props) => {
             className="btn btn-link nav-item nav-link Logoutbtn"
             onClick={onClickLogoutHandler}
           >
-            <i class="fas fa-sign-out-alt icons">
+            <i className="fas fa-sign-out-alt icons">
               <p className="icon">Logout</p>
             </i>
           </button>
