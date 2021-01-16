@@ -9,15 +9,19 @@ import Input from "../Input";
 import "./RegisterSchool.css";
 import IButton from "../IButton";
 import { useHistory } from "react-router";
+import Geocode from "react-geocode";
+Geocode.setLanguage("en");
+Geocode.setRegion("be");
+Geocode.setApiKey("AIzaSyAddwFzEu83xzv_3kQjwLOrK3d35bmiOKg");
 
 const RegisterSchool = () => {
     const [school, setSchool] = useState({
         name: "",
         address: {
-            street: "",
             building: "",
-            postcode: "",
+            street: "",
             city: "",
+            postcode: "",
         },
         email: "",
         phone: "",
@@ -28,6 +32,12 @@ const RegisterSchool = () => {
         languageClasses: false,
         isPrivate: false,
     });
+
+    const [coordinates, setCoordinates] = useState({})
+    const [googleAddress, setGoogleAddress] = useState('')
+
+    
+
     const history = useHistory();
     const onInputChange = (e) => {
         setSchool({ ...school, [e.target.name]: e.target.value });
@@ -36,6 +46,18 @@ const RegisterSchool = () => {
     const onAddressChange = (e) => {
         const address = { ...school.address, [e.target.name]: e.target.value };
         setSchool({ ...school, address });
+        const googleAddress = `${address.building} ${address.street} ${address.city}  ${address.postcode}`;
+        setGoogleAddress(googleAddress)
+        Geocode.fromAddress(googleAddress).then(
+        response => {
+          const { lat, lng } = response.results[0].geometry.location;
+          const coordinates = [lng, lat]
+          setCoordinates(coordinates)
+        },
+        error => {
+          console.error(error);
+        }
+    )
     };
 
     const onNetworkChange = (e) => {
@@ -55,14 +77,18 @@ const RegisterSchool = () => {
         setSchool({ ...school, isPrivate: e.target.checked });
     };
 
+    
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (formIsValid()) {
-            const { name, address, email, phone, description, network, website, fieldsOfStudy, languageClasses, isPrivate } = school;
+            const { name, address, email, phone, description, network, website, fieldsOfStudy, languageClasses, isPrivate} = school;
             axios
                 .post("/schools", {
                     name,
-                    address,
+                    adress:address,
+                    adress_str: googleAddress,
                     email,
                     phone,
                     description,
@@ -71,9 +97,17 @@ const RegisterSchool = () => {
                     areas: [...fieldsOfStudy],
                     languageClasses,
                     types: isPrivate ? "Private" : "Public",
+                    location:{
+                        type:"Point",
+                        coordinates
+                    }
                 })
-                .then((res) => console.log(res.data))
-                .then(() => history.push("/"))
+                .then((res) => {
+                    console.log(res.data)
+                    toast.success("School was successfully registered");})
+                .then(() => setTimeout(()=>{
+                    history.push("/");
+                  },5000))
                 .catch((err) => {
                     console.log(err);
                     toast.error("Something went wrong. Please try again.");
