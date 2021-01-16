@@ -198,7 +198,7 @@ const RegisterSchool = () => {
     };
 
     return (
-        <div className="add-school">
+        <div className="RegisterSchool">
             <ToastContainer />
 
             <Form className="d-flex flex-column justify-content-around" onSubmit={handleSubmit}>
