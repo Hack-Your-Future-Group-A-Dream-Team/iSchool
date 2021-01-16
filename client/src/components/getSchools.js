@@ -16,7 +16,7 @@ export default class Schools extends Component {
     this.state = {
       data: [],
       address: "",
-      commentsList: [],
+      hasSearchResult: true,
     };
 
     this.sendRating = this.sendRating.bind(this);
@@ -49,16 +49,30 @@ export default class Schools extends Component {
     fetch(`/closestschools?lng=${latLng.lng}&lat=${latLng.lat}`)
       .then((res) => res.json())
       .then((data) => {
-        this.setState({
-          data: data,
-        });
+        if (data.length === 0) {
+          this.setState({
+            data: data,
+            hasSearchResult: false,
+          });
+        } else {
+          this.setState({
+            data: data,
+            hasSearchResult: true,
+          });
+        }
       });
   };
 
   handleChange = async (value) => {
     if (value === "") {
-      await this.setState({
-        data: [],
+      axios.get("/schools").then((res) => {
+        // get all school from database
+        const allSchools = res.data;
+
+        this.setState({
+          data: allSchools,
+          hasSearchResult: true,
+        });
       });
     }
     await this.setState({
@@ -189,6 +203,30 @@ export default class Schools extends Component {
         </div>
 
         <div className="schoolList">
+          {!this.state.hasSearchResult && (
+            <div className="noResult">
+              <h3>
+                <i className="fa fa-warning"></i>
+                <br />
+                Sorry,
+                <br />
+                No school has been found in the 1 km radius of the address you
+                have typed.
+                <br />
+                For the moment our service area is limited to Ghent region.
+              </h3>
+            </div>
+          )}
+
+          {filteredSchools.length === 0 && this.state.hasSearchResult && (
+            <div className="noResult">
+              <h3>
+                <i className="fa fa-warning"></i> No result has been found for
+                these search parameters!
+              </h3>
+            </div>
+          )}
+
           {filteredSchools.map((data) => {
             return (
               <Fragment key={data._id}>

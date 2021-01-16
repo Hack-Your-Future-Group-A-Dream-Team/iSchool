@@ -72,7 +72,8 @@ const SchoolSchema = new Schema({
 
   photo: {
     type: String,
-    required: [true, "Photo is required"],
+    required: false,
+    //required: [true, "Photo is required"],
   },
 
   website: {

@@ -247,3 +247,12 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.noResult {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 3px 3px 3px 3px;
+    color: #059;
+}
+
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
