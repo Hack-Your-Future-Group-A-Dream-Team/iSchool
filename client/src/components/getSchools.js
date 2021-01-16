@@ -174,7 +174,7 @@ export default class Schools extends Component {
                 <div className="searchBar">
                   <input
                     {...getInputProps({
-                      placeholder: "Enter address of the school",
+                      placeholder: "Enter your address",
                     })}
                     className="searchBarInput"
                   />
