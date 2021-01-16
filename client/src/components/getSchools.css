@@ -1,25 +1,15 @@
 .searchField {
-    height: 850px;
+    height: 900px;
     margin-top: 50px;
+    width: 80%;
+    margin-right: -20%;
 }
 
 .schoolList {
     font-family: "Ubuntu", sans-serif;
-    width: 1050px;
+    width: 1000px;
     height: 750px;
     overflow-y: scroll;
-}
-
-.schoolList::-webkit-scrollbar {
-    width: 30px;
-    border: 1px solid #000;
-    border-radius: 5px;
-}
-
-.schoolList::-webkit-scrollbar-thumb {
-    border-radius: 7px;
-    background-color: #000051;
-    border: 1px solid #000;
 }
 
 .schoolListItem {
