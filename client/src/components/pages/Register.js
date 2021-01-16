@@ -16,6 +16,8 @@ const Register = props=>{
         password2: "",
         role : ""});
 
+    const [checked, setChecked] = useState(false);
+
     const onChange = e =>{
         setUser({...user,[e.target.name] : e.target.value});
     }
@@ -27,7 +29,7 @@ const Register = props=>{
         email: "",
         password1: "",
         password2: "",
-        role : ""
+        role: ""
     });
     }
 

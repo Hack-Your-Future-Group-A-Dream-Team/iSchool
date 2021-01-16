@@ -101,7 +101,7 @@ const Navbar = props => {
                     user.role === "admin" ? 
                     <Link to="/addschool"
                     className = "nav-links"
-                     onClick={closeMobileMenu}> Add School </Link>
+                     onClick={closeMobileMenu}> Register School </Link>
                    : null
                 } 
                 </li>

@@ -32,7 +32,7 @@ const Login = props=>{
       })
       .catch(error => {
           console.log(error.response);
-        console.log('GOOGLE SIGN IN ERROR', error.response);
+        toast.error('GOOGLE SIGN IN ERROR', error.response)
       });
   };
 
