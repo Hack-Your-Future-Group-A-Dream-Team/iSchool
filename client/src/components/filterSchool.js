@@ -60,7 +60,7 @@ export default class Filters extends Component {
                 checked={(this.state.languageClasses == true)}
                 onChange={this.addFilter}
                 ></input>
-                <label for="languageClasses">Language classes</label>
+                <label for="languageClasses">Reception classes</label>
               </div>
               {/* RATING */}
               <div className="filterItem">
