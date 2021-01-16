@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 // Create School Schema and model
 const SchoolSchema = new Schema({
-<<<<<<< HEAD
   name: {
     type: String,
     required: [true, "Name field is required"],
@@ -14,66 +13,12 @@ const SchoolSchema = new Schema({
       type: String,
       enum: ["Point"],
       required: true,
-=======
-    name: {
-        type: String,
-        required: [true, 'Name field is required']
-    },
-
-    location: {
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: false
-        },
-        coordinates: {
-            type: [Number],
-            required: false
-        }
-    },
-
-    phone: {
-        type: String,
-        required: [true, 'Phone number field is required']
-    },
-
-    email: {
-        type: String,
-        required: [true, 'Email is required']
-    },
-
-    rating: {
-        type: Number,
-        required: false,
-        default: 0
-    },
-
-    types: {
-        type: String,
-        enum: ['Public', 'Private'],
-        required: [true, 'Types is required']
-    },
-
-    areas: {
-        type: [String],
-        enum: ['General', 'Technical', 'Vocational', 'Art Secondary Education'],
-        required: [true, 'Areas is required']
-    },
-    network: {
-        type: String,
-        enum: ['GO Network', 'Catholic Network', 'Municipality Schools', 'Private schools'],
-        required: [true, 'Network is required']
-    },
-    languageClasses: {
-        type: Boolean,
-        // required: [true, 'Language classes is required']
-        default: true
->>>>>>> pr89
     },
     coordinates: {
       type: [Number],
       required: true,
     },
+<<<<<<< HEAD
   },
 
   phone: {
@@ -141,6 +86,12 @@ const SchoolSchema = new Schema({
     postcode: {
       type: Number,
       required: [true, "Post code is required"],
+=======
+
+    photo: {
+        type: String,
+        required: false, 
+>>>>>>> pr89
     },
 
     city: { type: String, default: "Gent" },
