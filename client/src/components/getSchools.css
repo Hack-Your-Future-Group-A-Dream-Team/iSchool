@@ -155,23 +155,28 @@
 }
 
 .searchBar {
-    margin: 20px 20px 20px 40px;
+    margin: 20px 10% 20px 15%;
     padding: 5px 8px;
-    width: 900px;
+    width: 750px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: none;
+    border: 1px solid white;
+    background-color: rgba(211, 211, 211, 0.945);
 }
 
 .searchBarInput {
-    width: 850px;
+    width: 700px;
     outline: none;
     border: none;
     font-size: 20px;
+    background-color: rgba(211, 211, 211, 0.705);
+    ;
 }
 
 .fa-search {
-    font-size: 30px;
+    font-size: 20px;
     color: gray;
+    padding-right: 10px;
 }
 
 
@@ -256,3 +261,36 @@
 }
 
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+@media screen and (max-width: 768px) {
+    .searchField {
+        height: 900px;
+        width: 70%;
+        margin: left;
+    }
+    .schoolList {
+        font-family: "Ubuntu", sans-serif;
+        width: 400px;
+        height: 800px;
+        overflow-y: scroll;
+    }
+    .searchBarInput {
+        width: 200px;
+        outline: none;
+        border: none;
+        font-size: 20px;
+        background-color: rgba(211, 211, 211, 0.705);
+        ;
+    }
+    .searchBar {
+        margin: 20px 10% 20px 15%;
+        padding: 5px 8px;
+        width: 300px;
+        border-radius: 10px;
+        border: none;
+        border: 1px solid white;
+        background-color: rgba(211, 211, 211, 0.945);
+    }
+    .searchBarInput::placeholder {
+        font-size: 15px;
+    }
+}
