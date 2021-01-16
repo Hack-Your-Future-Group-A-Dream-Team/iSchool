@@ -12,7 +12,7 @@
   font-family: Ubuntu;
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 22px;
+  margin: 0 auto 22px auto;
 }
 
 .register-button-group {
@@ -47,8 +47,10 @@
 @media screen and (max-width: 768px) {
   .add-school {
     height: fit-content;
-    margin-top: 0;
+    margin: 0;
+    padding: 25px 5px;
   }
+
   .register-button-group {
     flex-direction: column;
     justify-content: space-around;
