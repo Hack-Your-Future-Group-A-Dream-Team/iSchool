@@ -80,11 +80,6 @@ const Navbar = props => {
                      className = "nav-links"
                      onClick={closeMobileMenu} > MySchools </Link>
                 </li>
-               <li className="nav-item" >
-                   <Link to="/editprofile"
-                     className = "nav-links"
-                     onClick={closeMobileMenu} > Edit Profile </Link>
-                </li>
                 <li className = "nav-item" >
                 {
                     user.role === "admin" ? 

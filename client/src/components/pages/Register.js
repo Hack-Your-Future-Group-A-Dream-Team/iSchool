@@ -67,7 +67,7 @@ const Register = props=>{
             <ToastContainer />
             <Form style= {{width: '50%', margin: 'auto', minHeight: "80vh"}} onSubmit={onSubmit} className="register-form">
             <Row className="justify-content-md-center">
-                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", margin:"20px 0", textAlign:"center", width: "100%", color:"#B71C1C"}}>SIGN UP</h2>
+                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", margin:"20px 0", textAlign:"center", width: "100%", color:"#000051"}}>SIGN UP</h2>
             </Row>
             <Form.Group as={Row} >
                 <Col sm={4} className="m-auto">
@@ -122,7 +122,7 @@ const Register = props=>{
                     <Form.Control type="password" placeholder="Password" name="password1" value={user.password1} onChange={onChange}/>
                     </Col>
                     <Col sm="2"></Col>
-                    <Col sm="10" style={{color:"#000051"}}>
+                    <Col sm="10" style={{color:"#000051"}} className="password-rule">
                     Password must contain at least 6 characters
                     </Col>
                 </Form.Group>
@@ -143,7 +143,7 @@ const Register = props=>{
                     </Link>
                 </Col>
                 <Col sm="6" className="d-flex justify-content-center" style={{width:"300px"}}>
-                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", width:"200px"}} className="hovered-red"type="submit" size="lg">
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", width:"200px",fontWeight:"bold"}} className="hovered-red"type="submit" size="lg">
                     Create an account
                 </Button>{' '}
                 </Col>

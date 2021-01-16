@@ -63,13 +63,12 @@ const responseGoogle = response => {
 
 
     return(
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%', minHeight: "77vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%', minHeight: "80vh"}} className="shadow p-3 mb-5 bg-white rounded main-container">
              <ToastContainer />
-             <Form style= {{width: '50%', height: "50vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around main-form" onSubmit={onSubmit}>
+             <Form style= {{width: '50%', height: "45vh", margin: 'auto'}} className = "d-flex flex-column justify-content-around main-form" onSubmit={onSubmit}>
             <Row className="justify-content-md-center">
-                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px", textAlign:"center", width:"100%", color:"#B71C1C"}}>SIGN IN</h2>
+                <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", paddingTop:"30px", textAlign:"center", width:"100%", color:"#000051"}}>SIGN IN</h2>
             </Row>
-            <Row className="d-flex flex-column justify-content-center">
             <Form.Group as={Row} controlId="email">
                     <Form.Label column sm="2">
                     Email
@@ -87,7 +86,6 @@ const responseGoogle = response => {
                     <Form.Control type="password" placeholder="Password" name="password" value={user.password1} onChange={onChange}/>
                     </Col>
                 </Form.Group>
-                </Row>
                
                 <Row className="d-flex justify-content-end link">
                 <Link to="user/password/forgot" style={{color: '#000051', fontSize:"1.1rem", textDecoration:'none'}}>Forgot Your Password?</Link>
@@ -100,7 +98,7 @@ const responseGoogle = response => {
                 </Link>
                 </Col>
                 <Col sm="5" className="d-flex justify-content-center" style={{width:"300px"}}>
-                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", margin:"10px", width:"180px", boxSizing:"border-box"}} className='hovered-red' type="submit" size="lg">
+                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", borderRadius:"10px", fontSize: "1.1rem", margin:"10px", width:"180px", boxSizing:"border-box", fontWeight:"bold"}} className='hovered-red' type="submit" size="lg">
                     Sign In
                 </Button>{' '}
                 </Col>
