@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import * as ReactBootStrap from "react-bootstrap";
 import {Container, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
-import Background from './assets/education.jpg';
+import Background from './assets/rsz_11educationc74399e4.jpg';
 import {Link, Route} from 'react-router-dom';
 import './aboutSchool.css';
 import axios from 'axios';

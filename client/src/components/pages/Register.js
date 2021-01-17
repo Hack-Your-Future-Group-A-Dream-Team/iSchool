@@ -4,7 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { Form, Row, Col, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import './Login.css' 
+import './Login.css';
+import GoogleSignIn from './GoogleLogin'
 
 
 const Register = props=>{
@@ -16,7 +17,6 @@ const Register = props=>{
         password2: "",
         role : ""});
 
-    const [checked, setChecked] = useState(false);
 
     const onChange = e =>{
         setUser({...user,[e.target.name] : e.target.value});
@@ -64,10 +64,9 @@ const Register = props=>{
     
     return(
         
-        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%'}} className="shadow p-3 mb-5 bg-white rounded register-container">
-        
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin:"60px auto", width: '70%', minHeight: "80vh"}} className="shadow p-3 mb-5 bg-white rounded register-container">
             <ToastContainer />
-            <Form style= {{width: '50%', margin: 'auto', minHeight: "80vh"}} onSubmit={onSubmit} className="register-form">
+            <Form style= {{width: '50%', margin: 'auto', minHeight: "50vh"}} onSubmit={onSubmit} className="register-form">
             <Row className="justify-content-md-center">
                 <h2 style={{fontFamily: "Ubuntu", fontSize:'24px', fontWeight:"bold", margin:"20px 0", textAlign:"center", width: "100%", color:"#000051"}}>SIGN UP</h2>
             </Row>
@@ -137,18 +136,18 @@ const Register = props=>{
                     <Form.Control type="password" placeholder="Confirm Password" name="password2" value={user.password2} onChange={onChange}/>
                     </Col>
                 </Form.Group>
+                <Row className="d-flex justify-content-end link">
+                <Link to="login" style={{color: '#000051', fontSize:"1.2rem"}}>Have an account?</Link>
+                </Row>
                 <Form.Group as={Row} className="mt-5" className="d-flex justify-content-center">
-                <Col sm="6" className="d-flex justify-content-center" >
-                    <Link to="login">
-                    <Button  style={{background: '#000051', border: "3px solid #000051", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", width:'200px', fontWeight:"bold"}} className="hovered-blue"size="lg"> Have an account?
-                    </Button>
-                    </Link>
-                </Col>
-                <Col sm="6" className="d-flex justify-content-center" style={{width:"300px"}}>
-                <Button style={{background: '#B71C1C', border: "3px solid #B71C1C", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", width:"200px",fontWeight:"bold"}} className="hovered-red"type="submit" size="lg">
+                <Row className="d-flex justify-content-center" style={{width:"300px"}}>
+                <Button style={{background: '#000051', border: "3px solid #000051", margin: "10px", borderRadius:"10px", fontSize: "1.1rem", width:"250px",fontWeight:"bold"}} className="hovered-blue"type="submit" size="lg">
                     Create an account
                 </Button>{' '}
-                </Col>
+                </Row>
+                </Form.Group>
+                <Form.Group as={Row} className="mt-5" className="d-flex justify-content-center">
+                <GoogleSignIn/>
                 </Form.Group>
                 </Form>
         </div>
