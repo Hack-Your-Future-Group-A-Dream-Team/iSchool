@@ -19,6 +19,7 @@ class Schools extends Component {
       data: [],
       address: "",
       hasSearchResult: true,
+      isSearchPage:true
     };
 
     this.sendRating = this.sendRating.bind(this);
@@ -243,6 +244,7 @@ class Schools extends Component {
                   userid={this.context.user._id}
                   sendRating={this.sendRating}
                   saveFavorite={this.saveFavorite}
+                  page={this.state.isSearchPage}
                 ></SchoolBlock>
               </Fragment>
             );

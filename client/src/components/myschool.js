@@ -12,6 +12,7 @@ class MySchools extends Component {
         super(props);
         this.state = {
           favoriteSchools: [],
+          isSearchPage:false
         };
         this.sendRating = this.sendRating.bind(this);
         this.deleteFavorite = this.deleteFavorite.bind(this);
@@ -95,6 +96,7 @@ class MySchools extends Component {
                   userid={this.context.user._id}
                   sendRating={this.sendRating}
                   deleteFavorite={this.deleteFavorite}
+                  page={this.state.isSearchPage}
                 ></SchoolBlock>
               </Fragment>
             );
