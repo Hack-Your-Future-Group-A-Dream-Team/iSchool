@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import CommentsList from "./Comment/CommentsList";
 import CommentInput from "./Comment/CommentInput";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export class SchoolBlock extends Component {
   constructor(props) {
@@ -204,6 +206,17 @@ export class SchoolBlock extends Component {
   };
 
   openInputCommentModal = (e) => {
+    if (this.props.userid === "" || this.props.userid === undefined) {
+      toast.error("Please, sign-in to leave a comment", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+      return;
+    }
+
     this.setState({ showModal: !this.state.showModal });
   };
 }
