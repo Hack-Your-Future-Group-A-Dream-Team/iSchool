@@ -17,6 +17,7 @@ export default class Schools extends Component {
       data: [],
       address: "",
       hasSearchResult: true,
+      new_rating: 0,
     };
 
     this.sendRating = this.sendRating.bind(this);
@@ -104,7 +105,7 @@ export default class Schools extends Component {
   }
 
   // send rating
-  sendRating(e) {
+  async sendRating(e) {
     e.preventDefault();
     const formEvent = e.target;
 
@@ -112,18 +113,15 @@ export default class Schools extends Component {
     const dataFormResult = Object.fromEntries(dataForm.entries());
     console.log(dataFormResult);
 
-    axios
-      .post("/schools/rating", {
-        score: dataFormResult.score,
-        schoolid: dataFormResult.schoolid,
-        userid: dataFormResult.userid,
-      })
-      .then((res) => {
-        console.log("new rating: " + JSON.stringify(res.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const res = await axios.post("/schools/rating", {
+      score: dataFormResult.score,
+      schoolid: dataFormResult.schoolid,
+      userid: dataFormResult.userid,
+    });
+
+    const data = res.data;
+
+    this.setState({ new_rating: data.new_rating });
   }
 
   render() {
@@ -234,6 +232,7 @@ export default class Schools extends Component {
                   details={data}
                   userid={this.context.user._id}
                   sendRating={this.sendRating}
+                  new_rating={this.state.new_rating}
                   saveFavorite={this.saveFavorite}
                 ></SchoolBlock>
               </Fragment>

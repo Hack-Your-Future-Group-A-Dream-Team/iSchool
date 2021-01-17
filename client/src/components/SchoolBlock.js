@@ -10,12 +10,8 @@ export class SchoolBlock extends Component {
       showComments: false,
       commentsList: [],
       showModal: false,
-      qty: 0,
+      commentsIncrement: 0,
     };
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    return { qty: props.details.comments };
   }
 
   render() {
@@ -50,7 +46,7 @@ export class SchoolBlock extends Component {
 
             <div className="schoolListItem-rightSide">
               <div className="review-container">
-                <form onSubmit={this.props.sendRating}>
+                <form onSubmit={this.updateScore}>
                   <fieldset className="ratingForm">
                     <div className="addRatingStarContainer">
                       <input
@@ -128,7 +124,13 @@ export class SchoolBlock extends Component {
                 <div className="review-average">
                   <p>
                     {" "}
-                    <span>({details.rating})</span>
+                    <span>
+                      (
+                      {this.props.new_rating === 0
+                        ? this.props.details.rating
+                        : this.props.new_rating}
+                      )
+                    </span>
                   </p>
                 </div>
               </div>
@@ -141,7 +143,12 @@ export class SchoolBlock extends Component {
                         : "fas fa-chevron-down"
                     }
                   ></i>{" "}
-                  Comments <span>({this.state.qty})</span>
+                  Comments{" "}
+                  <span>
+                    (
+                    {this.props.details.comments + this.state.commentsIncrement}
+                    )
+                  </span>
                 </p>
               </div>
             </div>
@@ -167,61 +174,9 @@ export class SchoolBlock extends Component {
     );
   }
 
-  // //////////////////
-  // <div key={data.id} className="schoolListItem">
-
-  //                 <div>
-  //                   <p className="schoolName">{data.name}</p>
-  //                   <p className="schoolContact">{data.adress_str}</p>
-  //                   <p className="schoolContact">Email: {data.email}</p>
-  //                   <p className="schoolContact">Phone: {data.phone}</p>
-  //                   <div className="btn-container">
-  //                     <button className="schoolList-btn" onClick={() => this.saveFavorite(data)}>Save school</button>
-  //                     <button className="schoolList-btn">Comment</button>
-  //                   </div>
-  //                   <div className="review-container">
-  //                     <p>Give a review:</p>
-  //                       <form onSubmit={this.sendRating}>
-  //                         <fieldset className="ratingForm">
-  //                           <div className="addRatingStarContainer">
-  //                             <input className="addRatingStar" type="radio" name="score" value="5"
-  //                             id={data._id + '1'}
-  //                             ></input>
-  //                             <label className="addRatingLabel far fa-star" for={data._id + '1'}></label>
-  //                             <input className="addRatingStar" type="radio" name="score" value="4"
-  //                             id={data._id + '2'}
-  //                             ></input>
-  //                             <label className="addRatingLabel far fa-star" for={data._id + '2'}></label>
-  //                             <input className="addRatingStar"  type="radio" name="score" value="3"
-  //                             id={data._id + '3'}
-  //                             ></input>
-  //                             <label className="addRatingLabel far fa-star" for={data._id + '3'}></label>
-  //                             <input className="addRatingStar" type="radio" name="score" value="2"
-  //                             id={data._id + '4'}
-  //                             ></input>
-  //                             <label className="addRatingLabel far fa-star" for={data._id + '4'}></label>
-  //                             <input className="addRatingStar" type="radio" name="score" value="1"
-  //                             id={data._id + '5'}
-  //                             ></input>
-  //                             <label className="addRatingLabel far fa-star" for={data._id + '5'}></label>
-  //                         </div>
-  //                         <div>
-  //                           <input type="hidden" name="schoolid" value={data._id}></input>
-  //                           <input type="hidden" name="userid" value={user.user._id}></input>
-  //                           <input className="sendRating" type="submit" value="Send"></input>
-  //                         </div>
-  //                       </fieldset>
-  //                     </form>
-  //                   </div>
-  //                 </div>
-
-  //                 <div className="schoolListItem-rightSide">
-  //                   <div className="schoolList-comments">Read Comments</div>
-  //                   <div className="schoolList-rating">Rating: {data.rating}</div>
-  //                 </div>
-
-  //               </div>
-  // //////////////////
+  updateScore = async (e) => {
+    await this.props.sendRating(e);
+  };
 
   getCommentsList = async (e) => {
     e.preventDefault();
@@ -239,7 +194,7 @@ export class SchoolBlock extends Component {
   };
 
   incrementQty = () => {
-    this.setState({ qty: this.state.qty + 1 });
+    this.setState({ commentsIncrement: this.state.commentsIncrement + 1 });
   };
 
   collapseAll = () => {

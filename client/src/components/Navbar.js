@@ -94,7 +94,7 @@ const Navbar = (props) => {
             onClick={closeMobileMenu}
           >
             {" "}
-            <i class="fas fa-search-plus icons"></i>
+            <i className="fas fa-search-plus icons"></i>
             <p className="icon">Search School</p>
           </Link>
         </li>
@@ -104,16 +104,18 @@ const Navbar = (props) => {
             <p className="icon">My Schools</p>
           </Link>
         </li>
-        <li className="nav-item">
-          {user.role === "admin" ? (
+
+        {user.role === "admin" ? (
+          <li className="nav-item">
             <Link to="/admin" className="nav-links" onClick={closeMobileMenu}>
               {" "}
               Admin
             </Link>
-          ) : null}
-        </li>
-        <li className="nav-item">
-          {user.role === "school" ? (
+          </li>
+        ) : null}
+
+        {user.role === "school" || user.role === "admin" ? (
+          <li className="nav-item">
             <Link
               to="/addschool"
               className="nav-links"
@@ -123,29 +125,14 @@ const Navbar = (props) => {
               <i className="fas fa-plus-circle icons"></i>
               <p className="icon">Add School</p>
             </Link>
-          ) : null}
-          {user.role === "admin" ? (
-            <Link
-              to="/addschool"
-              className="nav-links"
-              onClick={closeMobileMenu}
-            >
-              {" "}
-              Add School{" "}
-            </Link>
-          ) : null}
-        </li>
+          </li>
+        ) : null}
 
         <li className="nav-item">
-          <button
-            type="button"
-            className="btn btn-link nav-item nav-link Logoutbtn"
-            onClick={onClickLogoutHandler}
-          >
-            <i className="fas fa-sign-out-alt icons">
-              <p className="icon">Logout</p>
-            </i>
-          </button>
+          <Link to="/" className="nav-links" onClick={onClickLogoutHandler}>
+            <i className="fas fa-sign-out-alt icons"></i>
+            <p className="icon">Logout</p>
+          </Link>
         </li>
       </>
     );
