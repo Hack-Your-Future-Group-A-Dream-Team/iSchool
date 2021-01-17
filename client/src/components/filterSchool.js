@@ -21,26 +21,22 @@ export default class Filters extends Component {
     this.state = {
       languageClasses: false,
       rating: 0,
-      isCatholicNetwork: false,
-      isMunicipalityNetwork: false,
-      isPrivateNetwork: false,
-      isGoNetwork: false,
-      isGeneralAreas: false,
-      isTechnicalAreas: false,
-      isVocationalAreas: false,
-      isArtAreas: false
+      network: [],
+      areas: []
     }
 
-    this.addFilter = this.addFilter.bind(this)
-    this.removeFilters = this.removeFilters.bind(this)
+    this.addLanguageFilter = this.addLanguageFilter.bind(this)
     this.addRatingFilter = this.addRatingFilter.bind(this)
+    this.addNetworkFilter = this.addNetworkFilter.bind(this)
+    this.addAreasFilter = this.addAreasFilter.bind(this)
+    this.removeFilters = this.removeFilters.bind(this)
   };
 
-  addFilter (e) {
+  addLanguageFilter(e) {
     this.setState({
       [e.target.name]: e.target.checked
     });
-  };
+  }
 
   addRatingFilter (e) {
     this.setState({
@@ -48,19 +44,44 @@ export default class Filters extends Component {
     });
   };
 
-  removeFilters() {
+  addNetworkFilter (e) {
+    let networkValue = e.target.value;
 
+    if(e.target.checked) {
+      if(!this.state.network.includes(networkValue)) {
+        this.setState(prevState => ({
+          network: [...prevState.network, networkValue]
+        }))
+      } 
+    } else {
+      this.setState(prevState => ({
+        network: prevState.network.filter(type => type != networkValue)
+      }))
+    }
+  };
+
+  addAreasFilter(e) {
+    let areasValue = e.target.value;
+
+    if(e.target.checked) {
+      if(!this.state.areas.includes(areasValue)) {
+        this.setState(prevState => ({
+          areas: [...prevState.areas, areasValue]
+        }))
+      } 
+    } else {
+      this.setState(prevState => ({
+        areas: prevState.areas.filter(type => type != areasValue)
+      }))
+    }
+  }
+
+  removeFilters() {
     this.setState({
       languageClasses: false,
       rating: 0,
-      isCatholicNetwork: false,
-      isMunicipalityNetwork: false,
-      isPrivateNetwork: false,
-      isGoNetwork: false,
-      isGeneralAreas: false,
-      isTechnicalAreas: false,
-      isVocationalAreas: false,
-      isArtAreas: false
+      network: [],
+      areas: []
     })
   }
   
@@ -75,11 +96,11 @@ export default class Filters extends Component {
               <div className="filterItem">
                 <fieldset>
                   <legend>Reception classes for Dutch learners</legend>
-                    <input name="languageClasses" type="checkbox" value="true" id="LC-true"
-                    checked={(this.state.languageClasses)}
-                    onChange={this.addFilter}
+                    <input name="languageClasses" type="checkbox" id="LC-true"
+                    checked={this.state.languageClasses}
+                    onChange={this.addLanguageFilter}
                     ></input>
-                    <label for="LC-true">Yes</label><br></br>
+                    <label className="labelCheckbox" for="LC-true">Yes</label><br></br>
                 </fieldset>
               </div>
               {/* RATING */}
@@ -88,23 +109,18 @@ export default class Filters extends Component {
                   <legend>Rating</legend>
                     <div className="starRating">
                       <input className="inputStar" id="r1" type="radio" name="rating" value="5"
-                      checked={(this.state.rating == 5)}
                       onChange={this.addRatingFilter}></input>
                       <label className="labelStar far fa-star" for="r1"></label>
                       <input className="inputStar" id="r2" type="radio" name="rating" value="4"
-                      checked={(this.state.rating == 4)}
                       onChange={this.addRatingFilter}></input>
                       <label className="labelStar far fa-star" for="r2"></label>
                       <input className="inputStar" id="r3" type="radio" name="rating" value="3"
-                      checked={(this.state.rating == 3)}
                       onChange={this.addRatingFilter}></input>
                       <label className="labelStar far fa-star" for="r3"></label>
                       <input className="inputStar" id="r4" type="radio" name="rating" value="2"
-                      checked={(this.state.rating == 2)}
                       onChange={this.addRatingFilter}></input>
                       <label className="labelStar far fa-star" for="r4"></label>
                       <input className="inputStar" id="r5" type="radio" name="rating" value="1"
-                      checked={(this.state.rating == 1)}
                       onChange={this.addRatingFilter}></input>
                       <label className="labelStar far fa-star" for="r5"></label>
                     </div>
@@ -114,51 +130,43 @@ export default class Filters extends Component {
               <div className="filterItem">
                 <fieldset>
                   <legend>School Network</legend>
-                  <input name="isCatholicNetwork" type="checkbox" value="Catholic Network" id="networkCatholic"
-                  checked={(this.state.isCatholicNetwork)}
-                  onChange={this.addFilter}
+                  <input name="network" type="checkbox" data="Catholic Network" value="Catholic Network" id="networkCatholic"
+                  onChange={this.addNetworkFilter}
                   ></input>
-                  <label for="networkCatholic">Catholic Network</label><br></br>
+                  <label className="labelCheckbox" for="networkCatholic">Catholic Network</label><br></br>
 
-                  <input name="isMunicipalityNetwork" type="checkbox" value="Municipality Schools" id="networkMunicipality"
-                  checked={(this.state.isMunicipalityNetwork)}
-                  onChange={this.addFilter}></input>
-                  <label for="networkMunicipality">Municipality Schools</label><br></br>
+                  <input name="network" type="checkbox" data="Municipality Schools" value="Municipality Schools" id="networkMunicipality"
+                  onChange={this.addNetworkFilter}></input>
+                  <label className="labelCheckbox" for="networkMunicipality">Municipality Schools</label><br></br>
 
-                  <input name="isPrivateNetwork" type="checkbox" value="Private schools" id="networkPrivate"
-                  checked={(this.state.isPrivateNetwork)}
-                  onChange={this.addFilter}></input>
-                  <label for="networkPrivate">Private schools</label><br></br>
+                  <input name="network" type="checkbox" data="Private schools" value="Private schools" id="networkPrivate"
+                  onChange={this.addNetworkFilter}></input>
+                  <label className="labelCheckbox" for="networkPrivate">Private schools</label><br></br>
 
-                  <input name="isGoNetwork" type="checkbox" value="GO Network" id="networkGo"
-                  checked={(this.state.isGoNetwork)}
-                  onChange={this.addFilter}></input>
-                  <label for="networkGo">GO Network</label>
+                  <input name="network" type="checkbox" data="GO Network" value="GO Network" id="networkGo"
+                  onChange={this.addNetworkFilter}></input>
+                  <label className="labelCheckbox" for="networkGo">GO Network</label>
                 </fieldset>
               </div>
               {/* AREAS */}
               <div className="filterItem">
                 <fieldset>
                   <legend>School Field</legend>
-                  <input name="isGeneralAreas" type="checkbox" value="General" id="areasGeneral"
-                  checked={(this.state.isGeneralAreas)}
-                  onChange={this.addFilter}></input>
-                  <label for="areasGeneral">General</label><br></br>
+                  <input name="areas" type="checkbox" value="General" id="areasGeneral"
+                  onChange={this.addAreasFilter}></input>
+                  <label className="labelCheckbox" for="areasGeneral">General</label><br></br>
 
-                  <input name="isTechnicalAreas" type="checkbox" value="Technical" id="areasTechnical"
-                  checked={(this.state.isTechnicalAreas)}
-                  onChange={this.addFilter}></input>
-                  <label for="areasTechnical">Technical</label><br></br>
+                  <input name="areas" type="checkbox" value="Technical" id="areasTechnical"
+                  onChange={this.addAreasFilter}></input>
+                  <label className="labelCheckbox" for="areasTechnical">Technical</label><br></br>
 
-                  <input name="isVocationalAreas" type="checkbox" value="Vocational" id="areasVocational"
-                  checked={(this.state.isVocationalAreas)}
-                  onChange={this.addFilter}></input>
-                  <label for="areasVocational">Vocational</label><br></br>
+                  <input name="areas" type="checkbox" value="Vocational" id="areasVocational"
+                  onChange={this.addAreasFilter}></input>
+                  <label className="labelCheckbox" for="areasVocational">Vocational</label><br></br>
 
-                  <input name="isArtAreas" type="checkbox" value="Art Secondary Education" id="areasArt"
-                  checked={(this.state.isArtAreas)}
-                  onChange={this.addFilter}></input>
-                  <label for="areasArt">Art Secondary Education</label>
+                  <input name="areas" type="checkbox" value="Art Secondary Education" id="areasArt"
+                  onChange={this.addAreasFilter}></input>
+                  <label className="labelCheckbox" for="areasArt">Art Secondary Education</label>
                 </fieldset>
 
                 <button style={btnStyle} onClick={() => { this.props.updateFilter(this.state) }}>Search</button>

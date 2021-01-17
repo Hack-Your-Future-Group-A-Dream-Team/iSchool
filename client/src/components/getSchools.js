@@ -139,85 +139,29 @@ export default class Schools extends Component {
     let filteredSchools = this.state.data;
     
     if (this.props.getFilter) {
-      let keysFilter = [];
-      let valuesFilter = [];
 
       Object.entries(this.props.getFilter).forEach(([key, value]) => {
         if (value) {
-          if (key === "languageClasses") {
-            value = Boolean(value);
-          }
-
-          if (key === "rating") {
-            value = Number(value);
-          }
-
-          // NETWORK FILTER
-          if (key === "isCatholicNetwork") {
-            key = "network";
-            value="Catholic Network";
-          }
-
-          if (key === "isMunicipalityNetwork") {
-            key = "network";
-            value = "Municipality Schools";
-          }
           
-          if(key === "isPrivateNetwork") {
-            key = "network";
-            value = "Private schools";
-          }
-          
-          if(key === "isGoNetwork") {
-            key = "network";
-            value = "GO Network"
-          }
+          filteredSchools = filteredSchools.filter(
+            school => {
+              let result;
 
-          // AREAS FILTER
+              if(key === "languageClasses" || key === "rating") {
+                result = school[key] == value
+              }
 
-          if (key === "isGeneralAreas") {
-            key = "areas";
-            value="General";
-          }
-
-          if (key === "isTechnicalAreas") {
-            key = "areas";
-            value = "Technical";
-          }
+              if(key === "network" || key === "areas") {
+                let j = school[key] + '';
+                result = value.includes(j);
+              }
+              return result;
+            });
           
-          if(key === "isVocationalAreas") {
-            key = "areas";
-            value = "Vocational";
-          }
-          
-          if(key === "isArtAreas") {
-            key = "areas";
-            value = "Art Secondary Education"
-          }
-          
-          keysFilter.push(key);
-          valuesFilter.push(value);
+          console.log(filteredSchools, "result");
  
         }
       });
-      let keysFilterUnique = Array.from(new Set(keysFilter));
-
-      console.log(keysFilterUnique, valuesFilter, "return filters");
-
-      filteredSchools = filteredSchools.filter(
-        school => {
-          let result;
-          keysFilterUnique.forEach(el => {            
-            let j = school[el] + '';
-
-            result = valuesFilter.includes(j);
-            // console.log(result, "school during");  
-          })  
-          return result;
-        });
-      
-      console.log(filteredSchools, "result");
-
       toast.success(`We found ${filteredSchools.length} school(s) matches your criteria`);
     };
 
