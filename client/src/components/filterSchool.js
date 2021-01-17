@@ -1,22 +1,20 @@
-import React, { Component, Fragment} from 'react';
-import './filterSchool.css'
+import React, { Component, Fragment } from "react";
+import "./filterSchool.css";
 
 const btnStyle = {
-  width: '150px',
-  background: '#B71C1C',
+  width: "150px",
+  background: "#B71C1C",
   border: "none",
-  borderRadius:"10px",
+  borderRadius: "10px",
   fontSize: "1.1rem",
   padding: "8px 25px",
-  margin:"10px",
-  color: "#fff"
-}
-
+  margin: "10px",
+  color: "#fff",
+};
 
 export default class Filters extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       languageClasses: false,
@@ -40,9 +38,9 @@ export default class Filters extends Component {
 
   addRatingFilter (e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
-  };
+  }
 
   addNetworkFilter (e) {
     let networkValue = e.target.value;
@@ -84,12 +82,13 @@ export default class Filters extends Component {
       areas: []
     })
   }
-  
+
   render() {
     return (
       <Fragment>
         {console.log(this.state)}
         <div className="filterContainer">
+
             <h1>Filters</h1>
             
               {/* LANGUAGE */}
@@ -172,13 +171,8 @@ export default class Filters extends Component {
                 <button style={btnStyle} onClick={() => { this.props.updateFilter(this.state) }}>Search</button>
                 <button style={btnStyle} onClick={ this.removeFilters }>Reset filters</button>
               </div>
-
         </div>
       </Fragment>
-      
-    )
+    );
   }
 }
-
-
-

@@ -1,6 +1,6 @@
 .navbar {
-    background:#000051;
-    height: 80px;
+    background: #000051;
+    /* height: 80px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,8 @@
     top: 0;
     z-index: 999;
     width: 100%;
-    border-bottom: solid 2px rgb(218, 52, 80);
+    /* border-bottom: solid 2px rgb(218, 52, 80); */
+    border-bottom: solid 2px #fff;
 }
 
 .navbar-icon {
@@ -17,27 +18,29 @@
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    width: 100%;
+    width: 90%;
 }
 
 .navbar-logo {
+    display: block;
     color: #fff;
     justify-self: start;
-    margin-left: 5%;
+    /* margin-left: 5%; */
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
 }
 
-.navbar-logo>img{
-    height: 50px;
-    width: 88px;
-    
-
+.navbar-logo>img {
+    /* height: 50px; */
+    width: 70px;
+    margin: 0px;
 }
 
+
+/* 
 .nav-menu {
     display: grid;
     grid-template-columns: repeat(8, auto);
@@ -47,26 +50,63 @@
     width: 60vw;
     justify-content: end;
     margin-right: 2rem;
+    margin-bottom: 0;
+} */
+
+.nav-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40vw;
+    margin-bottom: 0;
+    padding: 0;
 }
 
 .nav-item {
-    height: 80px;
+    height: 100%;
+    /*height: 80px;*/
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links {
     color: white;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    /* flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     padding: 0.5rem 1rem;
     height: 100%;
+    font-size: 15px; */
 }
 
-.nav-links:hover {
-    border-bottom: 4px solid #fff;
+.icons {
+    font-size: 30px;
     color: white;
-    transition: all 0.2s ease-out;
-    transform: scale(1.5);
+    /* padding-top: 15px; */
+}
+
+.icon {
+    font-size: 12px;
+    margin: 0;
+}
+
+.nav-links:hover,
+.Logoutbtn:hover {
+    transform: scale(1.2);
+    text-decoration: none;
+    color: #fff;
+    /* color: transparent; */
+}
+
+.Logoutbtn {
+    margin-top: -5px;
 }
 
 .btn-link {
@@ -74,7 +114,7 @@
     font-size: 1.2rem;
 }
 
-.fa-bars{
+.fa-bars {
     color: white;
 }
 
@@ -87,12 +127,15 @@
 }
 
 @media screen and (max-width: 768px) {
-
-    .navbar-logo>img{
-        height: 50px;
+    .icons {
+        font-size: 20px;
+        color: black;
+    }
+    .navbar-logo>img {
+        /* height: 50px; */
         width: 70px;
-        }
-
+        margin: 0
+    }
     .NavbarItems {
         position: relative;
     }
@@ -103,7 +146,7 @@
     .fa-times {
         color: #fff;
         font-size: 2rem;
-      }
+    }
     .nav-menu {
         display: flex;
         flex-direction: column;
@@ -111,8 +154,8 @@
         height: 90vh;
         position: absolute;
         top: 80px;
-        left: -100%;
-        opacity: 1;
+        left: -110%;
+        opacity: 5;
         transition: all 0.5s ease;
     }
     .nav-menu.active {
@@ -124,23 +167,23 @@
     }
     .nav-links {
         text-align: center;
-        padding: 2rem;
+        padding: 0;
         width: 100%;
         display: table;
+        margin-top: 5px;
     }
-    .nav-links:hover {
-        background-color: black;
-        color: #fff;
+    .nav-links:hover,
+    .Logoutbtn:hover {
+        background-color: lightgray;
+        color: white;
         border-radius: 0;
-        transition: all 0.2s ease-out;
-        transform: scale(1.1);
     }
-    .navbar-logo {
+    /* .navbar-logo {
         position: absolute;
         top: 0;
         left: 0;
         transform: translate(25%, 50%);
-    }
+    } */
     .menu-icon {
         display: block;
         position: absolute;
@@ -150,7 +193,6 @@
         font-size: 1.8rem;
         cursor: pointer;
     }
-  
     .nav-links-mobile {
         display: block;
         text-align: center;
@@ -165,10 +207,11 @@
         border: 1px solid #fff;
         transition: all 0.3s ease-out;
     }
-    .nav-links-mobile:hover {
-        background: #fff;
-        color: #242424;
-        transition: 250ms;
+    .add-school {
+        margin-top: -17%;
     }
-   
+    .Logoutbtn {
+        margin-top: 0%;
+        margin-left: 19%;
+    }
 }

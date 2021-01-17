@@ -25,8 +25,8 @@
   }
 
   @media screen and (max-width: 768px) {
-    div.main-container{
-      height: 77vh;
+    .shadow.p-3.mb-5.bg-white.rounded.main-container{
+      min-height: 100vh!important;
       min-width: 80%
     }
 
@@ -35,19 +35,36 @@
     }
     
     .main-form{
-      min-width:80%
+      min-width: 80%;
     }
-    .link{
-      width: 100%;
-      justify-content: center;
+    div.link{
+      width: 100% !important;
+      font-size: 0.8rem !important;
+      justify-content: center !important;
+      margin: auto !important;
     }
+
+    .hovered-google.btn.btn-primary{
+      width: 180px !important;
+      font-size: 0.8rem !important;
+    }
+
+    .hovered-blue.btn.btn-primary,
+    .hovered-red.btn.btn-primary{
+      font-weight: 400 !important;
+    }
+
+    .password-rule{
+      font-size: 0.8rem !important;
+    }
+
 
   }
 
   @media screen and (min-width: 768px) and (max-width: 1024px) {
 
   div.main-container{
-    height: 80vh;
+    min-height: 83vh !important;
     min-width: 80%
   }
   .register-container{

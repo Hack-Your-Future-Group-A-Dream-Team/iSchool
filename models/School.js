@@ -20,6 +20,11 @@ const SchoolSchema = new Schema({
     },
   },
 
+  adress_str: {
+    type: String,
+    required: false
+  },
+
   phone: {
     type: String,
     default: "+32 2 553 50 70",
