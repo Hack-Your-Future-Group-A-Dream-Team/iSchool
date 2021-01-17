@@ -19,6 +19,12 @@ class Schools extends Component {
       data: [],
       address: "",
       hasSearchResult: true,
+      hasFilteredResult: true,
+      isSearchResult:false,
+      searchOptions:{
+        componentRestrictions: { country: ['be'] },
+        types: ['address']
+      }
     };
 
     this.sendRating = this.sendRating.bind(this);
@@ -55,15 +61,19 @@ class Schools extends Component {
           this.setState({
             data: data,
             hasSearchResult: false,
+            isSearchResult:false
           });
         } else {
           this.setState({
             data: data,
             hasSearchResult: true,
+            isSearchResult:true
           });
         }
       });
   };
+
+
 
   handleChange = async (value) => {
     if (value === "") {
@@ -74,6 +84,7 @@ class Schools extends Component {
         this.setState({
           data: allSchools,
           hasSearchResult: true,
+          isSearchResult:false
         });
       });
     }
@@ -136,6 +147,8 @@ class Schools extends Component {
     }
   }
 
+
+
   render() {
     const user = this.context;
     // console.log(user);
@@ -145,6 +158,7 @@ class Schools extends Component {
 
     // filter schools by aside filters
     let filteredSchools = this.state.data;
+    
 
     if (this.props.getFilter) {
       Object.entries(this.props.getFilter).forEach(([key, value]) => {
@@ -164,6 +178,7 @@ class Schools extends Component {
         }
       });
       toast.success(`We found ${filteredSchools.length} school(s) matches your criteria`);
+      
     }
 
     return (
@@ -174,6 +189,7 @@ class Schools extends Component {
             value={this.state.address}
             onChange={this.handleChange}
             onSelect={this.handleSelect}
+            searchOptions={this.state.searchOptions}
           >
             {({
               getInputProps,
@@ -221,7 +237,7 @@ class Schools extends Component {
                 <br />
                 Sorry,
                 <br />
-                No school has been found in the 1 km radius of the address you
+                No school has been found in the 5 km radius of the address you
                 have typed.
                 <br />
                 For the moment our service area is limited to Ghent region.
@@ -237,6 +253,14 @@ class Schools extends Component {
               </h3>
             </div>
           )}
+
+          {this.state.isSearchResult && (
+            <div className="proximity">
+              <h4>
+              The results given below are sorted by the proximity to the given address.
+              </h4>
+            </div>
+          )}  
 
           {filteredSchools.map((data) => {
             return (

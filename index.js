@@ -53,7 +53,7 @@ app.get('/closestschools', (req, res, next) => {
     School.find({
         location: {
             $near: {
-                $maxDistance: 1000,
+                $maxDistance: 5000,
                 $geometry: {
                     type: 'Point',
                     coordinates: [longitude, latitude]
