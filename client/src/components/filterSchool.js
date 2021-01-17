@@ -1,6 +1,17 @@
 import React, { Component, Fragment } from "react";
 import "./filterSchool.css";
 
+const btnStyle = {
+  width: "150px",
+  background: "#B71C1C",
+  border: "none",
+  borderRadius: "10px",
+  fontSize: "1.1rem",
+  padding: "8px 25px",
+  margin: "10px",
+  color: "#fff",
+};
+
 export default class Filters extends Component {
   constructor(props) {
     super(props);
@@ -40,20 +51,34 @@ export default class Filters extends Component {
 
           {/* LANGUAGE */}
           <div className="filterItem">
-            <input
-              name="languageClasses"
-              type="radio"
-              value="true"
-              checked={this.state.languageClasses == true}
-              onChange={this.addFilter}
-            ></input>
-            <label for="languageClasses">Reception classes</label>
-          </div>
+            <fieldset>
+              <legend>Language classes</legend>
+              <input
+                name="languageClasses"
+                type="radio"
+                value="true"
+                id="LC-true"
+                checked={this.state.languageClasses == "true"}
+                onChange={this.addFilter}
+              ></input>
+              <label for="LC-true">Yes</label>
+              <br></br>
 
+              <input
+                name="languageClasses"
+                type="radio"
+                value="false"
+                id="LC-false"
+                checked={this.state.languageClasses == "false"}
+                onChange={this.addFilter}
+              ></input>
+              <label for="LC-false">No</label>
+            </fieldset>
+          </div>
           {/* RATING */}
           <div className="filterItem">
             <fieldset>
-              <legend className="legend">Rating</legend>
+              <legend>Rating</legend>
               <div className="starRating">
                 <input
                   className="inputStar"
@@ -116,6 +141,7 @@ export default class Filters extends Component {
                 name="network"
                 type="radio"
                 value="Catholic Network"
+                id="network"
                 checked={this.state.network == "Catholic Network"}
                 onChange={this.addFilter}
               ></input>
@@ -126,6 +152,7 @@ export default class Filters extends Component {
                 name="network"
                 type="radio"
                 value="Municipality Schools"
+                id="network"
                 checked={this.state.network == "Municipality Schools"}
                 onChange={this.addFilter}
               ></input>
@@ -136,6 +163,7 @@ export default class Filters extends Component {
                 name="network"
                 type="radio"
                 value="Private schools"
+                id="network"
                 checked={this.state.network == "Private schools"}
                 onChange={this.addFilter}
               ></input>
@@ -146,6 +174,7 @@ export default class Filters extends Component {
                 name="network"
                 type="radio"
                 value="GO Network"
+                id="network"
                 checked={this.state.network == "GO Network"}
                 onChange={this.addFilter}
               ></input>
@@ -160,6 +189,7 @@ export default class Filters extends Component {
                 name="areas"
                 type="radio"
                 value="General"
+                id="areas"
                 checked={this.state.areas == "General"}
                 onChange={this.addFilter}
               ></input>
@@ -170,6 +200,7 @@ export default class Filters extends Component {
                 name="areas"
                 type="radio"
                 value="Technical"
+                id="areas"
                 checked={this.state.areas == "Technical"}
                 onChange={this.addFilter}
               ></input>
@@ -180,6 +211,7 @@ export default class Filters extends Component {
                 name="areas"
                 type="radio"
                 value="Vocational"
+                id="areas"
                 checked={this.state.areas == "Vocational"}
                 onChange={this.addFilter}
               ></input>
@@ -190,6 +222,7 @@ export default class Filters extends Component {
                 name="areas"
                 type="radio"
                 value="Art Secondary Education"
+                id="areas"
                 checked={this.state.areas == "Art Secondary Education"}
                 onChange={this.addFilter}
               ></input>
@@ -197,19 +230,14 @@ export default class Filters extends Component {
             </fieldset>
 
             <button
-              type="button"
-              className="Searchbtn search"
+              style={btnStyle}
               onClick={() => {
                 this.props.updateFilter(this.state);
               }}
             >
               Search
             </button>
-            <button
-              type="button"
-              className="Searchbtn reset"
-              onClick={this.removeFilters}
-            >
+            <button style={btnStyle} onClick={this.removeFilters}>
               Reset filters
             </button>
           </div>

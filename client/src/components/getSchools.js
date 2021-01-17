@@ -121,9 +121,11 @@ class Schools extends Component {
         userid: dataFormResult.userid,
       })
       .then((res) => {
+        toast.success("Thank you for sharing your opinion!");
         console.log("new rating: " + JSON.stringify(res.data));
       })
       .catch((err) => {
+        toast.error("Something went wrong. Try again.");
         console.log(err);
       });
     }else{
@@ -161,6 +163,7 @@ class Schools extends Component {
           console.log(filteredSchools, "during");
         }
       });
+      toast.success(`We found ${filteredSchools.length} school(s) matches your criteria`);
     }
 
     return (
