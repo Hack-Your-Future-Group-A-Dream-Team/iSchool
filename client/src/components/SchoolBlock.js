@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import CommentsList from "./Comment/CommentsList";
 import CommentInput from "./Comment/CommentInput";
+import { Link} from 'react-router-dom';
 
 export class SchoolBlock extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export class SchoolBlock extends Component {
         <div className="schoolListItem">
           <div className="school_wrapper">
             <div className="school-details">
-              <p className="schoolName">{details.name}</p>
+            <p className="schoolName">{details.name}<Link style={{color:"#000051", background:"#fff", marginLeft:"10px"}}to={`/school/${details._id}`}><i style={{fontSize:"25px"}}className="fas fa-arrow-circle-right"></i></Link></p>  
               <p className="schoolContact">{details.adress_str}</p>
               <p className="schoolContact">Email: {details.email}</p>
               <p className="schoolContact">Phone: {details.phone}</p>

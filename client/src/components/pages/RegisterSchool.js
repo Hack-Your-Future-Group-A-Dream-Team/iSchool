@@ -62,7 +62,7 @@ const RegisterSchool = () => {
             axios
                 .post("/schools", {
                     name,
-                    address,
+                    adress: address,
                     email,
                     phone,
                     description,

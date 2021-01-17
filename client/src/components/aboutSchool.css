@@ -1,0 +1,85 @@
+summary{
+    outline: none
+}
+
+summary::-webkit-details-marker {
+    display: none
+  }
+  summary:after {
+    color: #B71C1C;
+    border-radius: 5px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f078";
+    float: left;
+    padding: 0;
+    text-align: center;
+    width: 20px;
+  }
+  details[open] summary:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f077";
+  }
+
+  ul{
+   list-style: none; 
+  }
+  
+
+  /* specific heights */
+  details[open] summary ~ * {
+    animation-name: invisiblyGrowFontSize, fadeIn;
+    animation-duration: 300ms, 200ms;
+    animation-delay: 0ms, 300ms;
+  }
+
+  /* add wrapper, continue with font-size */
+@keyframes invisiblyGrowFontSize {
+  0% {
+    font-size: 0;
+    opacity: 0;
+  }
+  100% {
+    font-size: 1em;
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+ @media screen and (max-width: 768px) {
+
+  .shadow.p-3.mb-5.bg-white.rounded.container{
+      width:90%!important;
+  }
+    
+    .list-group-flush.list-group{
+        width:100%!important;
+        
+    }
+    .list-group-item{
+        width: 100%!important;
+        padding: 0.7rem!important;
+    }
+
+    .fa-arrow-circle-left{
+      font-size: 1rem;
+    }
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .list-group-flush.list-group{
+        width:100%!important;
+    }
+    .list-group-item{
+        width: 100%!important;
+    }
+  }

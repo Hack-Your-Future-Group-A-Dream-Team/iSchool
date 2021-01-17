@@ -9,8 +9,10 @@ import { AuthContext } from "../Context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchoolBlock from "./SchoolBlock";
+import { withRouter } from 'react-router-dom';
 
-export default class Schools extends Component {
+
+class Schools extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -106,8 +108,8 @@ export default class Schools extends Component {
   // send rating
   sendRating(e) {
     e.preventDefault();
+    if(this.context.isAuthenticated) {
     const formEvent = e.target;
-
     const dataForm = new FormData(formEvent);
     const dataFormResult = Object.fromEntries(dataForm.entries());
     console.log(dataFormResult);
@@ -124,6 +126,12 @@ export default class Schools extends Component {
       .catch((err) => {
         console.log(err);
       });
+    }else{
+      toast.error('Only authorized users can leave review. Please SIGN IN')
+      setTimeout(()=>{
+        this.props.history.push('/login');
+      },5000)
+    }
   }
 
   render() {
@@ -244,3 +252,5 @@ export default class Schools extends Component {
     );
   }
 }
+
+export default  withRouter(Schools);
