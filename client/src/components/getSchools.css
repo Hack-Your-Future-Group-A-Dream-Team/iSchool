@@ -1,215 +1,212 @@
 .searchField {
-    height: 900px;
-    margin-top: 50px;
-    width: 80%;
-    margin-right: -20%;
+  height: 900px;
+  margin-top: 50px;
+  width: 80%;
+  margin-right: -20%;
 }
 
 .schoolList {
-    font-family: "Ubuntu", sans-serif;
-    width: 1000px;
-    height: 750px;
-    overflow-y: scroll;
+  font-family: "Ubuntu", sans-serif;
+  width: 1000px;
+  height: 750px;
+  overflow-y: scroll;
 }
 
 .schoolListItem {
-    width: 955px;
-    min-height: 300px;
-    margin: 2em;
-    padding: 1.5em;
-    background: #ffffff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
+  width: 955px;
+  min-height: 300px;
+  margin: 2em;
+  padding: 1.5em;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
 }
 
 .school_wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .schoolName {
-    text-align: left;
-    font-size: 25px;
-    font-weight: 700;
-    color: #000051;
-    margin-bottom: 5px;
+  text-align: left;
+  font-size: 25px;
+  font-weight: 700;
+  color: #000051;
+  margin-bottom: 5px;
 }
 
 .schoolContact {
-    text-align: left;
-    margin-bottom: 5px;
-    font-size: 18px;
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 18px;
 }
 
 .btn-container {
-    /* margin: 1em 0 1em 0; */
-    text-align: left;
+  /* margin: 1em 0 1em 0; */
+  text-align: left;
 }
 
 .schoolList-btn {
-    color: #ffffff;
-    font-size: 18px;
-    background-color: #000051;
-    border-radius: 20px;
-    border: 1px solid #000051;
-    padding: 0.4em 0.7em;
-    margin-right: 40px;
+  color: #ffffff;
+  font-size: 18px;
+  background-color: #000051;
+  border-radius: 20px;
+  border: 1px solid #000051;
+  padding: 0.4em 0.7em;
+  margin-right: 40px;
 }
 
 .schoolList-rating {
-    color: #000051;
-    font-size: .8em;
+  color: #000051;
+  font-size: 0.8em;
 }
 
 .schoolList-btn:hover {
-    background-color: #ffffff;
-    color: #000051;
+  background-color: #ffffff;
+  color: #000051;
 }
 
 .schoolList-btn:focus {
-    outline-width: 0px;
+  outline-width: 0px;
 }
 
 .review-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-    font-size: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  font-size: 1em;
 }
 
 .review-average {
-    color: #000051;
-    font-size: 0.8em;
-    font-weight: bold;
+  color: #000051;
+  font-size: 0.8em;
+  font-weight: bold;
 }
 
 .fa-star {
-    padding: 0 0.3em 0 0.3em;
+  padding: 0 0.3em 0 0.3em;
 }
 
 .fa-star:hover {
-    color: #000051;
-    font-weight: 700;
+  color: #000051;
+  font-weight: 700;
 }
 
 .fa-chevron-down,
 .fa-chevron-up {
-    color: rgb(183, 28, 28, 0.8);
-    font-weight: 700;
+  color: rgb(183, 28, 28, 0.8);
+  font-weight: 700;
 }
 
 .school-comments-qty p,
 .review-average p {
-    display: block;
-    float: right;
-    cursor: pointer;
-    padding: 0.4em 0;
+  display: block;
+  float: right;
+  cursor: pointer;
+  padding: 0.4em 0;
 }
 
 .school-comments-qty p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
-.school-comments-qty>p>span,
-.review-average p>span {
-    color: rgb(183, 28, 28, 0.8);
-    font-size: 0.8rem;
-    font-weight: bold;
+.school-comments-qty > p > span,
+.review-average p > span {
+  color: rgb(183, 28, 28, 0.8);
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 .school-details {
-    width: 62%;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: space-between;
+  width: 62%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
 }
 
 .schoolListItem-rightSide {
-    width: 36%;
-    min-width: 140px;
-    font-size: 18px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
+  width: 36%;
+  min-width: 140px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .suggestions {
-    z-index: 10;
-    cursor: default;
-    margin: 20px 0px 20px 40px;
-    width: 900px;
+  z-index: 10;
+  cursor: default;
+  margin: 20px 0px 20px 40px;
+  width: 900px;
 }
 
 .searchBar {
-    margin: 20px 10% 20px 15%;
-    padding: 5px 8px;
-    width: 750px;
-    border-radius: 10px;
-    border: none;
-    border: 1px solid white;
-    background-color: rgba(211, 211, 211, 0.945);
+  margin: 20px 10% 20px 15%;
+  padding: 5px 8px;
+  width: 750px;
+  border-radius: 10px;
+  border: none;
+  border: 1px solid white;
+  background-color: rgba(211, 211, 211, 0.945);
 }
 
 .searchBarInput {
-    width: 700px;
-    outline: none;
-    border: none;
-    font-size: 20px;
-    background-color: rgba(211, 211, 211, 0.705);
-    ;
+  width: 700px;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  background-color: rgba(211, 211, 211, 0.705);
 }
 
 .fa-search {
-    font-size: 20px;
-    color: gray;
-    padding-right: 10px;
+  font-size: 20px;
+  color: gray;
+  padding-right: 10px;
 }
-
 
 /* Star Rating */
 
 .addRatingStarContainer {
-    display: inline-block;
-    padding-top: 5px;
+  display: inline-block;
+  padding-top: 5px;
 }
 
 .addRatingStarContainer * {
-    float: right;
+  float: right;
 }
 
 .ratingForm {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .addRatingStar {
-    display: none;
+  display: none;
 }
 
 .addRatingLabel {
-    font-size: 20px;
+  font-size: 20px;
 }
 
-.addRatingStar:hover~.addRatingLabel {
-    font-weight: 400;
+.addRatingStar:hover ~ .addRatingLabel {
+  font-weight: 400;
 }
 
-.addRatingStar:checked~.addRatingLabel {
-    color: #000051;
-    font-weight: 700;
+.addRatingStar:checked ~ .addRatingLabel {
+  color: #000051;
+  font-weight: 700;
 }
 
 .submit_rate_container {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
-
 
 /* .sendRating {
     border: none;
@@ -222,65 +219,73 @@
 } */
 
 .sendRating {
-    font-size: 0.8em;
-    color: #fff;
-    background: #000051;
-    border-radius: 0.8em;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: .2em 0.4em;
-    margin: 0 .4em;
+  font-size: 0.8em;
+  color: #fff;
+  background: #000051;
+  border-radius: 0.8em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.2em 0.4em;
+  margin: 0 0.4em;
 }
 
 .comments_list_container {
-    margin-top: 2em;
-    background: #fefefe;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  margin-top: 2em;
+  background: #fefefe;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .noResult {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 3px 3px 3px 3px;
-    color: #059;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+  color: #059;
+}
+
+.proximity {
+  margin-left: 40px;
+  margin-bottom: 0x;
+  padding: 0px;
+  border-radius: 3px 3px 3px 3px;
+  color: #059;
+  text-align: center;
 }
 
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
 @media screen and (max-width: 768px) {
-    .searchField {
-        height: 900px;
-        width: 70%;
-        margin: left;
-    }
-    .schoolList {
-        font-family: "Ubuntu", sans-serif;
-        width: 400px;
-        height: 800px;
-        overflow-y: scroll;
-    }
-    .searchBarInput {
-        width: 200px;
-        outline: none;
-        border: none;
-        font-size: 20px;
-        background-color: rgba(211, 211, 211, 0.705);
-        ;
-    }
-    .searchBar {
-        margin: 20px 10% 20px 15%;
-        padding: 5px 8px;
-        width: 300px;
-        border-radius: 10px;
-        border: none;
-        border: 1px solid white;
-        background-color: rgba(211, 211, 211, 0.945);
-    }
-    .searchBarInput::placeholder {
-        font-size: 15px;
-    }
+  .searchField {
+    height: 900px;
+    width: 70%;
+    margin: left;
+  }
+  .schoolList {
+    font-family: "Ubuntu", sans-serif;
+    width: 400px;
+    height: 800px;
+    overflow-y: scroll;
+  }
+  .searchBarInput {
+    width: 200px;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    background-color: rgba(211, 211, 211, 0.705);
+  }
+  .searchBar {
+    margin: 20px 10% 20px 15%;
+    padding: 5px 8px;
+    width: 300px;
+    border-radius: 10px;
+    border: none;
+    border: 1px solid white;
+    background-color: rgba(211, 211, 211, 0.945);
+  }
+  .searchBarInput::placeholder {
+    font-size: 15px;
+  }
 }
