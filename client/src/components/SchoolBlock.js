@@ -39,7 +39,7 @@ export class SchoolBlock extends Component {
                   className="schoolList-btn"
                   onClick={() => this.props.saveFavorite(this.props.details)}
                 >
-                  Save school
+                  Add to My Schools
                 </button>)}
                 {!this.props.page &&(<button 
                   className="schoolList-btn" 
