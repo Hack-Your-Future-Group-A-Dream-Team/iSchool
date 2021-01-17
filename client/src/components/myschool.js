@@ -4,6 +4,8 @@ import './getSchools.css';
 import {AuthContext} from '../Context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SchoolBlock from "./SchoolBlock";
+import { withRouter } from 'react-router-dom';
 
 class MySchools extends Component {
     constructor(props) {
@@ -11,6 +13,8 @@ class MySchools extends Component {
         this.state = {
           favoriteSchools: [],
         };
+        this.sendRating = this.sendRating.bind(this);
+        this.deleteFavorite = this.deleteFavorite.bind(this);
       };
       static contextType = AuthContext;
 
@@ -49,46 +53,53 @@ class MySchools extends Component {
         console.log(this.state)
       }
 
+      sendRating(e) {
+        e.preventDefault();
+        if(this.context.isAuthenticated) {
+        const formEvent = e.target;
+        const dataForm = new FormData(formEvent);
+        const dataFormResult = Object.fromEntries(dataForm.entries());
+        console.log(dataFormResult);
+    
+        axios
+          .post("/schools/rating", {
+            score: dataFormResult.score,
+            schoolid: dataFormResult.schoolid,
+            userid: dataFormResult.userid,
+          })
+          .then((res) => {
+            console.log("new rating: " + JSON.stringify(res.data));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        }else{
+          toast.error('Only authorized users can leave review. Please SIGN IN')
+          setTimeout(()=>{
+            this.props.history.push('/login');
+          },5000)
+        }
+      }
+
     render() {
            
         return (
           <div className="searchField">
             <ToastContainer />    
             <div className="schoolList">
-              {this.state.favoriteSchools.map((data)=>{
-                return(
-                  <Fragment>
-                    <div key={data.id} className="schoolListItem">
-    
-                      <div>
-                        <p className="schoolName">{data.name}</p>
-                        <p className="schoolContact">{data.adress_str}</p>
-                        <p className="schoolContact">Email: {data.email}</p>
-                        <p className="schoolContact">Phone: {data.phone}</p>
-                        <div className="btn-container">
-                          <button className="schoolList-btn" onClick={() => this.deleteFavorite(data._id)}>Remove from list</button>
-                          <button className="schoolList-btn">Comment</button>
-                        </div>
-                        <div className="review-container">
-                          Give a review: 
-                          <i className="far fa-star"></i>
-                          <i className="far fa-star"></i>
-                          <i className="far fa-star"></i>
-                          <i className="far fa-star"></i>
-                          <i className="far fa-star"></i>
-                        </div>
-                      </div>
-                      
-                      <div className="schoolListItem-rightSide">
-                        <div className="schoolList-comments">Read Comments</div>
-                        <div className="schoolList-rating">Rating: {data.rating}</div>
-                      </div>
-                      
-                    </div>
-                  </Fragment>
-                )
-              })
-            }
+            {this.state.favoriteSchools.map((data) => {
+            return (
+              <Fragment key={data._id}>
+                <SchoolBlock
+                  details={data}
+                  userid={this.context.user._id}
+                  sendRating={this.sendRating}
+                  deleteFavorite={this.deleteFavorite}
+                ></SchoolBlock>
+              </Fragment>
+            );
+          })}
+              
               </div>
           </div>
         )
