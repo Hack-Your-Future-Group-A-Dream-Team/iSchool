@@ -101,7 +101,7 @@ const Navbar = (props) => {
             <li className="nav-item">
             <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
               {" "}
-              <i className="fas fa-synagogue icons"></i>
+              <i className="fas fa-star icons"></i>
               <p className="icon">My Schools</p>
             </Link>
           </li>
@@ -111,7 +111,7 @@ const Navbar = (props) => {
             <li className="nav-item">
             <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
               {" "}
-              <i className="fas fa-synagogue icons"></i>
+              <i className="fas fa-star icons"></i>
               <p className="icon">My Schools</p>
             </Link>
           </li>
