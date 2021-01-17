@@ -24,7 +24,8 @@ class Schools extends Component {
       searchOptions:{
         componentRestrictions: { country: ['be'] },
         types: ['address']
-      }
+      },
+      isSearchPage:true
     };
 
     this.sendRating = this.sendRating.bind(this);
@@ -270,6 +271,7 @@ class Schools extends Component {
                   userid={this.context.user._id}
                   sendRating={this.sendRating}
                   saveFavorite={this.saveFavorite}
+                  page={this.state.isSearchPage}
                 ></SchoolBlock>
               </Fragment>
             );

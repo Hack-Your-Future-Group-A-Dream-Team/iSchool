@@ -13,6 +13,7 @@ export class SchoolBlock extends Component {
       showModal: false,
       qty: 0,
     };
+    
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -34,12 +35,17 @@ export class SchoolBlock extends Component {
               <p className="schoolContact">Email: {details.email}</p>
               <p className="schoolContact">Phone: {details.phone}</p>
               <div className="btn-container">
-                <button
+                {this.props.page && (<button
                   className="schoolList-btn"
                   onClick={() => this.props.saveFavorite(this.props.details)}
                 >
-                  Save school
-                </button>
+                  Add to My Schools
+                </button>)}
+                {!this.props.page &&(<button 
+                  className="schoolList-btn" 
+                  onClick={() => this.props.deleteFavorite(this.props.details._id)}>
+                  Remove from list
+                </button>)}
                 <button
                   className="schoolList-btn"
                   onClick={(e) => this.openInputCommentModal()}
