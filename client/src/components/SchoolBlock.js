@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import axios from "axios";
 import CommentsList from "./Comment/CommentsList";
 import CommentInput from "./Comment/CommentInput";
-import { Link} from 'react-router-dom';
-import StarRating from 'react-star-ratings';
+import { Link } from "react-router-dom";
+import StarRating from "react-star-ratings";
 import { compareSync } from "bcryptjs";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 export class SchoolBlock extends Component {
   constructor(props) {
@@ -36,7 +36,14 @@ export class SchoolBlock extends Component {
         <div className="schoolListItem">
           <div className="school_wrapper">
             <div className="school-details">
-            <Link to={`/school/${details._id}`}><p className="schoolName" style={{textDecoration:"underline"}}>{details.name}</p></Link>  
+              <Link to={`/school/${details._id}`}>
+                <p
+                  className="schoolName"
+                  style={{ textDecoration: "underline" }}
+                >
+                  {details.name}
+                </p>
+              </Link>
               <p className="schoolContact">{details.adress_str}</p>
               <p className="schoolContact">Email: {details.email}</p>
               <p className="schoolContact">Phone: {details.phone}</p>
@@ -133,7 +140,16 @@ export class SchoolBlock extends Component {
                   </fieldset>
                 </form> */}
 
-            <StarRating  name="small-rating" caption="Small!" size={10} totalStars={5} starDimension="20px"  rating={details.rating} starRatedColor="#B71C1C" changeRating={this.setNewRating}/>
+                <StarRating
+                  name="small-rating"
+                  caption="Small!"
+                  size={10}
+                  totalStars={5}
+                  starDimension="20px"
+                  rating={details.rating}
+                  starRatedColor="rgb(183, 28, 28, 0.8)"
+                  changeRating={this.setNewRating}
+                />
 
                 <div className="review-average">
                   <p>
@@ -233,29 +249,29 @@ export class SchoolBlock extends Component {
   //               </div>
   // //////////////////
 
- setNewRating = (rating) =>  {
-  if(this.context.isAuthenticated) {
-  axios
-    .post("/schools/rating", {
-      score: rating,
-      schoolid: this.props.details._id,
-      userid: this.props.userid,
-    })
-    .then((res) => {
-      toast.success("Thank you for sharing your opinion!");
-      console.log("new rating: " + JSON.stringify(res.data));
-    })
-    .catch((err) => {
-      toast.error("Something went wrong. Try again.");
-      console.log(err.response);
-    });
-  }else{
-    toast.error('Only authorized users can leave review. Please SIGN IN')
-    setTimeout(()=>{
-      this.props.history.push('/login');
-    },5000)
-  }
- }
+  setNewRating = (rating) => {
+    if (this.context.isAuthenticated) {
+      axios
+        .post("/schools/rating", {
+          score: rating,
+          schoolid: this.props.details._id,
+          userid: this.props.userid,
+        })
+        .then((res) => {
+          toast.success("Thank you for sharing your opinion!");
+          console.log("new rating: " + JSON.stringify(res.data));
+        })
+        .catch((err) => {
+          toast.error("Something went wrong. Try again.");
+          console.log(err.response);
+        });
+    } else {
+      toast.error("Only authorized users can leave review. Please SIGN IN");
+      setTimeout(() => {
+        this.props.history.push("/login");
+      }, 5000);
+    }
+  };
 
   getCommentsList = async (e) => {
     e.preventDefault();
