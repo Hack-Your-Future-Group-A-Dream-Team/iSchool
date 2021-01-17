@@ -69,7 +69,6 @@ const Navbar = (props) => {
       </>
     );
   };
-
   const authenticatedNavBar = () => {
     return (
       <>
@@ -98,22 +97,39 @@ const Navbar = (props) => {
             <p className="icon">Search School</p>
           </Link>
         </li>
-        <li className="nav-item">
-          <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
-            <i className="fas fa-synagogue icons"></i>
-            <p className="icon">My Schools</p>
-          </Link>
-        </li>
-        <li className="nav-item">
+          {user.role === "school" ? (
+            <li className="nav-item">
+            <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
+              {" "}
+              <i className="fas fa-synagogue icons"></i>
+              <p className="icon">My Schools</p>
+            </Link>
+          </li>
+          ) : null}
+
+          {user.role === "user" ? (
+            <li className="nav-item">
+            <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
+              {" "}
+              <i className="fas fa-synagogue icons"></i>
+              <p className="icon">My Schools</p>
+            </Link>
+          </li>
+          ) : null}
+          
+        
+        
           {user.role === "admin" ? (
+            <li className="nav-item">
             <Link to="/admin" className="nav-links" onClick={closeMobileMenu}>
               {" "}
               Admin
             </Link>
+            </li>
           ) : null}
-        </li>
-        <li className="nav-item">
+        
           {user.role === "school" ? (
+            <li className="nav-item">
             <Link
               to="/addschool"
               className="nav-links"
@@ -123,8 +139,10 @@ const Navbar = (props) => {
               <i className="fas fa-plus-circle icons"></i>
               <p className="icon">Add School</p>
             </Link>
+            </li>
           ) : null}
           {user.role === "admin" ? (
+            <li className="nav-item">
             <Link
               to="/addschool"
               className="nav-links"
@@ -133,8 +151,8 @@ const Navbar = (props) => {
               {" "}
               Add School{" "}
             </Link>
+            </li>
           ) : null}
-        </li>
 
         <li className="nav-item">
           <button
