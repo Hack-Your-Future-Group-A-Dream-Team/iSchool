@@ -12,7 +12,8 @@ class MySchools extends Component {
         super(props);
         this.state = {
           favoriteSchools: [],
-          isSearchPage:false
+          isSearchPage:false,
+          isNotEmpty:true
         };
         this.sendRating = this.sendRating.bind(this);
         this.deleteFavorite = this.deleteFavorite.bind(this);
@@ -32,7 +33,8 @@ class MySchools extends Component {
          console.log(favSchools)
 
         this.setState({       
-          favoriteSchools:favSchools.favorites 
+          favoriteSchools:favSchools.favorites,
+          isNotEmpty:Boolean(favSchools.favorites.length)
         });
       })}
 
@@ -88,6 +90,7 @@ class MySchools extends Component {
           <div className="searchField">
             <ToastContainer />    
             <div className="schoolList">
+              {!this.state.isNotEmpty && (<h3>It seems that there are no schools saved in your page.<br /> You can add them by clicking "Add to My School List" button in Search Page.</h3>)}
             {this.state.favoriteSchools.map((data) => {
             return (
               <Fragment key={data._id}>
