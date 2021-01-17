@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchoolBlock from "./SchoolBlock";
 import { withRouter } from 'react-router-dom';
+import * as ReactBootStrap from "react-bootstrap";
 
 
 class Schools extends Component {
@@ -25,7 +26,8 @@ class Schools extends Component {
         componentRestrictions: { country: ['be'] },
         types: ['address']
       },
-      isSearchPage:true
+      isSearchPage:true,
+      isLoaded: false,
     };
 
     this.sendRating = this.sendRating.bind(this);
@@ -42,6 +44,7 @@ class Schools extends Component {
 
       this.setState({
         data: allSchools,
+        isLoaded: true
       });
     });
   }
@@ -183,7 +186,11 @@ class Schools extends Component {
     }
 
     return (
-      <div className="searchField">
+      <div>
+      {!this.state.isLoaded ? ( <div className="schoolList d-flex justify-content-center align-items-center mt-5">
+            <ReactBootStrap.Spinner animation="border" variant="danger"/>
+            </div> ) : (
+              <div className="searchField">
         <ToastContainer />
         <div>
           <PlacesAutocomplete
@@ -277,6 +284,9 @@ class Schools extends Component {
             );
           })}
         </div>
+      </div>
+            )
+            } 
       </div>
     );
   }
