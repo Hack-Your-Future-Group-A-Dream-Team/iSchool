@@ -78,7 +78,7 @@ const AboutSchoolInfo = (props) => {
             <ListGroupItem><span style={{marginRight:"10px"}}>AREA:</span>  {school.areas}</ListGroupItem>
             <ListGroupItem><span style={{marginRight:"10px"}}>RECEPTION CLASSES:</span>  {school.languageClasses ?<i className="fas fa-thumbs-up" style={{color:'#B71C1C'}}></i> : <i className="fas fa-thumbs-down" style={{color:'#B71C1C'}}></i>}</ListGroupItem>
             <ListGroupItem><span style={{marginRight:"10px"}}>NETWORK:</span>  {school.network}</ListGroupItem>
-            <ListGroupItem><span style={{marginRight:"10px"}}>RATING:</span> <span style={{ color:"#B71C1C", marginRight:"10px"}}>({school.rating})</span>
+            <ListGroupItem><span style={{marginRight:"10px"}}>RATING:</span>
             <div><StarRating  name="small-rating" caption="Small!" size={10} totalStars={5} rating={school.rating} starDimension="20px"  starRatedColor="#B71C1C"/></div>
             </ListGroupItem>
             <ListGroupItem>

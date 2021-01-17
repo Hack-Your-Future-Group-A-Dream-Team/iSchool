@@ -123,6 +123,7 @@ class Schools extends Component {
     if(this.context.isAuthenticated) {
     const formEvent = e.target;
     const dataForm = new FormData(formEvent);
+    console.log(dataForm)
     const dataFormResult = Object.fromEntries(dataForm.entries());
     console.log(dataFormResult);
 
@@ -138,7 +139,7 @@ class Schools extends Component {
       })
       .catch((err) => {
         toast.error("Something went wrong. Try again.");
-        console.log(err);
+        console.log(err.response);
       });
     }else{
       toast.error('Only authorized users can leave review. Please SIGN IN')

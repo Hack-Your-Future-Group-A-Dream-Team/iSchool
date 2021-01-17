@@ -3,6 +3,11 @@ import axios from "axios";
 import CommentsList from "./Comment/CommentsList";
 import CommentInput from "./Comment/CommentInput";
 import { Link} from 'react-router-dom';
+import StarRating from 'react-star-ratings';
+import { compareSync } from "bcryptjs";
+import { ToastContainer, toast } from "react-toastify";
+import { AuthContext } from "../Context/AuthContext";
+import { withRouter } from 'react-router-dom';
 
 export class SchoolBlock extends Component {
   constructor(props) {
@@ -13,12 +18,13 @@ export class SchoolBlock extends Component {
       showModal: false,
       qty: 0,
     };
-    
   }
 
   static getDerivedStateFromProps(props, state) {
     return { qty: props.details.comments };
   }
+
+  static contextType = AuthContext;
 
   render() {
     const details = this.props.details;
@@ -30,22 +36,17 @@ export class SchoolBlock extends Component {
         <div className="schoolListItem">
           <div className="school_wrapper">
             <div className="school-details">
-            <p className="schoolName">{details.name}<Link style={{color:"#000051", background:"#fff", marginLeft:"10px"}}to={`/school/${details._id}`}><i style={{fontSize:"25px"}}className="fas fa-arrow-circle-right"></i></Link></p>  
+            <Link style={{color:"#000051", background:"#fff", marginLeft:"10px"}}to={`/school/${details._id}`}><p className="schoolName">{details.name}</p></Link>  
               <p className="schoolContact">{details.adress_str}</p>
               <p className="schoolContact">Email: {details.email}</p>
               <p className="schoolContact">Phone: {details.phone}</p>
               <div className="btn-container">
-                {this.props.page && (<button
+                <button
                   className="schoolList-btn"
                   onClick={() => this.props.saveFavorite(this.props.details)}
                 >
-                  Add to My Schools
-                </button>)}
-                {!this.props.page &&(<button 
-                  className="schoolList-btn" 
-                  onClick={() => this.props.deleteFavorite(this.props.details._id)}>
-                  Remove from list
-                </button>)}
+                  Save school
+                </button>
                 <button
                   className="schoolList-btn"
                   onClick={(e) => this.openInputCommentModal()}
@@ -57,7 +58,7 @@ export class SchoolBlock extends Component {
 
             <div className="schoolListItem-rightSide">
               <div className="review-container">
-                <form onSubmit={this.props.sendRating}>
+                {/* <form onSubmit={this.props.sendRating}>
                   <fieldset className="ratingForm">
                     <div className="addRatingStarContainer">
                       <input
@@ -130,12 +131,14 @@ export class SchoolBlock extends Component {
                       ></input>
                     </div>
                   </fieldset>
-                </form>
+                </form> */}
+
+            <StarRating  name="small-rating" caption="Small!" size={10} totalStars={5} starDimension="20px"  rating={details.rating} starRatedColor="#B71C1C" changeRating={this.setNewRating}/>
 
                 <div className="review-average">
                   <p>
                     {" "}
-                    <span>({details.rating})</span>
+                    <span>(Current Rating is {details.rating})</span>
                   </p>
                 </div>
               </div>
@@ -230,6 +233,30 @@ export class SchoolBlock extends Component {
   //               </div>
   // //////////////////
 
+ setNewRating = (rating) =>  {
+  if(this.context.isAuthenticated) {
+  axios
+    .post("/schools/rating", {
+      score: rating,
+      schoolid: this.props.details._id,
+      userid: this.props.userid,
+    })
+    .then((res) => {
+      toast.success("Thank you for sharing your opinion!");
+      console.log("new rating: " + JSON.stringify(res.data));
+    })
+    .catch((err) => {
+      toast.error("Something went wrong. Try again.");
+      console.log(err.response);
+    });
+  }else{
+    toast.error('Only authorized users can leave review. Please SIGN IN')
+    setTimeout(()=>{
+      this.props.history.push('/login');
+    },5000)
+  }
+ }
+
   getCommentsList = async (e) => {
     e.preventDefault();
 
@@ -260,4 +287,4 @@ export class SchoolBlock extends Component {
   };
 }
 
-export default SchoolBlock;
+export default withRouter(SchoolBlock);
