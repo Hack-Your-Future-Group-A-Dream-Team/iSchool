@@ -63,7 +63,7 @@ const RegisterSchool = () => {
   };
 
   const onFieldsChange = (e) => {
-    const fields = e.map((field) => field.value);
+    const fields = e === null ? [] : e.map((field) => field.value);
     setSchool({ ...school, fieldsOfStudy: [...fields] });
   };
 
@@ -193,6 +193,7 @@ const RegisterSchool = () => {
       ...provided,
       padding: "1px 2px",
       height: 30,
+      overflow: "visible"
     }),
     placeholder: () => ({
       fontFamily: "Ubuntu",
