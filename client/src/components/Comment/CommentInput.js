@@ -50,9 +50,6 @@ class CommentInput extends Component {
 
             <Form.Group>
               <div className="button_holder">
-                <Button className="send-btn" size="md" type="submit">
-                  Submit
-                </Button>
                 <Button
                   className="close-btn"
                   size="md"
@@ -61,6 +58,9 @@ class CommentInput extends Component {
                   }}
                 >
                   Close
+                </Button>
+                <Button className="send-btn" size="md" type="submit">
+                  Submit
                 </Button>
               </div>
             </Form.Group>

@@ -87,6 +87,9 @@
 
 .send-btn {
     background-color: rgb(0, 0, 81, 0.8);
+}
+
+.close-btn {
     margin-right: 2em;
 }
 
