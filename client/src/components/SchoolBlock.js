@@ -29,7 +29,7 @@ export class SchoolBlock extends Component {
         <div className="schoolListItem">
           <div className="school_wrapper">
             <div className="school-details">
-            <p className="schoolName">{details.name}<Link style={{color:"#000051", background:"#fff", marginLeft:"10px"}}to={`/school/${details._id}`}><i style={{fontSize:"25px"}}className="fas fa-arrow-circle-right"></i></Link></p>  
+            <Link to={`/school/${details._id}`}><p className="schoolName" style={{textDecoration:"underline"}}>{details.name}</p></Link>  
               <p className="schoolContact">{details.adress_str}</p>
               <p className="schoolContact">Email: {details.email}</p>
               <p className="schoolContact">Phone: {details.phone}</p>
