@@ -12,6 +12,7 @@ const userRouter = require('./routes/User');
 const comments_router = require('./routes/comments');
 const favorites_router = require('./routes/favorites.js');
 const rating_router = require('./routes/rating');
+const schoolRouter = require('./routes/school');
 const dbconnect = require('./utils/db');
 
 
@@ -25,6 +26,7 @@ const buildPath = path.join(__dirname + '/client' + '/build');
 app.use(express.static(buildPath));
 
 app.use('/user',userRouter);
+app.use('/school',schoolRouter);
 
 dbconnect();
 mongoose.Promise = global.Promise;
@@ -51,7 +53,7 @@ app.get('/closestschools', (req, res, next) => {
     School.find({
         location: {
             $near: {
-                $maxDistance: 1000,
+                $maxDistance: 5000,
                 $geometry: {
                     type: 'Point',
                     coordinates: [longitude, latitude]

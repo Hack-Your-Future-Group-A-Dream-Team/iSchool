@@ -51,13 +51,10 @@ const getCommentList = async (req, res) => {
       schoolid: req.query.schoolid,
     })
       .sort("-created")
-      .populate("userid", ["firstName", "lastName"]);
-
-    console.log(comments);
+      .populate("userid", ["firstName", "lastName", "role"]);
 
     res.status(200).json({ comments: comments });
   } catch (e) {
-    console.log(e);
     return res.status(500).json({ error: "Error fetching comments" });
   }
 };

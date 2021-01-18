@@ -29,7 +29,7 @@ class SearchSchool extends Component {
         return(
             <Fragment>
                 {console.log(this.state.filters)}
-                <div style={inputStyle}>
+                <div className="wholeContainer" style={inputStyle}>
                     
                     <Filters updateFilter={this.updateFilter} />
                     <Schools getFilter={this.state.filters} />

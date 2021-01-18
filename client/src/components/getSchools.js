@@ -9,14 +9,23 @@ import { AuthContext } from "../Context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchoolBlock from "./SchoolBlock";
+import { withRouter } from "react-router-dom";
 
-export default class Schools extends Component {
+class Schools extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
       address: "",
       hasSearchResult: true,
+      hasFilteredResult: true,
+      isSearchResult: false,
+      searchOptions: {
+        componentRestrictions: { country: ["be"] },
+        types: ["address"],
+      },
+      isSearchPage: true,
+      new_rating: 0,
     };
 
     this.sendRating = this.sendRating.bind(this);
@@ -53,11 +62,13 @@ export default class Schools extends Component {
           this.setState({
             data: data,
             hasSearchResult: false,
+            isSearchResult: false,
           });
         } else {
           this.setState({
             data: data,
             hasSearchResult: true,
+            isSearchResult: true,
           });
         }
       });
@@ -72,6 +83,7 @@ export default class Schools extends Component {
         this.setState({
           data: allSchools,
           hasSearchResult: true,
+          isSearchResult: false,
         });
       });
     }
@@ -104,26 +116,35 @@ export default class Schools extends Component {
   }
 
   // send rating
-  sendRating(e) {
+  async sendRating(e) {
     e.preventDefault();
-    const formEvent = e.target;
+    if (this.context.isAuthenticated) {
+      const formEvent = e.target;
+      const dataForm = new FormData(formEvent);
+      const dataFormResult = Object.fromEntries(dataForm.entries());
+      console.log(dataFormResult);
 
-    const dataForm = new FormData(formEvent);
-    const dataFormResult = Object.fromEntries(dataForm.entries());
-    console.log(dataFormResult);
-
-    axios
-      .post("/schools/rating", {
-        score: dataFormResult.score,
-        schoolid: dataFormResult.schoolid,
-        userid: dataFormResult.userid,
-      })
-      .then((res) => {
-        console.log("new rating: " + JSON.stringify(res.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      axios
+        .post("/schools/rating", {
+          score: dataFormResult.score,
+          schoolid: dataFormResult.schoolid,
+          userid: dataFormResult.userid,
+        })
+        .then((res) => {
+          this.setState({ new_rating: res.data.new_rating });
+          toast.success("Thank you for sharing your opinion!");
+          console.log("new rating: " + JSON.stringify(res.data));
+        })
+        .catch((err) => {
+          toast.error("Something went wrong. Try again.");
+          console.log(err);
+        });
+    } else {
+      toast.error("Only authorized users can leave review. Please SIGN IN");
+      setTimeout(() => {
+        this.props.history.push("/login");
+      }, 5000);
+    }
   }
 
   render() {
@@ -153,6 +174,9 @@ export default class Schools extends Component {
           console.log(filteredSchools, "during");
         }
       });
+      toast.success(
+        `We found ${filteredSchools.length} school(s) matches your criteria`
+      );
     }
 
     return (
@@ -163,6 +187,7 @@ export default class Schools extends Component {
             value={this.state.address}
             onChange={this.handleChange}
             onSelect={this.handleSelect}
+            searchOptions={this.state.searchOptions}
           >
             {({
               getInputProps,
@@ -174,7 +199,7 @@ export default class Schools extends Component {
                 <div className="searchBar">
                   <input
                     {...getInputProps({
-                      placeholder: "Enter address of the school",
+                      placeholder: "Enter your address",
                     })}
                     className="searchBarInput"
                   />
@@ -210,7 +235,7 @@ export default class Schools extends Component {
                 <br />
                 Sorry,
                 <br />
-                No school has been found in the 1 km radius of the address you
+                No school has been found in the 5 km radius of the address you
                 have typed.
                 <br />
                 For the moment our service area is limited to Ghent region.
@@ -227,6 +252,15 @@ export default class Schools extends Component {
             </div>
           )}
 
+          {this.state.isSearchResult && (
+            <div className="proximity">
+              <h4>
+                The results given below are sorted by the proximity to the given
+                address.
+              </h4>
+            </div>
+          )}
+
           {filteredSchools.map((data) => {
             return (
               <Fragment key={data._id}>
@@ -234,7 +268,9 @@ export default class Schools extends Component {
                   details={data}
                   userid={this.context.user._id}
                   sendRating={this.sendRating}
+                  new_rating={this.state.new_rating}
                   saveFavorite={this.saveFavorite}
+                  page={this.state.isSearchPage}
                 ></SchoolBlock>
               </Fragment>
             );
@@ -244,3 +280,5 @@ export default class Schools extends Component {
     );
   }
 }
+
+export default withRouter(Schools);
