@@ -19,27 +19,72 @@ export default class Filters extends Component {
     this.state = {
       languageClasses: false,
       rating: 0,
-      network: "",
-      areas: "",
-    };
+      network: [],
+      areas: []
+    }
 
-    this.addFilter = this.addFilter.bind(this);
-    this.removeFilters = this.removeFilters.bind(this);
+    this.addLanguageFilter = this.addLanguageFilter.bind(this)
+    this.addRatingFilter = this.addRatingFilter.bind(this)
+    this.addNetworkFilter = this.addNetworkFilter.bind(this)
+    this.addAreasFilter = this.addAreasFilter.bind(this)
+    this.removeFilters = this.removeFilters.bind(this)
+  };
+
+  addLanguageFilter(e) {
+    this.setState({
+      [e.target.name]: e.target.checked
+    });
   }
 
-  addFilter(e) {
+  addRatingFilter (e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
 
+  addNetworkFilter (e) {
+    let networkValue = e.target.value;
+
+    if(e.target.checked) {
+      if(!this.state.network.includes(networkValue)) {
+        this.setState(prevState => ({
+          network: [...prevState.network, networkValue]
+        }))
+      } 
+    } else {
+      this.setState(prevState => ({
+        network: prevState.network.filter(type => type != networkValue)
+      }))
+    }
+  };
+
+  addAreasFilter(e) {
+    let areasValue = e.target.value;
+
+    if(e.target.checked) {
+      if(!this.state.areas.includes(areasValue)) {
+        this.setState(prevState => ({
+          areas: [...prevState.areas, areasValue]
+        }))
+      } 
+    } else {
+      this.setState(prevState => ({
+        areas: prevState.areas.filter(type => type != areasValue)
+      }))
+    }
+  }
+
   removeFilters() {
+    // reset state
     this.setState({
       languageClasses: false,
       rating: 0,
-      network: "",
-      areas: "",
-    });
+      network: [],
+      areas: []
+    })
+    // remove checkboxes
+    document.querySelectorAll('input[type=checkbox]').forEach( el => el.checked = false );
+    document.querySelectorAll('input[type=radio]').forEach( el => el.checked = false );
   }
 
   render() {
@@ -47,200 +92,89 @@ export default class Filters extends Component {
       <Fragment>
         {console.log(this.state)}
         <div className="filterContainer">
-          <h1>Filters</h1>
 
-          {/* LANGUAGE */}
-          <div className="filterItem">
-            <fieldset>
-              <legend>Language classes</legend>
-              <input
-                name="languageClasses"
-                type="radio"
-                value="true"
-                id="LC-true"
-                checked={this.state.languageClasses == "true"}
-                onChange={this.addFilter}
-              ></input>
-              <label for="LC-true">Yes</label>
-              <br></br>
-
-              <input
-                name="languageClasses"
-                type="radio"
-                value="false"
-                id="LC-false"
-                checked={this.state.languageClasses == "false"}
-                onChange={this.addFilter}
-              ></input>
-              <label for="LC-false">No</label>
-            </fieldset>
-          </div>
-          {/* RATING */}
-          <div className="filterItem">
-            <fieldset>
-              <legend>Rating</legend>
-              <div className="starRating">
-                <input
-                  className="inputStar"
-                  id="r1"
-                  type="radio"
-                  name="rating"
-                  value="5"
-                  checked={this.state.rating == 5}
-                  onChange={this.addFilter}
-                ></input>
-                <label className="labelStar far fa-star" for="r1"></label>
-                <input
-                  className="inputStar"
-                  id="r2"
-                  type="radio"
-                  name="rating"
-                  value="4"
-                  checked={this.state.rating == 4}
-                  onChange={this.addFilter}
-                ></input>
-                <label className="labelStar far fa-star" for="r2"></label>
-                <input
-                  className="inputStar"
-                  id="r3"
-                  type="radio"
-                  name="rating"
-                  value="3"
-                  checked={this.state.rating == 3}
-                  onChange={this.addFilter}
-                ></input>
-                <label className="labelStar far fa-star" for="r3"></label>
-                <input
-                  className="inputStar"
-                  id="r4"
-                  type="radio"
-                  name="rating"
-                  value="2"
-                  checked={this.state.rating == 2}
-                  onChange={this.addFilter}
-                ></input>
-                <label className="labelStar far fa-star" for="r4"></label>
-                <input
-                  className="inputStar"
-                  id="r5"
-                  type="radio"
-                  name="rating"
-                  value="1"
-                  checked={this.state.rating == 1}
-                  onChange={this.addFilter}
-                ></input>
-                <label className="labelStar far fa-star" for="r5"></label>
+            <h1>Filters</h1>
+            
+              {/* LANGUAGE */}
+              <div className="filterItem">
+                <fieldset>
+                  <legend>Reception classes for Dutch learners</legend>
+                    <input name="languageClasses" type="checkbox" id="LC-true"
+                    checked={this.state.languageClasses}
+                    onChange={this.addLanguageFilter}
+                    ></input>
+                    <label className="labelCheckbox" for="LC-true">Yes</label><br></br>
+                </fieldset>
               </div>
-            </fieldset>
-          </div>
-          {/* NETWORK */}
-          <div className="filterItem">
-            <fieldset>
-              <legend>School Network</legend>
-              <input
-                name="network"
-                type="radio"
-                value="Catholic Network"
-                id="network"
-                checked={this.state.network == "Catholic Network"}
-                onChange={this.addFilter}
-              ></input>
-              <label for="network">Catholic Network</label>
-              <br></br>
+              {/* RATING */}
+              <div className="filterItem">
+                <fieldset>
+                  <legend>Rating</legend>
+                    <div className="starRating">
+                      <input className="inputStar" id="r1" type="radio" name="rating" value="5"
+                      onChange={this.addRatingFilter}></input>
+                      <label className="labelStar far fa-star" for="r1"></label>
+                      <input className="inputStar" id="r2" type="radio" name="rating" value="4"
+                      onChange={this.addRatingFilter}></input>
+                      <label className="labelStar far fa-star" for="r2"></label>
+                      <input className="inputStar" id="r3" type="radio" name="rating" value="3"
+                      onChange={this.addRatingFilter}></input>
+                      <label className="labelStar far fa-star" for="r3"></label>
+                      <input className="inputStar" id="r4" type="radio" name="rating" value="2"
+                      onChange={this.addRatingFilter}></input>
+                      <label className="labelStar far fa-star" for="r4"></label>
+                      <input className="inputStar" id="r5" type="radio" name="rating" value="1"
+                      onChange={this.addRatingFilter}></input>
+                      <label className="labelStar far fa-star" for="r5"></label>
+                    </div>
+                </fieldset>
+              </div>
+              {/* NETWORK */}
+              <div className="filterItem">
+                <fieldset>
+                  <legend>School Network</legend>
+                  <input name="network" type="checkbox" data="Catholic Network" value="Catholic Network" id="networkCatholic"
+                  onChange={this.addNetworkFilter}
+                  ></input>
+                  <label className="labelCheckbox" for="networkCatholic">Catholic Network</label><br></br>
 
-              <input
-                name="network"
-                type="radio"
-                value="Municipality Schools"
-                id="network"
-                checked={this.state.network == "Municipality Schools"}
-                onChange={this.addFilter}
-              ></input>
-              <label for="network">Municipality Schools</label>
-              <br></br>
+                  <input name="network" type="checkbox" data="Municipality Schools" value="Municipality Schools" id="networkMunicipality"
+                  onChange={this.addNetworkFilter}></input>
+                  <label className="labelCheckbox" for="networkMunicipality">Municipality Schools</label><br></br>
 
-              <input
-                name="network"
-                type="radio"
-                value="Private schools"
-                id="network"
-                checked={this.state.network == "Private schools"}
-                onChange={this.addFilter}
-              ></input>
-              <label for="network">Private schools</label>
-              <br></br>
+                  <input name="network" type="checkbox" data="Private schools" value="Private schools" id="networkPrivate"
+                  onChange={this.addNetworkFilter}></input>
+                  <label className="labelCheckbox" for="networkPrivate">Private schools</label><br></br>
 
-              <input
-                name="network"
-                type="radio"
-                value="GO Network"
-                id="network"
-                checked={this.state.network == "GO Network"}
-                onChange={this.addFilter}
-              ></input>
-              <label for="network">GO Network</label>
-            </fieldset>
-          </div>
-          {/* AREAS */}
-          <div className="filterItem">
-            <fieldset>
-              <legend>School Field</legend>
-              <input
-                name="areas"
-                type="radio"
-                value="General"
-                id="areas"
-                checked={this.state.areas == "General"}
-                onChange={this.addFilter}
-              ></input>
-              <label for="areas">General</label>
-              <br></br>
+                  <input name="network" type="checkbox" data="GO Network" value="GO Network" id="networkGo"
+                  onChange={this.addNetworkFilter}></input>
+                  <label className="labelCheckbox" for="networkGo">GO Network</label>
+                </fieldset>
+              </div>
+              {/* AREAS */}
+              <div className="filterItem">
+                <fieldset>
+                  <legend>School Field</legend>
+                  <input name="areas" type="checkbox" value="General" id="areasGeneral"
+                  onChange={this.addAreasFilter}></input>
+                  <label className="labelCheckbox" for="areasGeneral">General</label><br></br>
 
-              <input
-                name="areas"
-                type="radio"
-                value="Technical"
-                id="areas"
-                checked={this.state.areas == "Technical"}
-                onChange={this.addFilter}
-              ></input>
-              <label for="areas">Technical</label>
-              <br></br>
+                  <input name="areas" type="checkbox" value="Technical" id="areasTechnical"
+                  onChange={this.addAreasFilter}></input>
+                  <label className="labelCheckbox" for="areasTechnical">Technical</label><br></br>
 
-              <input
-                name="areas"
-                type="radio"
-                value="Vocational"
-                id="areas"
-                checked={this.state.areas == "Vocational"}
-                onChange={this.addFilter}
-              ></input>
-              <label for="areas">Vocational</label>
-              <br></br>
+                  <input name="areas" type="checkbox" value="Vocational" id="areasVocational"
+                  onChange={this.addAreasFilter}></input>
+                  <label className="labelCheckbox" for="areasVocational">Vocational</label><br></br>
 
-              <input
-                name="areas"
-                type="radio"
-                value="Art Secondary Education"
-                id="areas"
-                checked={this.state.areas == "Art Secondary Education"}
-                onChange={this.addFilter}
-              ></input>
-              <label for="areas">Art Secondary Education</label>
-            </fieldset>
+                  <input name="areas" type="checkbox" value="Art Secondary Education" id="areasArt"
+                  onChange={this.addAreasFilter}></input>
+                  <label className="labelCheckbox" for="areasArt">Art Secondary Education</label>
+                </fieldset>
 
-            <button
-              style={btnStyle}
-              onClick={() => {
-                this.props.updateFilter(this.state);
-              }}
-            >
-              Search
-            </button>
-            <button style={btnStyle} onClick={this.removeFilters}>
-              Reset filters
-            </button>
-          </div>
+                <button style={btnStyle} onClick={() => { this.props.updateFilter(this.state) }}>Search</button>
+                <button style={btnStyle} onClick={ this.removeFilters }>Reset filters</button>
+              </div>
         </div>
       </Fragment>
     );
