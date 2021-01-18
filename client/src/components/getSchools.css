@@ -114,9 +114,10 @@
 
 .school-comments-qty > p > span,
 .review-average p > span {
-  color: rgb(183, 28, 28, 0.8);
+  color: #000051;
   font-size: 0.8rem;
   font-weight: bold;
+  margin-left: 15px;
 }
 
 .school-details {

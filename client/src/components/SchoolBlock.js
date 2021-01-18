@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import axios from "axios";
 import CommentsList from "./Comment/CommentsList";
 import CommentInput from "./Comment/CommentInput";
-import { Link } from "react-router-dom";
+import { Link} from 'react-router-dom';
+import StarRating from 'react-star-ratings';
+import { AuthContext } from "../Context/AuthContext";
+import { withRouter } from 'react-router-dom';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 export class SchoolBlock extends Component {
   constructor(props) {
@@ -16,6 +20,12 @@ export class SchoolBlock extends Component {
       commentsIncrement: 0,
     };
   }
+
+  static getDerivedStateFromProps(props, state) {
+    return { qty: props.details.comments };
+  }
+
+  static contextType = AuthContext;
 
   render() {
     const details = this.props.details;
@@ -39,6 +49,7 @@ export class SchoolBlock extends Component {
               <p className="schoolContact">Email: {details.email}</p>
               <p className="schoolContact">Phone: {details.phone}</p>
               <div className="btn-container">
+
                 {this.props.page && (
                   <button
                     className="schoolList-btn"
@@ -68,7 +79,9 @@ export class SchoolBlock extends Component {
 
             <div className="schoolListItem-rightSide">
               <div className="review-container">
-                <form onSubmit={this.updateScore}>
+
+                {/* <form onSubmit={this.props.sendRating}>
+
                   <fieldset className="ratingForm">
                     <div className="addRatingStarContainer">
                       <input
@@ -141,18 +154,22 @@ export class SchoolBlock extends Component {
                       ></input>
                     </div>
                   </fieldset>
-                </form>
+                </form> */}
+
+            <StarRating  name="small-rating" caption="Small!" size={10} totalStars={5} starDimension="20px"  rating={details.rating} starRatedColor="#B71C1C" changeRating={this.setNewRating}/>
 
                 <div className="review-average">
                   <p>
                     {" "}
+
                     <span>
-                      (
+                      ( Current rating is {" "}
                       {this.props.new_rating === 0
                         ? this.props.details.rating
                         : this.props.new_rating}
                       )
                     </span>
+
                   </p>
                 </div>
               </div>
@@ -200,6 +217,30 @@ export class SchoolBlock extends Component {
     await this.props.sendRating(e);
   };
 
+ setNewRating = (rating) =>  {
+  if(this.context.isAuthenticated) {
+  axios
+    .post("/schools/rating", {
+      score: rating,
+      schoolid: this.props.details._id,
+      userid: this.props.userid,
+    })
+    .then((res) => {
+      toast.success("Thank you for sharing your opinion!");
+      console.log("new rating: " + JSON.stringify(res.data));
+    })
+    .catch((err) => {
+      toast.error("Something went wrong. Try again.");
+      console.log(err.response);
+    });
+  }else{
+    toast.error('Only authorized users can leave review. Please SIGN IN')
+    setTimeout(()=>{
+      this.props.history.push('/login');
+    },5000)
+  }
+ }
+
   getCommentsList = async (e) => {
     e.preventDefault();
 
@@ -241,4 +282,4 @@ export class SchoolBlock extends Component {
   };
 }
 
-export default SchoolBlock;
+export default withRouter(SchoolBlock);
