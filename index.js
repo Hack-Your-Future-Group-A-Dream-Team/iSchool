@@ -76,12 +76,8 @@ app.use('/schools/rating', rating_router);
 // add favorites schools list to the user
 app.use('/user/favorites', favorites_router.favorites);
 
-// app.get('*', (request, response) => {
-// 	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-// });
-
-app.get('*',(req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 
