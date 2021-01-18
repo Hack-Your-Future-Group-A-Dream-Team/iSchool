@@ -5,9 +5,9 @@ const School = require('../models/School');
 
 // get specific school
 
-schoolRouter.get('/:id', async(req, res, next)=>{
+schoolRouter.get('/info', async(req, res, next)=>{
     try {
-        const { id } = req.params;
+        const id  = req.query.id;
         School.find({_id: id}).then((school) => {
         res.send(school)
         }).catch(next);

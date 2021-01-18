@@ -37,7 +37,7 @@ export class SchoolBlock extends Component {
         <div className="schoolListItem">
           <div className="school_wrapper">
             <div className="school-details">
-              <Link to={`/school/${details._id}`}>
+              <Link to={`/school/info/${details._id}`}>
                 <p
                   className="schoolName"
                   style={{ textDecoration: "underline" }}
