@@ -1,0 +1,18 @@
+.myschool {
+    min-height: calc(100vh - 298px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.myschool .myschool-list{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.myschool .no-fav-header {
+    font-size: 22px;
+}

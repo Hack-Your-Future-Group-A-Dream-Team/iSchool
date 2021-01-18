@@ -1,11 +1,10 @@
 import React, { Fragment, Component } from 'react';
 import axios from 'axios';
-import './getSchools.css';
+import './myschool.css';
 import {AuthContext} from '../Context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SchoolBlock from "./SchoolBlock";
-import { withRouter } from 'react-router-dom';
 
 class MySchools extends Component {
     constructor(props) {
@@ -87,10 +86,10 @@ class MySchools extends Component {
     render() {
            
         return (
-          <div className="searchField">
+          <div className="myschool">
             <ToastContainer />    
-            <div className="schoolList">
-              {!this.state.isNotEmpty && (<h3>It seems that there are no schools saved in your page.<br /> You can add them by clicking "Add to My School List" button in Search Page.</h3>)}
+            <div className="myschool-list">
+              {!this.state.isNotEmpty && (<h3 className="no-fav-header">It seems that there are no schools saved in your page.<br /> You can add them by clicking "Add to My School List" button in Search Page.</h3>)}
             {this.state.favoriteSchools.map((data) => {
             return (
               <Fragment key={data._id}>
