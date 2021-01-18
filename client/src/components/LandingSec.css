@@ -62,9 +62,9 @@
         display: block;
         text-decoration: none;
     }
-    .btn {
+    /* .btn {
         width: 60%;
-    }
+    } */
     .student>img {
         width: 320px;
         height: auto;
