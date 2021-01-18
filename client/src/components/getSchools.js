@@ -149,7 +149,12 @@ class Schools extends Component {
     if (this.props.getFilter) {
 
       Object.entries(this.props.getFilter).forEach(([key, value]) => {
+        if(value.length == 0) {
+          value = false;
+        }
+
         if (value) {
+          console.log("key: ", key, "value: ", value);
           
           filteredSchools = filteredSchools.filter(
             school => {

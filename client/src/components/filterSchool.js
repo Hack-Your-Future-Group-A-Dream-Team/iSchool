@@ -75,12 +75,15 @@ export default class Filters extends Component {
   }
 
   removeFilters() {
+    // reset state
     this.setState({
       languageClasses: false,
       rating: 0,
       network: [],
       areas: []
     })
+    // remove checkboxes
+    document.querySelectorAll('input[type=checkbox]').forEach( el => el.checked = false );
   }
 
   render() {
