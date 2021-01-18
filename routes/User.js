@@ -53,9 +53,12 @@ userRouter.post('/register',validRegister,(req,res)=>{
             // const CLIENT_URL = 'http://localhost:3000';
 
             const output = `
-                <h2 style="color: #000051">Hello ${firstName} ${lastName}</h2>
-                <h1 style="color: #B71C1C">Please click <a href="${CLIENT_URL}/user/activate/${token}">here</a> to activate your account</h1>
-                <h2 style="color:#000051" ><b style="color:#f9a825">NOTE: </b> The activation link expires in 30 minutes.</h2>
+                <h1 style="color: #000051">Hello ${firstName} ${lastName}</h1>
+                <h2 style="color: #000051">You are receiving this email, because you have asked to register an account at <a href="https://ischool-hyf-team.herokuapp.com/">iSchool</a>.</h2> 
+                <h2 style="color: #000051">Please click button bellow to activate your account</h2>
+                <div><button style="color: #ffff; background:#000051; border: 3px solid #000051; border-radius: 10px; font-size:30px; width: 200px"><a style="color: #ffff; text-decoration: none" href="${CLIENT_URL}/user/activate/${token}">ACTIVATE ACCOUNT</a></button></div>
+                <h2 style="color:#000051"><b style="color:#f9a825">NOTE: </b> The activation link expires in 30 minutes.</h2>
+                <h2 style="color: #000051">Sincerely,  <a href="https://ischool-hyf-team.herokuapp.com/">iSchool</a>  team</h2>
                 `;
 
                 let mailOptions = {
@@ -205,9 +208,12 @@ userRouter.put('/forgotpassword',forgotPasswordValidator,(req,res)=>{
                     // const CLIENT_URL = 'http://localhost:3000';
                     
                     const output = `
-                        <h2 style="color: #000051">Hello ${user.firstName} ${user.lastName}</h2>
-                        <h1 style="color: #B71C1C">Please click <a href="${CLIENT_URL}/user/password/reset/${token}">here</a> to reset your password</h1>
-                        <h2 style="color:#000051" ><b style="color:#f9a825">NOTE: </b> The activation link expires in 10 minutes.</h2>
+                        <h2 style="color: #000051">Hello ${user.firstName} ${user.lastName}</h2>    
+                        <h2 style="color: #000051">You are receiving this email, because you have asked to reset your password for the account at <a href="https://ischool-hyf-team.herokuapp.com/">iSchool</a>.</h2> 
+                        <h2 style="color: #000051">Please click button bellow to reset your password</h2>
+                        <div><button style="color: #ffff; background:#000051; border: 3px solid #000051; border-radius: 10px; font-size:30px; width: 200px"><a style="color: #ffff; text-decoration: none" href="${CLIENT_URL}/user/password/reset/${token}">RESET PASSWORD </a></button></div>
+                        <h2 style="color:#000051" ><b style="color:#f9a825">NOTE: </b> The link to reset your password expires in 10 minutes.</h2>
+                        <h2 style="color: #000051">Sincerely,  <a href="https://ischool-hyf-team.herokuapp.com/">iSchool</a>  team</h2>
                         `;
 
                     let mailOptions = {

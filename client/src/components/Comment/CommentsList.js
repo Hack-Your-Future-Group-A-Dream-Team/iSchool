@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CommentRecord from "./CommentRecord";
 import CommentInput from "./CommentInput";
+import { ToastContainer, toast } from "react-toastify";
 
 const CommentsList = (props) => {
   const [show, setShow] = useState(false);
@@ -18,7 +19,24 @@ const CommentsList = (props) => {
             className="fas fa-chevron-circle-up"
             onClick={props.collapseAll}
           ></i>{" "}
-          <p className="add_comment" onClick={() => setShow(true)}>
+          <p
+            className="add_comment"
+            onClick={() => {
+              if (!props.data.userid) {
+                toast.error("Please, sign-in to leave a comment", {
+                  position: "top-right",
+                  autoClose: 1500,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                });
+                setShow(false);
+                return;
+              }
+
+              setShow(true);
+            }}
+          >
             Add comment
           </p>
         </div>

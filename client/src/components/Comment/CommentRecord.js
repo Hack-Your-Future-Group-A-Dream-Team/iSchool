@@ -8,7 +8,11 @@ const CommentRecord = (props) => {
       <div className="comment_header">
         <div className="comment_created">
           {new Date(props.comment_record.created).toDateString()}{" "}
-          <span>: :</span> {props.comment_record.userid.firstName}{" "}
+          <span class="divider"> : : </span>{" "}
+          {props.comment_record.userid.role === "school" ? (
+            <i className="fas fa-user-graduate"></i>
+          ) : null}{" "}
+          {props.comment_record.userid.firstName}{" "}
           {props.comment_record.userid.lastName}
         </div>
       </div>

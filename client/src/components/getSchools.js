@@ -9,8 +9,7 @@ import { AuthContext } from "../Context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchoolBlock from "./SchoolBlock";
-import { withRouter } from 'react-router-dom';
-
+import { withRouter } from "react-router-dom";
 
 class Schools extends Component {
   constructor(props) {
@@ -19,6 +18,14 @@ class Schools extends Component {
       data: [],
       address: "",
       hasSearchResult: true,
+      hasFilteredResult: true,
+      isSearchResult: false,
+      searchOptions: {
+        componentRestrictions: { country: ["be"] },
+        types: ["address"],
+      },
+      isSearchPage: true,
+      new_rating: 0,
     };
 
     this.sendRating = this.sendRating.bind(this);
@@ -55,11 +62,13 @@ class Schools extends Component {
           this.setState({
             data: data,
             hasSearchResult: false,
+            isSearchResult: false,
           });
         } else {
           this.setState({
             data: data,
             hasSearchResult: true,
+            isSearchResult: true,
           });
         }
       });
@@ -74,6 +83,7 @@ class Schools extends Component {
         this.setState({
           data: allSchools,
           hasSearchResult: true,
+          isSearchResult: false,
         });
       });
     }
@@ -106,33 +116,34 @@ class Schools extends Component {
   }
 
   // send rating
-  sendRating(e) {
+  async sendRating(e) {
     e.preventDefault();
-    if(this.context.isAuthenticated) {
-    const formEvent = e.target;
-    const dataForm = new FormData(formEvent);
-    const dataFormResult = Object.fromEntries(dataForm.entries());
-    console.log(dataFormResult);
+    if (this.context.isAuthenticated) {
+      const formEvent = e.target;
+      const dataForm = new FormData(formEvent);
+      const dataFormResult = Object.fromEntries(dataForm.entries());
+      console.log(dataFormResult);
 
-    axios
-      .post("/schools/rating", {
-        score: dataFormResult.score,
-        schoolid: dataFormResult.schoolid,
-        userid: dataFormResult.userid,
-      })
-      .then((res) => {
-        toast.success("Thank you for sharing your opinion!");
-        console.log("new rating: " + JSON.stringify(res.data));
-      })
-      .catch((err) => {
-        toast.error("Something went wrong. Try again.");
-        console.log(err);
-      });
-    }else{
-      toast.error('Only authorized users can leave review. Please SIGN IN')
-      setTimeout(()=>{
-        this.props.history.push('/login');
-      },5000)
+      axios
+        .post("/schools/rating", {
+          score: dataFormResult.score,
+          schoolid: dataFormResult.schoolid,
+          userid: dataFormResult.userid,
+        })
+        .then((res) => {
+          this.setState({ new_rating: res.data.new_rating });
+          toast.success("Thank you for sharing your opinion!");
+          console.log("new rating: " + JSON.stringify(res.data));
+        })
+        .catch((err) => {
+          toast.error("Something went wrong. Try again.");
+          console.log(err);
+        });
+    } else {
+      toast.error("Only authorized users can leave review. Please SIGN IN");
+      setTimeout(() => {
+        this.props.history.push("/login");
+      }, 5000);
     }
   }
 
@@ -178,6 +189,7 @@ class Schools extends Component {
       toast.success(`We found ${filteredSchools.length} school(s) matches your criteria`);
     };
 
+
     return (
       <div className="searchField">
         <ToastContainer />
@@ -186,6 +198,7 @@ class Schools extends Component {
             value={this.state.address}
             onChange={this.handleChange}
             onSelect={this.handleSelect}
+            searchOptions={this.state.searchOptions}
           >
             {({
               getInputProps,
@@ -233,7 +246,7 @@ class Schools extends Component {
                 <br />
                 Sorry,
                 <br />
-                No school has been found in the 1 km radius of the address you
+                No school has been found in the 5 km radius of the address you
                 have typed.
                 <br />
                 For the moment our service area is limited to Ghent region.
@@ -250,6 +263,15 @@ class Schools extends Component {
             </div>
           )}
 
+          {this.state.isSearchResult && (
+            <div className="proximity">
+              <h4>
+                The results given below are sorted by the proximity to the given
+                address.
+              </h4>
+            </div>
+          )}
+
           {filteredSchools.map((data) => {
             return (
               <Fragment key={data._id}>
@@ -257,7 +279,9 @@ class Schools extends Component {
                   details={data}
                   userid={this.context.user._id}
                   sendRating={this.sendRating}
+                  new_rating={this.state.new_rating}
                   saveFavorite={this.saveFavorite}
+                  page={this.state.isSearchPage}
                 ></SchoolBlock>
               </Fragment>
             );
@@ -268,4 +292,4 @@ class Schools extends Component {
   }
 }
 
-export default  withRouter(Schools);
+export default withRouter(Schools);
