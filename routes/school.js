@@ -13,7 +13,7 @@ schoolRouter.get('/:id', async(req, res, next)=>{
         }).catch(next);
         
     } catch (error) {
-        console.error(error);
+        console.error(error);   
     }
 })
 
