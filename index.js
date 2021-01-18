@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 
 
 const buildPath = path.join(__dirname + '/client' + '/build');
+console.log(buildPath)
 app.use(express.static(buildPath));
 
 app.use('/user',userRouter);
