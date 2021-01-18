@@ -94,12 +94,9 @@ class Schools extends Component {
 
   //Save button
 
-  saveFavorite(data) {
-    console.log(this);
-    console.log(this.context.user.listOfSchools);
-    //const newFav=this.context.user.listOfSchools.push(data)
-    console.log(data);
-    axios({
+  async saveFavorite(data) {
+    if (this.context.isAuthenticated) {
+     axios({
       method: "put",
       url: "/user/favorites",
       data: {
@@ -113,6 +110,12 @@ class Schools extends Component {
       })
       .catch((err) => console.log(err));
     console.log(this.context.user);
+  } else {
+    toast.error("Please sign-in to add schools.");
+      setTimeout(() => {
+        this.props.history.push("/login");
+      }, 5000);
+  }
   }
 
   // send rating
