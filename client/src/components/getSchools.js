@@ -38,8 +38,6 @@ class Schools extends Component {
     axios.get("/schools").then((res) => {
       // get all school from database
       const allSchools = res.data;
-      console.log(allSchools);
-
       this.setState({
         data: allSchools,
       });
