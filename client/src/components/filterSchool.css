@@ -1,6 +1,5 @@
 .filterContainer {
   font-family: "Ubuntu", sans-serif;
-<<<<<<< HEAD
   width: 18%;
   height: 750px;
   margin-left: -22%;
@@ -15,22 +14,6 @@
 
 .filterContainer > h1 {
   padding-top: 30%;
-=======
-  /* width: 18%; */
-  height: 750px;
-  /* margin-left: -22%; */
-  margin-top: 6%;
-  background-color: #000051;
-  padding: 20px;
-  padding-left: 40px;
-  color: white;
-  border-radius: 10px;
-  /* border-top-right-radius: 10px; */
-}
-
-.filterContainer > h1 {
-  padding-top: 5%;
->>>>>>> master
   font-size: 18px;
 }
 
@@ -47,45 +30,26 @@ legend {
   font-weight: 700;
 }
 
-<<<<<<< HEAD
 input[type="checkbox"] {
   height: 18px;
   width: 18px;
   margin-right: 10px;
-=======
-input[type="radio"] {
-  height: 18px;
-  width: 18px;
-  margin-right: 5px;
->>>>>>> master
 }
 
 label {
   font-size: 15px;
-<<<<<<< HEAD
   cursor: pointer;
-=======
->>>>>>> master
 }
 
 /* stars rating */
 .starRating {
   display: inline-block;
-<<<<<<< HEAD
   width: 160px;
 }
 
 .starRating * {
   float: right;
 }
-=======
-  width: 300px;
-}
-
-/* .starRating * {
-    float: right;
-} */
->>>>>>> master
 
 .starRating * {
   size: 10px;
