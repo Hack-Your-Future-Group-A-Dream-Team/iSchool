@@ -188,12 +188,11 @@ class Schools extends Component {
             });
           
           console.log(filteredSchools, "result");
- 
+
         }
       });
       toast.success(`We found ${filteredSchools.length} school(s) matches your criteria`);
     };
-
 
     return (
       <div className="searchField">

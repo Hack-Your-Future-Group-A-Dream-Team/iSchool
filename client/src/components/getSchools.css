@@ -24,7 +24,7 @@
 
 .schoolListItem {
   width: 955px;
-  min-height: 300px;
+  min-height: 250px;
   margin: 2em;
   padding: 1.5em;
   background: #ffffff;
@@ -156,9 +156,9 @@
 }
 
 .searchBar {
-  margin: 20px 10% 20px 15%;
+  margin: 1.5em 0 2em 2em;
   padding: 5px 8px;
-  width: 750px;
+  width: 900px;
   border-radius: 10px;
   border: none;
   border: 1px solid white;
@@ -166,7 +166,7 @@
 }
 
 .searchBarInput {
-  width: 700px;
+  width: 850px;
   outline: none;
   border: none;
   font-size: 20px;
@@ -268,35 +268,117 @@
 }
 
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
-@media screen and (max-width: 768px) {
+
+@media (min-width: 992px) and (max-width: 1199px) {
   .searchField {
-    height: 900px;
-    width: 70%;
-    margin: left;
+    width: 800px;
   }
-  .schoolList {
-    font-family: "Ubuntu", sans-serif;
-    width: 400px;
-    height: 800px;
-    overflow-y: scroll;
-  }
-  .searchBarInput {
-    width: 200px;
-    outline: none;
-    border: none;
-    font-size: 20px;
-    background-color: rgba(211, 211, 211, 0.705);
-  }
+
   .searchBar {
-    margin: 20px 10% 20px 15%;
-    padding: 5px 8px;
-    width: 300px;
-    border-radius: 10px;
-    border: none;
-    border: 1px solid white;
-    background-color: rgba(211, 211, 211, 0.945);
+    width: 700px;
   }
-  .searchBarInput::placeholder {
-    font-size: 15px;
+
+  .searchBarInput {
+    width: 650px;
+  }
+
+  .schoolList {
+    width: 780px;
+  }
+
+  .schoolListItem {
+    width: 700px;
+  }
+
+  .review-container {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .searchField {
+    width: 600px;
+  }
+
+  .searchBar {
+    width: 580px;
+  }
+
+  .searchBarInput {
+    width: 530px;
+  }
+
+  .schoolList {
+    width: 580px;
+    height: 650px;
+  }
+
+  .schoolListItem {
+    width: 550px;
+  }
+
+  .review-container {
+    flex-direction: column;
+  }
+
+  .schoolList-btn {
+    margin-top: 1.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchField {
+    width: 680px;
+  }
+
+  .searchBar {
+    width: 580px;
+  }
+
+  .searchBarInput {
+    width: 530px;
+  }
+
+  .schoolList {
+    width: 650px;
+    height: 650px;
+  }
+
+  .schoolListItem {
+    width: 600px;
+  }
+
+  .review-container {
+    flex-direction: column;
+  }
+
+  .schoolList-btn {
+    margin-top: 1.5em;
+  }
+}
+
+@media (max-width: 420px) {
+  .schoolList {
+    height: 690px;
+  }
+
+  .school_wrapper {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .school-details {
+    width: auto;
+    overflow: scroll;
+  }
+
+  .btn-container {
+    text-align: center;
+  }
+
+  .schoolListItem-rightSide {
+    width: auto;
+    align-items: flex-start;
+    margin-top: 1.5em;
   }
 }
