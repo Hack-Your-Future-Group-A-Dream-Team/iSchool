@@ -130,7 +130,7 @@ function Info() {
                         <img src={Reception} alt="Education network" className="img4"/>
                     </div>
                     <div className="part4">
-                    <h3>Reception/Language Education</h3>
+                    <h3>Reception/ Language Education</h3>
                         <p className="text1">
                             The language of education in Dutch-speaking region is only Dutch. Therefore every 
                             student is expected to know enough level of Dutch language in order to follow the 

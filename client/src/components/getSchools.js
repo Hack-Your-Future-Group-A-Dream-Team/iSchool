@@ -157,28 +157,43 @@ class Schools extends Component {
 
     // filter schools by aside filters
     let filteredSchools = this.state.data;
-
+    
     if (this.props.getFilter) {
+
       Object.entries(this.props.getFilter).forEach(([key, value]) => {
+        if(value.length == 0) {
+          value = false;
+        }
+
         if (value) {
-          if (key === "languageClasses") {
-            value = Boolean(value);
-          }
-
-          if (key === "rating") {
-            value = Number(value);
-          }
-
+          console.log("key: ", key, "value: ", value);
+          
           filteredSchools = filteredSchools.filter(
-            (school) => school[key] == value
-          );
-          console.log(filteredSchools, "during");
+            school => {
+              let result;
+
+              if(key === "languageClasses") {
+                result = school[key] == value
+              }
+
+              if(key === "rating") {
+                result = Math.floor(school[key]) == value;
+              }
+
+              if(key === "network" || key === "areas") {
+                let j = school[key] + '';
+                result = value.includes(j);
+              }
+              return result;
+            });
+          
+          console.log(filteredSchools, "result");
+ 
         }
       });
-      toast.success(
-        `We found ${filteredSchools.length} school(s) matches your criteria`
-      );
-    }
+      toast.success(`We found ${filteredSchools.length} school(s) matches your criteria`);
+    };
+
 
     return (
       <div className="searchField">

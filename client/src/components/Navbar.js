@@ -97,15 +97,29 @@ const Navbar = (props) => {
             <p className="icon">Search School</p>
           </Link>
         </li>
-        <li className="nav-item">
-          <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
-            <i className="fas fa-synagogue icons"></i>
-            <p className="icon">My Schools</p>
-          </Link>
-        </li>
 
-        {user.role === "admin" ? (
-          <li className="nav-item">
+          {user.role === "school" ? (
+            <li className="nav-item">
+            <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
+              {" "}
+              <i className="fas fa-heart icons"></i>
+              <p className="icon">My Schools</p>
+            </Link>
+          </li>
+          ) : null}
+
+          {user.role === "user" ? (
+            <li className="nav-item">
+            <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
+              {" "}
+              <i className="fas fa-heart icons"></i>
+              <p className="icon">My Schools</p>
+            </Link>
+          </li>
+          ) : null}
+          
+          {user.role === "admin" ? (
+            <li className="nav-item">
             <Link to="/admin" className="nav-links" onClick={closeMobileMenu}>
               {" "}
               Admin
