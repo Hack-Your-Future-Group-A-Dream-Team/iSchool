@@ -56,9 +56,12 @@
     margin: auto;
   }
   .sec-container > p {
-    margin-left: 10%;
+    /* margin-left: 10%; */
     font-size: 20px;
-    margin-top: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: -10px; */
   }
   .sec-btns {
     margin-bottom: 40px;
