@@ -1,14 +1,14 @@
 .searchField {
-  height: 900px;
+  height: 750px;
   margin-top: 50px;
-  width: 80%;
-  margin-right: -20%;
+  /* width: 80%; */
+  /* margin-right: -20%; */
 }
 
 .schoolList {
   font-family: "Ubuntu", sans-serif;
-  width: 1000px;
-  height: 750px;
+  width: 1200px;
+  height: 700px;
   overflow-y: scroll;
 }
 
