@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import axios from "axios";
 import CommentsList from "./Comment/CommentsList";
 import CommentInput from "./Comment/CommentInput";
-import { Link} from 'react-router-dom';
-import StarRating from 'react-star-ratings';
+import { Link } from "react-router-dom";
+import StarRating from "react-star-ratings";
 import { AuthContext } from "../Context/AuthContext";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 export class SchoolBlock extends Component {
   constructor(props) {
@@ -18,6 +17,7 @@ export class SchoolBlock extends Component {
       commentsList: [],
       showModal: false,
       commentsIncrement: 0,
+      new_rating: 0,
     };
   }
 
@@ -37,7 +37,7 @@ export class SchoolBlock extends Component {
         <div className="schoolListItem">
           <div className="school_wrapper">
             <div className="school-details">
-              <Link to={`/school/${details._id}`}>
+              <Link to={`/school/info/${details._id}`}>
                 <p
                   className="schoolName"
                   style={{ textDecoration: "underline" }}
@@ -49,7 +49,6 @@ export class SchoolBlock extends Component {
               <p className="schoolContact">Email: {details.email}</p>
               <p className="schoolContact">Phone: {details.phone}</p>
               <div className="btn-container">
-
                 {this.props.page && (
                   <button
                     className="schoolList-btn"
@@ -79,97 +78,31 @@ export class SchoolBlock extends Component {
 
             <div className="schoolListItem-rightSide">
               <div className="review-container">
-
-                {/* <form onSubmit={this.props.sendRating}>
-
-                  <fieldset className="ratingForm">
-                    <div className="addRatingStarContainer">
-                      <input
-                        className="addRatingStar"
-                        type="radio"
-                        name="score"
-                        value="5"
-                        id={details._id + "1"}
-                      ></input>
-                      <label
-                        className="addRatingLabel far fa-star"
-                        for={details._id + "1"}
-                      ></label>
-                      <input
-                        className="addRatingStar"
-                        type="radio"
-                        name="score"
-                        value="4"
-                        id={details._id + "2"}
-                      ></input>
-                      <label
-                        className="addRatingLabel far fa-star"
-                        for={details._id + "2"}
-                      ></label>
-                      <input
-                        className="addRatingStar"
-                        type="radio"
-                        name="score"
-                        value="3"
-                        id={details._id + "3"}
-                      ></input>
-                      <label
-                        className="addRatingLabel far fa-star"
-                        for={details._id + "3"}
-                      ></label>
-                      <input
-                        className="addRatingStar"
-                        type="radio"
-                        name="score"
-                        value="2"
-                        id={details._id + "4"}
-                      ></input>
-                      <label
-                        className="addRatingLabel far fa-star"
-                        for={details._id + "4"}
-                      ></label>
-                      <input
-                        className="addRatingStar"
-                        type="radio"
-                        name="score"
-                        value="1"
-                        id={details._id + "5"}
-                      ></input>
-                      <label
-                        className="addRatingLabel far fa-star"
-                        for={details._id + "5"}
-                      ></label>
-                    </div>
-                    <div className="submit_rate_container">
-                      <input
-                        type="hidden"
-                        name="schoolid"
-                        value={details._id}
-                      ></input>
-                      <input type="hidden" name="userid" value={userid}></input>
-                      <input
-                        className="sendRating"
-                        type="submit"
-                        value="Add score"
-                      ></input>
-                    </div>
-                  </fieldset>
-                </form> */}
-
-            <StarRating  name="small-rating" caption="Small!" size={10} totalStars={5} starDimension="20px"  rating={details.rating} starRatedColor="#B71C1C" changeRating={this.setNewRating}/>
+                <StarRating
+                  name="small-rating"
+                  caption="Small!"
+                  size={10}
+                  totalStars={5}
+                  starDimension="20px"
+                  rating={
+                    this.state.new_rating === 0
+                      ? details.rating
+                      : this.state.new_rating
+                  }
+                  starRatedColor="#B71C1C"
+                  changeRating={this.setNewRating}
+                />
 
                 <div className="review-average">
                   <p>
                     {" "}
-
                     <span>
-                      ( Current rating is {" "}
-                      {this.props.new_rating === 0
+                      ( Current rating is{" "}
+                      {this.state.new_rating === 0
                         ? this.props.details.rating
-                        : this.props.new_rating}
+                        : this.state.new_rating}
                       )
                     </span>
-
                   </p>
                 </div>
               </div>
@@ -217,29 +150,30 @@ export class SchoolBlock extends Component {
     await this.props.sendRating(e);
   };
 
- setNewRating = (rating) =>  {
-  if(this.context.isAuthenticated) {
-  axios
-    .post("/schools/rating", {
-      score: rating,
-      schoolid: this.props.details._id,
-      userid: this.props.userid,
-    })
-    .then((res) => {
-      toast.success("Thank you for sharing your opinion!");
-      console.log("new rating: " + JSON.stringify(res.data));
-    })
-    .catch((err) => {
-      toast.error("Something went wrong. Try again.");
-      console.log(err.response);
-    });
-  }else{
-    toast.error('Only authorized users can leave review. Please SIGN IN')
-    setTimeout(()=>{
-      this.props.history.push('/login');
-    },5000)
-  }
- }
+  setNewRating = (rating) => {
+    if (this.context.isAuthenticated) {
+      axios
+        .post("/schools/rating", {
+          score: rating,
+          schoolid: this.props.details._id,
+          userid: this.props.userid,
+        })
+        .then((res) => {
+          this.setState({ new_rating: res.data.new_rating });
+          toast.success("Thank you for sharing your opinion!");
+          console.log("new rating: " + this.state.new_rating);
+        })
+        .catch((err) => {
+          toast.error("Something went wrong. Try again.");
+          console.log(err.response);
+        });
+    } else {
+      toast.error("Only authorized users can leave review. Please SIGN IN");
+      setTimeout(() => {
+        this.props.history.push("/login");
+      }, 5000);
+    }
+  };
 
   getCommentsList = async (e) => {
     e.preventDefault();

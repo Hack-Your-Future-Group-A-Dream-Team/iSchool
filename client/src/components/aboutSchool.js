@@ -2,7 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 import * as ReactBootStrap from "react-bootstrap";
 import {Container, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
 import Background from './assets/rsz_11educationc74399e4.jpg';
-import {Link, Route} from 'react-router-dom';
+import {Link, Route, useParams} from 'react-router-dom';
 import './aboutSchool.css';
 import axios from 'axios';
 import CommentRecord from './Comment/CommentRecord';
@@ -16,12 +16,13 @@ const AboutSchoolInfo = (props) => {
     const [loading, setLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false); 
     const [comments, setComments] =useState()
-    
+
     // get school
     const getSchool = async() => {
         try{
-            console.log(props.props.match.params.id)
-            const response = await fetch(`/school/${props.props.match.params.id}`);
+            
+            const response = await fetch(`/school/info?id=${props.props.match.params.id}`);
+            console.log(response)
             const jsonData = await response.json();
             setSchool(jsonData[0]);
             setLoading(true);
