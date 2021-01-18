@@ -7,7 +7,6 @@
 
 .schoolList {
   font-family: "Ubuntu", sans-serif;
-  width: 1200px;
   height: 700px;
   overflow-y: scroll;
 }
@@ -44,17 +43,23 @@
   font-weight: 700;
   color: #000051;
   margin-bottom: 5px;
+  margin-left: 1rem;
+  padding-left: 1rem;
 }
 
 .schoolContact {
   text-align: left;
   margin-bottom: 5px;
   font-size: 18px;
+  margin-left: 1rem;
+  padding-left: 1rem;
 }
 
 .btn-container {
   display: flex;
   text-align: left;
+  margin-left: 1rem;
+  padding-left: 1rem;
 }
 
 .schoolList-btn {
@@ -144,6 +149,7 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
+  padding-right: 1rem;
 }
 
 .suggestions {
@@ -274,9 +280,7 @@
   }
   .schoolList {
     font-family: "Ubuntu", sans-serif;
-    width: 400px;
     height: 800px;
-    overflow-y: scroll;
   }
 
   .school_wrapper {
@@ -300,5 +304,9 @@
   }
   .searchBarInput::placeholder {
     font-size: 15px;
+  }
+
+  .schoolListItem-rightSide {
+    padding-right: 2rem;
   }
 }
