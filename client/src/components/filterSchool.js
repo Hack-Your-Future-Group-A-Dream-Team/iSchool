@@ -84,6 +84,7 @@ export default class Filters extends Component {
     })
     // remove checkboxes
     document.querySelectorAll('input[type=checkbox]').forEach( el => el.checked = false );
+    document.querySelectorAll('input[type=radio]').forEach( el => el.checked = false );
   }
 
   render() {

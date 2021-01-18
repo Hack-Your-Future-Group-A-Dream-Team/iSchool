@@ -171,8 +171,12 @@ class Schools extends Component {
             school => {
               let result;
 
-              if(key === "languageClasses" || key === "rating") {
+              if(key === "languageClasses") {
                 result = school[key] == value
+              }
+
+              if(key === "rating") {
+                result = Math.floor(school[key]) == value;
               }
 
               if(key === "network" || key === "areas") {
