@@ -93,43 +93,28 @@ const Navbar = (props) => {
             onClick={closeMobileMenu}
           >
             {" "}
-            <i class="fas fa-search-plus icons"></i>
+            <i className="fas fa-search-plus icons"></i>
             <p className="icon">Search School</p>
           </Link>
         </li>
-          {user.role === "school" ? (
-            <li className="nav-item">
-            <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
-              {" "}
-              <i className="fas fa-synagogue icons"></i>
-              <p className="icon">My Schools</p>
-            </Link>
-          </li>
-          ) : null}
+        <li className="nav-item">
+          <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
+            <i className="fas fa-synagogue icons"></i>
+            <p className="icon">My Schools</p>
+          </Link>
+        </li>
 
-          {user.role === "user" ? (
-            <li className="nav-item">
-            <Link to="/myschools" className="nav-links" onClick={closeMobileMenu}>
-              {" "}
-              <i className="fas fa-synagogue icons"></i>
-              <p className="icon">My Schools</p>
-            </Link>
-          </li>
-          ) : null}
-          
-        
-        
-          {user.role === "admin" ? (
-            <li className="nav-item">
+        {user.role === "admin" ? (
+          <li className="nav-item">
             <Link to="/admin" className="nav-links" onClick={closeMobileMenu}>
               {" "}
               Admin
             </Link>
-            </li>
-          ) : null}
-        
-          {user.role === "school" ? (
-            <li className="nav-item">
+          </li>
+        ) : null}
+
+        {user.role === "school" || user.role === "admin" ? (
+          <li className="nav-item">
             <Link
               to="/addschool"
               className="nav-links"
@@ -139,31 +124,14 @@ const Navbar = (props) => {
               <i className="fas fa-plus-circle icons"></i>
               <p className="icon">Add School</p>
             </Link>
-            </li>
-          ) : null}
-          {user.role === "admin" ? (
-            <li className="nav-item">
-            <Link
-              to="/addschool"
-              className="nav-links"
-              onClick={closeMobileMenu}
-            >
-              {" "}
-              Add School{" "}
-            </Link>
-            </li>
-          ) : null}
+          </li>
+        ) : null}
 
         <li className="nav-item">
-          <button
-            type="button"
-            className="btn btn-link nav-item nav-link Logoutbtn"
-            onClick={onClickLogoutHandler}
-          >
-            <i className="fas fa-sign-out-alt icons">
-              <p className="icon">Logout</p>
-            </i>
-          </button>
+          <Link to="/" className="nav-links" onClick={onClickLogoutHandler}>
+            <i className="fas fa-sign-out-alt icons"></i>
+            <p className="icon">Logout</p>
+          </Link>
         </li>
       </>
     );

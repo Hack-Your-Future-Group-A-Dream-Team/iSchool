@@ -4,10 +4,11 @@ import CommentsList from "./Comment/CommentsList";
 import CommentInput from "./Comment/CommentInput";
 import { Link} from 'react-router-dom';
 import StarRating from 'react-star-ratings';
-import { compareSync } from "bcryptjs";
-import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 import { withRouter } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export class SchoolBlock extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export class SchoolBlock extends Component {
       showComments: false,
       commentsList: [],
       showModal: false,
-      qty: 0,
+      commentsIncrement: 0,
     };
   }
 
@@ -36,17 +37,37 @@ export class SchoolBlock extends Component {
         <div className="schoolListItem">
           <div className="school_wrapper">
             <div className="school-details">
-            <Link to={`/school/${details._id}`}><p className="schoolName" style={{textDecoration:"underline"}}>{details.name}</p></Link>  
+              <Link to={`/school/${details._id}`}>
+                <p
+                  className="schoolName"
+                  style={{ textDecoration: "underline" }}
+                >
+                  {details.name}
+                </p>
+              </Link>
               <p className="schoolContact">{details.adress_str}</p>
               <p className="schoolContact">Email: {details.email}</p>
               <p className="schoolContact">Phone: {details.phone}</p>
               <div className="btn-container">
-                <button
-                  className="schoolList-btn"
-                  onClick={() => this.props.saveFavorite(this.props.details)}
-                >
-                  Save school
-                </button>
+
+                {this.props.page && (
+                  <button
+                    className="schoolList-btn"
+                    onClick={() => this.props.saveFavorite(this.props.details)}
+                  >
+                    Add to My Schools
+                  </button>
+                )}
+                {!this.props.page && (
+                  <button
+                    className="schoolList-btn"
+                    onClick={() =>
+                      this.props.deleteFavorite(this.props.details._id)
+                    }
+                  >
+                    Remove from list
+                  </button>
+                )}
                 <button
                   className="schoolList-btn"
                   onClick={(e) => this.openInputCommentModal()}
@@ -58,7 +79,9 @@ export class SchoolBlock extends Component {
 
             <div className="schoolListItem-rightSide">
               <div className="review-container">
+
                 {/* <form onSubmit={this.props.sendRating}>
+
                   <fieldset className="ratingForm">
                     <div className="addRatingStarContainer">
                       <input
@@ -138,7 +161,15 @@ export class SchoolBlock extends Component {
                 <div className="review-average">
                   <p>
                     {" "}
-                    <span>(Current Rating is {details.rating})</span>
+
+                    <span>
+                      ( Current rating is {" "}
+                      {this.props.new_rating === 0
+                        ? this.props.details.rating
+                        : this.props.new_rating}
+                      )
+                    </span>
+
                   </p>
                 </div>
               </div>
@@ -151,7 +182,12 @@ export class SchoolBlock extends Component {
                         : "fas fa-chevron-down"
                     }
                   ></i>{" "}
-                  Comments <span>({this.state.qty})</span>
+                  Comments{" "}
+                  <span>
+                    (
+                    {this.props.details.comments + this.state.commentsIncrement}
+                    )
+                  </span>
                 </p>
               </div>
             </div>
@@ -177,61 +213,9 @@ export class SchoolBlock extends Component {
     );
   }
 
-  // //////////////////
-  // <div key={data.id} className="schoolListItem">
-
-  //                 <div>
-  //                   <p className="schoolName">{data.name}</p>
-  //                   <p className="schoolContact">{data.adress_str}</p>
-  //                   <p className="schoolContact">Email: {data.email}</p>
-  //                   <p className="schoolContact">Phone: {data.phone}</p>
-  //                   <div className="btn-container">
-  //                     <button className="schoolList-btn" onClick={() => this.saveFavorite(data)}>Save school</button>
-  //                     <button className="schoolList-btn">Comment</button>
-  //                   </div>
-  //                   <div className="review-container">
-  //                     <p>Give a review:</p>
-  //                       <form onSubmit={this.sendRating}>
-  //                         <fieldset className="ratingForm">
-  //                           <div className="addRatingStarContainer">
-  //                             <input className="addRatingStar" type="radio" name="score" value="5"
-  //                             id={data._id + '1'}
-  //                             ></input>
-  //                             <label className="addRatingLabel far fa-star" for={data._id + '1'}></label>
-  //                             <input className="addRatingStar" type="radio" name="score" value="4"
-  //                             id={data._id + '2'}
-  //                             ></input>
-  //                             <label className="addRatingLabel far fa-star" for={data._id + '2'}></label>
-  //                             <input className="addRatingStar"  type="radio" name="score" value="3"
-  //                             id={data._id + '3'}
-  //                             ></input>
-  //                             <label className="addRatingLabel far fa-star" for={data._id + '3'}></label>
-  //                             <input className="addRatingStar" type="radio" name="score" value="2"
-  //                             id={data._id + '4'}
-  //                             ></input>
-  //                             <label className="addRatingLabel far fa-star" for={data._id + '4'}></label>
-  //                             <input className="addRatingStar" type="radio" name="score" value="1"
-  //                             id={data._id + '5'}
-  //                             ></input>
-  //                             <label className="addRatingLabel far fa-star" for={data._id + '5'}></label>
-  //                         </div>
-  //                         <div>
-  //                           <input type="hidden" name="schoolid" value={data._id}></input>
-  //                           <input type="hidden" name="userid" value={user.user._id}></input>
-  //                           <input className="sendRating" type="submit" value="Send"></input>
-  //                         </div>
-  //                       </fieldset>
-  //                     </form>
-  //                   </div>
-  //                 </div>
-
-  //                 <div className="schoolListItem-rightSide">
-  //                   <div className="schoolList-comments">Read Comments</div>
-  //                   <div className="schoolList-rating">Rating: {data.rating}</div>
-  //                 </div>
-
-  //               </div>
-  // //////////////////
+  updateScore = async (e) => {
+    await this.props.sendRating(e);
+  };
 
  setNewRating = (rating) =>  {
   if(this.context.isAuthenticated) {
@@ -273,7 +257,7 @@ export class SchoolBlock extends Component {
   };
 
   incrementQty = () => {
-    this.setState({ qty: this.state.qty + 1 });
+    this.setState({ commentsIncrement: this.state.commentsIncrement + 1 });
   };
 
   collapseAll = () => {
@@ -283,6 +267,17 @@ export class SchoolBlock extends Component {
   };
 
   openInputCommentModal = (e) => {
+    if (this.props.userid === "" || this.props.userid === undefined) {
+      toast.error("Please, sign-in to leave a comment", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+      });
+      return;
+    }
+
     this.setState({ showModal: !this.state.showModal });
   };
 }
