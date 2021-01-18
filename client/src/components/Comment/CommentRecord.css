@@ -26,8 +26,9 @@
 }
 
 .comment_header span {
-    color: rgb(183, 28, 28);
+    color: rgb(183, 28, 28, .8);
     font-weight: 700;
+    font-style: normal;
 }
 
 .comment_created {
@@ -86,6 +87,9 @@
 
 .send-btn {
     background-color: rgb(0, 0, 81, 0.8);
+}
+
+.close-btn {
     margin-right: 2em;
 }
 
@@ -118,4 +122,8 @@
     font-size: ".8em";
     margin: "0";
     text-align: "center",
+}
+
+.fa-user-graduate {
+    color: rgb(183, 28, 28, 0.7);
 }
