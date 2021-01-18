@@ -2,7 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 import * as ReactBootStrap from "react-bootstrap";
 import {Container, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
 import Background from './assets/rsz_11educationc74399e4.jpg';
-import {Link, Route} from 'react-router-dom';
+import {Link, Route, useParams} from 'react-router-dom';
 import './aboutSchool.css';
 import axios from 'axios';
 import CommentRecord from './Comment/CommentRecord';
@@ -16,12 +16,13 @@ const AboutSchoolInfo = (props) => {
     const [loading, setLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false); 
     const [comments, setComments] =useState()
-    
+
     // get school
     const getSchool = async() => {
         try{
-            console.log(props.props.match.params.id)
-            const response = await fetch(`/school/${props.props.match.params.id}`);
+            
+            const response = await fetch(`/school/info?id=${props.props.match.params.id}`);
+            console.log(response)
             const jsonData = await response.json();
             setSchool(jsonData[0]);
             setLoading(true);
@@ -78,7 +79,7 @@ const AboutSchoolInfo = (props) => {
             <ListGroupItem><span style={{marginRight:"10px"}}>AREA:</span>  {school.areas}</ListGroupItem>
             <ListGroupItem><span style={{marginRight:"10px"}}>RECEPTION CLASSES:</span>  {school.languageClasses ?<i className="fas fa-thumbs-up" style={{color:'#B71C1C'}}></i> : <i className="fas fa-thumbs-down" style={{color:'#B71C1C'}}></i>}</ListGroupItem>
             <ListGroupItem><span style={{marginRight:"10px"}}>NETWORK:</span>  {school.network}</ListGroupItem>
-            <ListGroupItem><span style={{marginRight:"10px"}}>RATING:</span> <span style={{ color:"#B71C1C", marginRight:"10px"}}>({school.rating})</span>
+            <ListGroupItem><span style={{marginRight:"10px"}}>RATING:</span>
             <div><StarRating  name="small-rating" caption="Small!" size={10} totalStars={5} rating={school.rating} starDimension="20px"  starRatedColor="#B71C1C"/></div>
             </ListGroupItem>
             <ListGroupItem>

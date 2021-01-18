@@ -9,8 +9,8 @@ import { AuthContext } from "../Context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SchoolBlock from "./SchoolBlock";
-import { withRouter } from 'react-router-dom';
 import * as ReactBootStrap from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
 
 class Schools extends Component {
@@ -21,13 +21,14 @@ class Schools extends Component {
       address: "",
       hasSearchResult: true,
       hasFilteredResult: true,
-      isSearchResult:false,
-      searchOptions:{
-        componentRestrictions: { country: ['be'] },
-        types: ['address']
+      isSearchResult: false,
+      searchOptions: {
+        componentRestrictions: { country: ["be"] },
+        types: ["address"],
       },
-      isSearchPage:true,
       isLoaded: false,
+      isSearchPage: true,
+      new_rating: 0,
     };
 
     this.sendRating = this.sendRating.bind(this);
@@ -40,8 +41,6 @@ class Schools extends Component {
     axios.get("/schools").then((res) => {
       // get all school from database
       const allSchools = res.data;
-      console.log(allSchools);
-
       this.setState({
         data: allSchools,
         isLoaded: true
@@ -65,19 +64,17 @@ class Schools extends Component {
           this.setState({
             data: data,
             hasSearchResult: false,
-            isSearchResult:false
+            isSearchResult: false,
           });
         } else {
           this.setState({
             data: data,
             hasSearchResult: true,
-            isSearchResult:true
+            isSearchResult: true,
           });
         }
       });
   };
-
-
 
   handleChange = async (value) => {
     if (value === "") {
@@ -88,7 +85,7 @@ class Schools extends Component {
         this.setState({
           data: allSchools,
           hasSearchResult: true,
-          isSearchResult:false
+          isSearchResult: false,
         });
       });
     }
@@ -99,12 +96,9 @@ class Schools extends Component {
 
   //Save button
 
-  saveFavorite(data) {
-    console.log(this);
-    console.log(this.context.user.listOfSchools);
-    //const newFav=this.context.user.listOfSchools.push(data)
-    console.log(data);
-    axios({
+  async saveFavorite(data) {
+    if (this.context.isAuthenticated) {
+     axios({
       method: "put",
       url: "/user/favorites",
       data: {
@@ -118,40 +112,45 @@ class Schools extends Component {
       })
       .catch((err) => console.log(err));
     console.log(this.context.user);
+  } else {
+    toast.error("Please sign-in to add schools.");
+      setTimeout(() => {
+        this.props.history.push("/login");
+      }, 5000);
+  }
   }
 
   // send rating
-  sendRating(e) {
+  async sendRating(e) {
     e.preventDefault();
-    if(this.context.isAuthenticated) {
-    const formEvent = e.target;
-    const dataForm = new FormData(formEvent);
-    const dataFormResult = Object.fromEntries(dataForm.entries());
-    console.log(dataFormResult);
+    if (this.context.isAuthenticated) {
+      const formEvent = e.target;
+      const dataForm = new FormData(formEvent);
+      const dataFormResult = Object.fromEntries(dataForm.entries());
+      console.log(dataFormResult);
 
-    axios
-      .post("/schools/rating", {
-        score: dataFormResult.score,
-        schoolid: dataFormResult.schoolid,
-        userid: dataFormResult.userid,
-      })
-      .then((res) => {
-        toast.success("Thank you for sharing your opinion!");
-        console.log("new rating: " + JSON.stringify(res.data));
-      })
-      .catch((err) => {
-        toast.error("Something went wrong. Try again.");
-        console.log(err);
-      });
-    }else{
-      toast.error('Only authorized users can leave review. Please SIGN IN')
-      setTimeout(()=>{
-        this.props.history.push('/login');
-      },5000)
+      axios
+        .post("/schools/rating", {
+          score: dataFormResult.score,
+          schoolid: dataFormResult.schoolid,
+          userid: dataFormResult.userid,
+        })
+        .then((res) => {
+          this.setState({ new_rating: res.data.new_rating });
+          toast.success("Thank you for sharing your opinion!");
+          console.log("new rating: " + JSON.stringify(res.data));
+        })
+        .catch((err) => {
+          toast.error("Something went wrong. Try again.");
+          console.log(err);
+        });
+    } else {
+      toast.error("Only authorized users can leave review. Please SIGN IN");
+      setTimeout(() => {
+        this.props.history.push("/login");
+      }, 5000);
     }
   }
-
-
 
   render() {
     const user = this.context;
@@ -162,7 +161,6 @@ class Schools extends Component {
 
     // filter schools by aside filters
     let filteredSchools = this.state.data;
-    
 
     if (this.props.getFilter) {
       Object.entries(this.props.getFilter).forEach(([key, value]) => {
@@ -181,8 +179,9 @@ class Schools extends Component {
           console.log(filteredSchools, "during");
         }
       });
-      toast.success(`We found ${filteredSchools.length} school(s) matches your criteria`);
-      
+      toast.success(
+        `We found ${filteredSchools.length} school(s) matches your criteria`
+      );
     }
 
     return (
@@ -265,10 +264,11 @@ class Schools extends Component {
           {this.state.isSearchResult && (
             <div className="proximity">
               <h4>
-              The results given below are sorted by the proximity to the given address.
+                The results given below are sorted by the proximity to the given
+                address.
               </h4>
             </div>
-          )}  
+          )}
 
           {filteredSchools.map((data) => {
             return (
@@ -277,6 +277,7 @@ class Schools extends Component {
                   details={data}
                   userid={this.context.user._id}
                   sendRating={this.sendRating}
+                  new_rating={this.state.new_rating}
                   saveFavorite={this.saveFavorite}
                   page={this.state.isSearchPage}
                 ></SchoolBlock>
@@ -292,4 +293,4 @@ class Schools extends Component {
   }
 }
 
-export default  withRouter(Schools);
+export default withRouter(Schools);

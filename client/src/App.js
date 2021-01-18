@@ -31,7 +31,7 @@ function App() {
       <UnPrivateRoute path="/user/password/forgot" component={ForgotPassword}/>
       <Route exact path="/searchschool" component={SearchSchool}/>
       <PrivateRoute path="/myschools" roles={["user","admin","school"]} component={MySchool}/>
-      <Route  path="/school/:id" component={SchoolProfile}/>
+      <Route  path="/school/info/:id" component={SchoolProfile}/>
       <PrivateRoute path="/addschool" roles={["admin","school"]} component={RegisterSchool}/>
       <PrivateRoute path="/admin" roles={["admin"]} component={Admin}/>
       <Route exact path="/Info" component={Information}/>
