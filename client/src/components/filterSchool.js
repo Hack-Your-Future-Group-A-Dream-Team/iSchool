@@ -105,7 +105,7 @@ export default class Filters extends Component {
             </h5>
           </div>
   
-    <div id="collapseOne" className="collapse show rounded-bottom " aria-labelledby="headingOne" data-parent="#accordion" style={{background:"#000051", color:"#ffff"}, minHeight: "60vh"}>
+    <div id="collapseOne" className="collapse show rounded-bottom " aria-labelledby="headingOne" data-parent="#accordion" style={{background:"#000051", color:"#ffff", minHeight: "60vh"}}>
       <div className="card-body">
         {/* LANGUAGE */}
         <div className="filterItem">
