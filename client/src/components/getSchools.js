@@ -188,6 +188,11 @@ class Schools extends Component {
                 let j = school[key] + '';
                 result = value.includes(j);
               }
+
+              if(key === "collapse"){
+                result = true
+              }
+
               return result;
             });
           

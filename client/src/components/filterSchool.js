@@ -115,7 +115,7 @@ export default class Filters extends Component {
                     checked={this.state.languageClasses}
                     onChange={this.addLanguageFilter}
                     ></input>
-                    <label className="labelCheckbox" for="LC-true">Yes</label><br></br>
+                    <label className="labelCheckbox" htmlFor="LC-true">Yes</label><br></br>
                 </fieldset>
               </div>
               {/* RATING */}
@@ -191,7 +191,7 @@ export default class Filters extends Component {
                 </fieldset>
                 </div>
 
-                <a href="#top"className="filter-close" onClick={()=>{this.setState({ collapse: !this.state.collapse})}}><i class="fas fa-times"></i></a>
+                <a href="#top"className="filter-close" onClick={()=>{this.setState({ collapse: !this.state.collapse})}}><i className="fas fa-times"></i></a>
               </div>
       </div>
     </div>
