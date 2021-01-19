@@ -22,7 +22,7 @@ export default class Filters extends Component {
       rating: 0,
       network: [],
       areas: [],
-      collapse: true
+      collapse: false
     }
 
     this.addLanguageFilter = this.addLanguageFilter.bind(this)
@@ -98,14 +98,14 @@ export default class Filters extends Component {
         <div className="card" style={{background:"#000051", color:"#ffff !important"}}>
           <div className="card-header collapsed rounded-top" id="headingOne" style={{background:"#000051", color:"#ffff !important" }}>
             <h5 className="mb-0">
-              <button className="btn btn-link hided" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{color:"#ffff !important"}}>
-              <h1 style={{color:"#ffff"}} className="filter-header">Filters</h1>
+              <button className="btn btn-link hide" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{color:"#ffff !important"}} onClick={()=>{this.setState({ collapse: !this.state.collapse})}}>
+              <h1 style={{color:"#ffff", textDecoration:"underline"}} className="filter-header">Filters</h1>
               </button>
               <h2 className="hidden" style={{color:"#ffff"}}>Filters</h2>
             </h5>
           </div>
   
-    <div id="collapseOne" className="collapse show rounded-bottom " aria-labelledby="headingOne" data-parent="#accordion" style={{background:"#000051", color:"#ffff", minHeight: "60vh"}}>
+    <div id="collapseOne" className={ this.state.collapse ?  "collapse rounded-bottom": "collapse show rounded-bottom"} aria-labelledby="headingOne" data-parent="#accordion" name="top"style={{background:"#000051", color:"#ffff", minHeight: "60vh"}}>
       <div className="card-body">
         {/* LANGUAGE */}
         <div className="filterItem">
@@ -186,12 +186,12 @@ export default class Filters extends Component {
 
                 <div className="filterItem" style={{marginTop: "30px"}}>
                   <fieldset>
-                  <button style={btnStyle} onClick={() => { this.props.updateFilter(this.state); this.setState({collapse: false}) }} >Search</button>
+                  <button style={btnStyle} onClick={() => { this.props.updateFilter(this.state)}} >Search</button>
                   <button style={btnStyle} onClick={ this.removeFilters }>Reset filters</button>
                 </fieldset>
                 </div>
 
-               
+                <a href="#top"className="filter-close" onClick={()=>{this.setState({ collapse: !this.state.collapse})}}><i class="fas fa-times"></i></a>
               </div>
       </div>
     </div>

@@ -94,7 +94,7 @@ label {
   background-color: white;
 }
 
-.hided{
+.hide, .filter-close{
   display: none
 }
 
@@ -104,6 +104,11 @@ label {
 
 
 @media screen and (max-width: 768px) {
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   .wholeContainer {
     flex-direction: column;
   }
@@ -136,8 +141,17 @@ label {
     width: 120px;
   }
 
-  .hided{
+  .hide{
     display: block;
+  }
+
+  .filter-close{
+    display: block;
+    background-color: #000051;
+    outline: none;
+    border: none;
+    float: right;
+    margin: 20px 10px;
   }
 
   .filter-header{
@@ -152,6 +166,8 @@ label {
   .collapse.show{
     display: none !important;
     transition: .2s transform ease-in-out;
+    top:0;
+    behavior: 'smooth';
   }
   .collapsing{
     transition: .2s transform ease-in-out;
