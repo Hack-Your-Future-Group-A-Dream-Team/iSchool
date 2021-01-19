@@ -127,3 +127,9 @@
 .fa-user-graduate {
     color: rgb(183, 28, 28, 0.7);
 }
+
+@media screen and (max-width: 768px) {
+    .comment_wrapper {
+        max-width: 100vw;
+    }
+}
