@@ -274,43 +274,19 @@
 
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
 
-@media (min-width: 992px) and (max-width: 1199px) {
-  .searchField {
-    width: 800px;
-  }
-
-  .searchBar {
-    width: 700px;
-  }
-
-  .searchBarInput {
-    width: 650px;
-  }
-
-  .schoolList {
-    width: 780px;
-  }
-
-  .schoolListItem {
-    width: 700px;
-  }
-
-  .review-container {
-    flex-direction: column;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .searchField {
     width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .searchBar {
-    width: 580px;
+    width: 550px;
   }
 
   .searchBarInput {
-    width: 530px;
+    width: 500px;
   }
 
   .schoolList {
@@ -331,26 +307,39 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .searchField {
-    width: 680px;
+    width: 350px;
   }
 
   .searchBar {
-    width: 580px;
+    width: 320px;
   }
 
   .searchBarInput {
-    width: 530px;
+    width: 270px;
+  }
+
+  .school_wrapper {
+    flex-direction: column;
   }
 
   .schoolList {
-    width: 650px;
+    width: 350px;
     height: 650px;
   }
 
   .schoolListItem {
-    width: 600px;
+    width: 330px;
+  }
+
+  .school-details {
+    width: auto;
+  }
+
+  .schoolListItem-rightSide {
+    margin-top: 1em;
+    width: auto;
   }
 
   .review-container {
@@ -358,32 +347,6 @@
   }
 
   .schoolList-btn {
-    margin-top: 1.5em;
-  }
-}
-
-@media (max-width: 420px) {
-  .schoolList {
-    height: 690px;
-  }
-
-  .school_wrapper {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .school-details {
-    width: auto;
-    overflow: scroll;
-  }
-
-  .btn-container {
-    text-align: center;
-  }
-
-  .schoolListItem-rightSide {
-    width: auto;
-    align-items: flex-start;
     margin-top: 1.5em;
   }
 }
