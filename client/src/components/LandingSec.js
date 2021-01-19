@@ -20,7 +20,7 @@ function LandingSec() {
         </div> 
 
         <div className='signup'>
-             <p className="text"> By <Link to='/register' style={{color: '#B71C1C', fontWeight: 'bold', textDecoration: "none"}}>signing-up</Link> you can save your favorite schools in your account, as well as give ratings to schools and comment about them.  <br/>
+             <p className="text"> By <Link to='/register' style={{color: '#B71C1C', fontWeight: 'bold', textDecoration: "none"}}>signing up</Link> you can save your favorite schools in your account, as well as give ratings to schools and comment about them.  <br/>
              If you are a school manager and you want to register your school, please <Link to='/register' style={{color: '#B71C1C', fontWeight: 'bold', textDecoration: "none"}}>SIGN UP</Link>! </p> 
        </div>
         <div className="student">
