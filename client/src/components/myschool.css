@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10px;
+    /* padding: 0 10px; */
 }
 
 .myschool .no-fav-header {

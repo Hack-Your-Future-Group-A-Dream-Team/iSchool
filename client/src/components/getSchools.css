@@ -24,7 +24,6 @@
 .schoolListItem {
   min-height: 300px;
   margin: 2em auto;
-  padding: 1.5em;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -43,7 +42,6 @@
   font-weight: 700;
   color: #000051;
   margin-bottom: 5px;
-  margin-left: 1rem;
   padding-left: 1rem;
 }
 
@@ -51,15 +49,13 @@
   text-align: left;
   margin-bottom: 5px;
   font-size: 18px;
-  margin-left: 1rem;
-  padding-left: 1rem;
+  padding-left: 1em;
 }
 
 .btn-container {
   display: flex;
   text-align: left;
-  margin-left: 1rem;
-  padding-left: 1rem;
+  padding-left: 1em;
 }
 
 .schoolList-btn {
@@ -143,13 +139,12 @@
 }
 
 .schoolListItem-rightSide {
-  min-width: 140px;
   font-size: 18px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
-  padding-right: 1rem;
+  padding-right: 1em;
 }
 
 .suggestions {
@@ -285,7 +280,9 @@
 
   .school_wrapper {
     flex-direction: column;
+    max-width: 100vw;
   }
+
   .searchBarInput {
     width: 200px;
     outline: none;
@@ -307,6 +304,6 @@
   }
 
   .schoolListItem-rightSide {
-    padding-right: 2rem;
+    padding-right: 2em;
   }
 }
