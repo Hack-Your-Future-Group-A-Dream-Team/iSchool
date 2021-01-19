@@ -254,11 +254,13 @@ class Schools extends Component {
             )}
           </PlacesAutocomplete>
         </div>
-
-        <div className="msgCountSchool">
-            <p>We found {filteredSchools.length} schools matches your criteria</p>
-        </div>
-
+        
+        {filteredSchools.length === 0 || filteredSchools.length === this.state.data.length ?
+          null : <div className="msgCountSchool">
+          <p>We found {filteredSchools.length} schools matches your criteria</p>
+        </div> 
+        }
+        
         <div className="schoolList">
           {!this.state.hasSearchResult && (
             <div className="noResult">

@@ -297,8 +297,14 @@
     width: 550px;
   }
 
+  .school_wrapper {
+    flex-direction: column;
+  }
+
   .review-container {
     flex-direction: column;
+    width: auto;
+    margin-top: 1em;
   }
 
   .schoolList-btn {
@@ -329,11 +335,17 @@
   }
 
   .schoolListItem {
-    width: 330px;
+    width: 320px;
   }
 
-  .school-details {
+  .school-details,
+  .schoolContact {
     width: auto;
+    overflow: scroll;
+  }
+
+  .btn-container {
+    flex-direction: column;
   }
 
   .schoolListItem-rightSide {
