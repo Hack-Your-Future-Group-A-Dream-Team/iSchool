@@ -94,6 +94,15 @@ label {
   background-color: white;
 }
 
+.hided{
+  display: none
+}
+
+.hidden{
+  display: block;
+}
+
+
 @media screen and (max-width: 768px) {
   .wholeContainer {
     flex-direction: column;
@@ -127,5 +136,41 @@ label {
     width: 120px;
   }
 
+  .hided{
+    display: block;
+  }
+
+  .filter-header{
+    font-size: 1.6rem;
+  }
+
+  .hidden{
+    display: none;
+  }
+
+
+  .collapse.show{
+    display: none !important;
+    transition: .2s transform ease-in-out;
+  }
+  .collapsing{
+    transition: .2s transform ease-in-out;
+  }
+
+  .collapse:not(.show){
+    display: block !important;
+    transition: .2s transform ease-in-out;
+  }
+
+  .container-filter{
+    min-height: 10vh !important;
+  }
   
+  #accordion{
+    margin-top: 5px !important;
+  }
+
+  .card{
+    min-height: 10vh !important;
+  }
 }
