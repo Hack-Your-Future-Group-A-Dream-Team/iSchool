@@ -95,7 +95,7 @@ export default class Filters extends Component {
         {console.log(this.state)}
         <div style={{minHeight:"60vh"}} className="container-filter">
        <div id="accordion" style={{margin: "30px auto"}}>
-        <div className="card" style={{background:"#000051", color:"#ffff !important"}}>
+        <div className="card" style={{background:"#000051", color:"#ffff !important", margin:"20px"}}>
           <div className="card-header collapsed rounded-top" id="headingOne" style={{background:"#000051", color:"#ffff !important" }}>
             <h5 className="mb-0">
               <button className="btn btn-link hide" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{color:"#ffff !important"}} onClick={()=>{this.setState({ collapse: !this.state.collapse})}}>

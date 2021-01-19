@@ -206,7 +206,7 @@ class Schools extends Component {
 
     return (
       <div>
-      {!this.state.isLoaded ? ( <div className="schoolList d-flex justify-content-center align-items-center mt-5">
+      {!this.state.isLoaded ? ( <div className="d-flex justify-content-center align-items-center mt-5" style={{minWidth: "64vw"}}>
             <ReactBootStrap.Spinner animation="border" variant="danger"/>
             </div> ) : (
               <div className="searchField">
