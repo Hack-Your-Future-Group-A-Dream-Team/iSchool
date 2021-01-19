@@ -21,7 +21,8 @@ export default class Filters extends Component {
       languageClasses: false,
       rating: 0,
       network: [],
-      areas: []
+      areas: [],
+      collapse: true
     }
 
     this.addLanguageFilter = this.addLanguageFilter.bind(this)
@@ -94,19 +95,18 @@ export default class Filters extends Component {
         {console.log(this.state)}
         <div style={{minHeight:"75vh"}} className="container-filter">
        <div id="accordion" style={{margin: "60px auto"}}>
-        <div class="card" style={{ minHeight: "73vh", background:"#000051", color:"#ffff !important"}}>
-          <div class="card-header collapsed rounded-top" id="headingOne" style={{background:"#000051", color:"#ffff !important" }}>
-            <h5 class="mb-0">
-              <button class="btn btn-link hided" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{color:"#ffff !important"}}>
+        <div className="card" style={{ minHeight: "68vh", background:"#000051", color:"#ffff !important"}}>
+          <div className="card-header collapsed rounded-top" id="headingOne" style={{background:"#000051", color:"#ffff !important" }}>
+            <h5 className="mb-0">
+              <button className="btn btn-link hided" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{color:"#ffff !important"}}>
               <h1 style={{color:"#ffff"}} className="filter-header">Filters</h1>
               </button>
               <h2 className="hidden" style={{color:"#ffff"}}>Filters</h2>
             </h5>
           </div>
   
-    <div id="collapseOne" class="collapse show rounded-bottom" aria-labelledby="headingOne" data-parent="#accordion" style={{background:"#000051", color:"#ffff"}}>
-      <div class="card-body">
-      {/* <div class="hidden"> */}
+    <div id="collapseOne" className="collapse show rounded-bottom " aria-labelledby="headingOne" data-parent="#accordion" style={{background:"#000051", color:"#ffff"}}>
+      <div className="card-body">
         {/* LANGUAGE */}
         <div className="filterItem">
                 <fieldset>
@@ -186,7 +186,7 @@ export default class Filters extends Component {
 
                 <div className="filterItem" style={{marginTop: "30px"}}>
                   <fieldset>
-                  <button style={btnStyle} onClick={() => { this.props.updateFilter(this.state) }}>Search</button>
+                  <button style={btnStyle} onClick={() => { this.props.updateFilter(this.state); this.setState({collapse: false}) }} >Search</button>
                   <button style={btnStyle} onClick={ this.removeFilters }>Reset filters</button>
                 </fieldset>
                 </div>
@@ -194,7 +194,6 @@ export default class Filters extends Component {
                
               </div>
       </div>
-      {/* </div> */}
     </div>
   </div>
 </div>
