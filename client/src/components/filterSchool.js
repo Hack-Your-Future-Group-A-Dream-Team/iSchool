@@ -93,8 +93,8 @@ export default class Filters extends Component {
     return (
       <Fragment>
         {console.log(this.state)}
-        <div style={{minHeight:"75vh"}} className="container-filter">
-       <div id="accordion" style={{margin: "60px auto"}}>
+        <div style={{minHeight:"72vh"}} className="container-filter">
+       <div id="accordion" style={{margin: "30px auto"}}>
         <div className="card" style={{background:"#000051", color:"#ffff !important"}}>
           <div className="card-header collapsed rounded-top" id="headingOne" style={{background:"#000051", color:"#ffff !important" }}>
             <h5 className="mb-0">
