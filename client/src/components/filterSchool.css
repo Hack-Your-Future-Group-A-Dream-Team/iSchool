@@ -94,7 +94,21 @@ label {
   background-color: white;
 }
 
+.hide, .filter-close{
+  display: none
+}
+
+.hidden{
+  display: block;
+}
+
+
 @media screen and (max-width: 768px) {
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   .wholeContainer {
     flex-direction: column;
   }
@@ -125,5 +139,54 @@ label {
   }
   .reset {
     width: 120px;
+  }
+
+  .hide{
+    display: block;
+  }
+
+  .filter-close{
+    display: block;
+    background-color: #000051;
+    outline: none;
+    border: none;
+    float: right;
+    margin: 20px 10px;
+  }
+
+  .filter-header{
+    font-size: 1.6rem;
+  }
+
+  .hidden{
+    display: none;
+  }
+
+
+  .collapse.show{
+    display: none !important;
+    transition: .2s transform ease-in-out;
+    top:0;
+    behavior: 'smooth';
+  }
+  .collapsing{
+    transition: .2s transform ease-in-out;
+  }
+
+  .collapse:not(.show){
+    display: block !important;
+    transition: .2s transform ease-in-out;
+  }
+
+  .container-filter{
+    min-height: 10vh !important;
+  }
+  
+  #accordion{
+    margin-top: 5px !important;
+  }
+
+  .card{
+    min-height: 10vh !important;
   }
 }

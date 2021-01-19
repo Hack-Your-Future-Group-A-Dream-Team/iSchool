@@ -10,6 +10,7 @@ const btnStyle = {
   padding: "8px 25px",
   margin: "10px",
   color: "#fff",
+  outline: "none"
 };
 
 export default class Filters extends Component {
@@ -20,7 +21,8 @@ export default class Filters extends Component {
       languageClasses: false,
       rating: 0,
       network: [],
-      areas: []
+      areas: [],
+      collapse: false
     }
 
     this.addLanguageFilter = this.addLanguageFilter.bind(this)
@@ -91,19 +93,29 @@ export default class Filters extends Component {
     return (
       <Fragment>
         {console.log(this.state)}
-        <div className="filterContainer">
-
-            <h1>Filters</h1>
-            
-              {/* LANGUAGE */}
-              <div className="filterItem">
+        <div style={{minHeight:"60vh"}} className="container-filter">
+       <div id="accordion" style={{margin: "30px auto"}}>
+        <div className="card" style={{background:"#000051", color:"#ffff !important", margin:"20px"}}>
+          <div className="card-header collapsed rounded-top" id="headingOne" style={{background:"#000051", color:"#ffff !important" }}>
+            <h5 className="mb-0">
+              <button className="btn btn-link hide" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{color:"#ffff !important"}} onClick={()=>{this.setState({ collapse: !this.state.collapse})}}>
+              <h1 style={{color:"#ffff", textDecoration:"underline"}} className="filter-header">Filters</h1>
+              </button>
+              <h2 className="hidden" style={{color:"#ffff"}}>Filters</h2>
+            </h5>
+          </div>
+  
+    <div id="collapseOne" className={ this.state.collapse ?  "collapse rounded-bottom": "collapse show rounded-bottom"} aria-labelledby="headingOne" data-parent="#accordion" name="top"style={{background:"#000051", color:"#ffff", minHeight: "60vh"}}>
+      <div className="card-body">
+        {/* LANGUAGE */}
+        <div className="filterItem">
                 <fieldset>
                   <legend>Reception classes for Dutch learners</legend>
                     <input name="languageClasses" type="checkbox" id="LC-true"
                     checked={this.state.languageClasses}
                     onChange={this.addLanguageFilter}
                     ></input>
-                    <label className="labelCheckbox" for="LC-true">Yes</label><br></br>
+                    <label className="labelCheckbox" htmlFor="LC-true">Yes</label><br></br>
                 </fieldset>
               </div>
               {/* RATING */}
@@ -172,10 +184,20 @@ export default class Filters extends Component {
                   <label className="labelCheckbox" for="areasArt">Art Secondary Education</label>
                 </fieldset>
 
-                <button style={btnStyle} onClick={() => { this.props.updateFilter(this.state) }}>Search</button>
-                <button style={btnStyle} onClick={ this.removeFilters }>Reset filters</button>
+                <div className="filterItem" style={{marginTop: "30px"}}>
+                  <fieldset>
+                  <button style={btnStyle} onClick={() => { this.props.updateFilter(this.state)}} >Search</button>
+                  <button style={btnStyle} onClick={ this.removeFilters }>Reset filters</button>
+                </fieldset>
+                </div>
+
+                <a href="#top"className="filter-close" onClick={()=>{this.setState({ collapse: !this.state.collapse})}}><i className="fas fa-times"></i></a>
               </div>
-        </div>
+          </div>
+         </div>
+      </div>
+  </div>
+</div>
       </Fragment>
     );
   }
