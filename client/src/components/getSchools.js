@@ -171,6 +171,10 @@ class Schools extends Component {
 
         if (value) {
           console.log("key: ", key, "value: ", value);
+
+          if(key==="collapse"){
+            return;
+          }
           
           filteredSchools = filteredSchools.filter(
             school => {
@@ -188,11 +192,7 @@ class Schools extends Component {
                 let j = school[key] + '';
                 result = value.includes(j);
               }
-
-              if(key === "collapse"){
-                result = true
-              }
-
+              
               return result;
             });
           
