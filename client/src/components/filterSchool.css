@@ -11,8 +11,6 @@
   border-radius: 10px;
 }
 
-
-
 .filterContainer > h1 {
   padding-top: 5%;
   font-size: 18px;
@@ -30,7 +28,6 @@ legend {
   font-size: 20px;
   font-weight: 700;
 }
-
 
 input[type="checkbox"] {
   height: 18px;

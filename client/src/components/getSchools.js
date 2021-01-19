@@ -197,12 +197,11 @@ class Schools extends Component {
             });
           
           console.log(filteredSchools, "result");
- 
+
         }
       });
-      toast.success(`We found ${filteredSchools.length} school(s) matches your criteria`);
+      // toast.success(`We found ${filteredSchools.length} school(s) matches your criteria`);
     };
-
 
     return (
       <div>
@@ -255,7 +254,13 @@ class Schools extends Component {
             )}
           </PlacesAutocomplete>
         </div>
-
+        
+        {filteredSchools.length === 0 || filteredSchools.length === this.state.data.length ?
+          null : <div className="msgCountSchool">
+          <p>We found {filteredSchools.length} schools matches your criteria</p>
+        </div> 
+        }
+        
         <div className="schoolList">
           {!this.state.hasSearchResult && (
             <div className="noResult">
@@ -289,7 +294,7 @@ class Schools extends Component {
               </h4>
             </div>
           )}
-
+          
           {filteredSchools.map((data) => {
             return (
               <Fragment key={data._id}>
