@@ -193,10 +193,10 @@ export default class Filters extends Component {
 
                 <a href="#top"className="filter-close" onClick={()=>{this.setState({ collapse: !this.state.collapse})}}><i className="fas fa-times"></i></a>
               </div>
+          </div>
+         </div>
       </div>
-    </div>
   </div>
-</div>
 </div>
       </Fragment>
     );
